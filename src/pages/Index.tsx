@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Image, Camera, Calendar, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -13,7 +12,6 @@ import GalleryImage from '@/components/GalleryImage';
 const Index = () => {
   const [showMore, setShowMore] = useState(false);
   
-  // Initialize animation observer
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -34,47 +32,41 @@ const Index = () => {
     };
   }, []);
 
-  // Sample gallery images
   const galleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
-      alt: "Retrato feminino em estúdio"
+      src: "https://evydencia.com.br/bio/img/15_ANOS.png",
+      alt: "Ensaio 15 Anos"
     },
     {
-      src: "https://images.unsplash.com/photo-1606788076219-0712213a4818",
-      alt: "Ensaio família com bebê"
+      src: "https://evydencia.com.br/bio/img/ACOMPANHAMENO_MENSAL.png",
+      alt: "Acompanhamento Mensal"
     },
     {
-      src: "https://images.unsplash.com/photo-1472396961693-142e6e269027",
-      alt: "Fotografia de natureza"
+      src: "https://evydencia.com.br/bio/img/ANIVERSARIO.png",
+      alt: "Aniversário"
     },
     {
-      src: "https://images.unsplash.com/photo-1580824456911-fd30e072cbb9",
-      alt: "Ensaio gestante ao ar livre"
+      src: "https://evydencia.com.br/bio/img/BATIZADOS.png",
+      alt: "Batizados"
     },
     {
-      src: "https://images.unsplash.com/photo-1596394723269-e92a54f6f81d",
-      alt: "Família reunida em momento especial"
+      src: "https://evydencia.com.br/bio/img/CORPORATIVO.png",
+      alt: "Ensaio Corporativo"
     },
     {
-      src: "https://images.unsplash.com/photo-1625631980927-fee4afcea120",
-      alt: "Ensaio newborn delicado"
+      src: "https://evydencia.com.br/bio/img/GESTANTES.png",
+      alt: "Ensaio Gestante"
     },
     {
-      src: "https://images.unsplash.com/photo-1604117535057-fc80a36e2886",
-      alt: "Casal em estúdio"
+      src: "https://evydencia.com.br/bio/img/REVELACAO.png",
+      alt: "Revelação"
     },
     {
-      src: "https://images.unsplash.com/photo-1631016066967-16072e932a6b",
-      alt: "Família em ambiente externo"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b",
-      alt: "Gestante em estúdio"
-    },
+      src: "https://evydencia.com.br/bio/img/SMASH_THE_CAKE.png",
+      alt: "Smash the Cake"
+    }
   ];
 
-  // Additional images to show when "Ver mais" is clicked
   const extraGalleryImages = [
     {
       src: "https://images.unsplash.com/photo-1650106121476-45755f4658e4",
@@ -102,7 +94,6 @@ const Index = () => {
     }
   ];
 
-  // Services offered
   const services = [
     {
       title: "Ensaios em Estúdio",
@@ -121,7 +112,6 @@ const Index = () => {
     }
   ];
 
-  // Benefits
   const benefits = [
     {
       title: "Agendamento flexível",
@@ -149,12 +139,11 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       
-      {/* Hero Section */}
       <section 
         id="hero" 
         className="min-h-screen flex items-center justify-center relative pt-20"
         style={{ 
-          background: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1606788076219-0712213a4818') center/cover no-repeat",
+          background: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86') center/cover no-repeat",
           backgroundAttachment: "fixed"
         }}
       >
@@ -174,7 +163,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section */}
       <section id="sobre" className="bg-white section-padding">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
@@ -214,7 +202,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Services Section */}
       <section id="servicos" className="bg-evydencia-beige section-padding">
         <div className="container mx-auto px-4">
           <RevealOnScroll>
@@ -247,7 +234,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Benefits Section */}
       <section className="bg-white section-padding">
         <div className="container mx-auto px-4">
           <RevealOnScroll>
@@ -267,7 +253,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Gallery Section */}
       <section id="galeria" className="bg-evydencia-beige section-padding">
         <div className="container mx-auto px-4">
           <RevealOnScroll>
@@ -309,10 +294,8 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Testimonials Section */}
       <Testimonials />
       
-      {/* Contact Section */}
       <section id="contato" className="bg-white section-padding">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
@@ -334,7 +317,7 @@ const Index = () => {
                   <Button 
                     size="lg" 
                     className="bg-evydencia-gold hover:bg-opacity-90 text-black animate-pulse-slow flex items-center gap-2"
-                    onClick={() => window.open("https://wa.me/5500000000000", "_blank")}
+                    onClick={() => window.open("https://wa.me/5548996425287", "_blank")}
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-whatsapp"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 1 1 0c0 .97 1.12 1.67 2 1.67a.5.5 0 0 1 0 1"/></svg>
                     Quero Registrar Meu Momento!
@@ -378,7 +361,6 @@ const Index = () => {
         </div>
       </section>
       
-      {/* Footer */}
       <footer className="bg-foreground text-white py-10">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
