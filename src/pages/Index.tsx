@@ -35,62 +35,43 @@ const Index = () => {
   const galleryImages = [
     {
       src: "https://evydencia.com.br/bio/img/15_ANOS.png",
-      alt: "Ensaio 15 Anos"
+      alt: "Ensaio 15 Anos",
+      title: "15 Anos"
     },
     {
       src: "https://evydencia.com.br/bio/img/ACOMPANHAMENO_MENSAL.png",
-      alt: "Acompanhamento Mensal"
+      alt: "Acompanhamento Mensal",
+      title: "Color"
     },
     {
       src: "https://evydencia.com.br/bio/img/ANIVERSARIO.png",
-      alt: "Aniversário"
+      alt: "Aniversário",
+      title: "Aniversário"
     },
     {
       src: "https://evydencia.com.br/bio/img/BATIZADOS.png",
-      alt: "Batizados"
+      alt: "Batizados",
+      title: "Batizado"
     },
     {
       src: "https://evydencia.com.br/bio/img/CORPORATIVO.png",
-      alt: "Ensaio Corporativo"
+      alt: "Ensaio Corporativo",
+      title: "Coorporativo"
     },
     {
       src: "https://evydencia.com.br/bio/img/GESTANTES.png",
-      alt: "Ensaio Gestante"
+      alt: "Ensaio Gestante",
+      title: "Gestante"
     },
     {
       src: "https://evydencia.com.br/bio/img/REVELACAO.png",
-      alt: "Revelação"
+      alt: "Revelação",
+      title: "Revelação"
     },
     {
       src: "https://evydencia.com.br/bio/img/SMASH_THE_CAKE.png",
-      alt: "Smash the Cake"
-    }
-  ];
-
-  const extraGalleryImages = [
-    {
-      src: "https://images.unsplash.com/photo-1650106121476-45755f4658e4",
-      alt: "Ensaio de bebê em estúdio"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1557115533-7a4273928800",
-      alt: "Ensaio infantil colorido"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1621452773781-0f992fd1f5cb",
-      alt: "Ensaio ao ar livre"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1581987899614-1eaa7dcc9936",
-      alt: "Mãe com recém-nascido"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1533856493584-0c6ca8ca9ce3",
-      alt: "Celebração de família"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
-      alt: "Retrato profissional"
+      alt: "Smash the Cake",
+      title: "Smash the Cake"
     }
   ];
 
@@ -311,32 +292,12 @@ const Index = () => {
                 <GalleryImage
                   src={image.src}
                   alt={image.alt}
-                  delay={index * 100}
-                />
-              </RevealOnScroll>
-            ))}
-            
-            {showMore && extraGalleryImages.map((image, index) => (
-              <RevealOnScroll key={`extra-${index}`} delay={index * 100} className="animate-fade-in opacity-0">
-                <GalleryImage
-                  src={image.src}
-                  alt={image.alt}
+                  title={image.title}
                   delay={index * 100}
                 />
               </RevealOnScroll>
             ))}
           </div>
-          
-          <RevealOnScroll delay={600}>
-            <div className="text-center mt-12">
-              <Button 
-                className="bg-evydencia-gold hover:bg-opacity-90 text-black"
-                onClick={() => setShowMore(!showMore)}
-              >
-                {showMore ? "Ver menos" : "Ver mais"}
-              </Button>
-            </div>
-          </RevealOnScroll>
         </div>
       </section>
       
@@ -382,8 +343,11 @@ const Index = () => {
                   
                   <div>
                     <h3 className="text-xl font-bold mb-2">Horário de Atendimento</h3>
-                    <p className="mb-1">Segunda a Sexta: 9h às 18h</p>
-                    <p>Sábado: 9h às 12h (com agendamento)</p>
+                    <p className="mb-1">Segunda a Sexta: 13h às 18h</p>
+                    <p className="mb-4">Sábados: 08:30 às 11:00</p>
+                    <p className="text-sm text-muted-foreground italic">
+                      Para ensaios fotográficos atendemos com horários agendados, então temos flexibilidade conforme necessidade.
+                    </p>
                   </div>
                 </RevealOnScroll>
                 
@@ -428,8 +392,7 @@ const Index = () => {
             </div>
             
             <div className="text-sm text-center md:text-right">
-              <p>&copy; 2023 Estúdio Evydência - Todos os direitos reservados</p>
-              <p className="mt-1">Desenvolvido com 💛 por Lovable</p>
+              <p>&copy; 2025 Estúdio Evydência - Todos os direitos reservados</p>
             </div>
           </div>
         </div>

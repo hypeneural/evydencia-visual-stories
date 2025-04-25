@@ -5,10 +5,11 @@ import { cn } from '@/lib/utils';
 interface GalleryImageProps {
   src: string;
   alt: string;
+  title: string;
   delay: number;
 }
 
-const GalleryImage = ({ src, alt, delay }: GalleryImageProps) => {
+const GalleryImage = ({ src, alt, title, delay }: GalleryImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
@@ -31,6 +32,9 @@ const GalleryImage = ({ src, alt, delay }: GalleryImageProps) => {
           "absolute inset-0 bg-gray-300 animate-pulse",
           isLoaded && "hidden"
         )} />
+        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+          <h3 className="text-white text-xl font-semibold text-center">{title}</h3>
+        </div>
       </div>
     </div>
   );
