@@ -96,18 +96,38 @@ const Index = () => {
 
   const services = [
     {
-      title: "Ensaios em Estúdio",
-      description: "Ambiente climatizado e confortável, com cenários profissionais personalizáveis para suas fotos.",
+      title: "Em Estúdio",
+      description: `
+        • Ensaios Temáticos (Natal, Dia das Mães, Páscoa e mais)
+        • Acompanhamento Mensal
+        • Ensaio de Gestante
+        • Ensaio de Família
+        • Ensaio de Casal
+        • Ensaio Corporativo
+        • Ensaio com Fundo Branco
+        • Smash The Cake
+        • Chá Revelação
+      `,
       icon: <Camera size={24} />
     },
     {
       title: "Ensaios Externos",
-      description: "Registros em locais especiais ao ar livre, capturando a beleza natural dos momentos.",
+      description: `
+        • Ensaio de Família
+        • Ensaio de Casal
+        • Ensaio de Gestante
+        • Ensaio Corporativo
+        • Chá Revelação
+        • Sessão de Aniversário Infantil
+      `,
       icon: <Image size={24} />
     },
     {
-      title: "Eventos Especiais",
-      description: "Cobertura completa de batizados, aniversários e outros momentos importantes.",
+      title: "Cobertura de Eventos",
+      description: `
+        • Batizados
+        • Aniversários Infantis
+      `,
       icon: <Calendar size={24} />
     }
   ];
@@ -143,7 +163,7 @@ const Index = () => {
         id="hero" 
         className="min-h-screen flex items-center justify-center relative pt-20"
         style={{ 
-          background: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1513836279014-a89f7a76ae86') center/cover no-repeat",
+          background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://evydencia.com.br/bio/img/banner.jpg') center/cover no-repeat",
           backgroundAttachment: "fixed"
         }}
       >
@@ -154,7 +174,7 @@ const Index = () => {
           </p>
           <Button 
             size="lg" 
-            className="bg-evydencia-gold hover:bg-opacity-90 animate-pulse-slow text-black text-lg animate-fade-in opacity-0" 
+            className="bg-evydencia-gold hover:bg-opacity-90 text-black font-bold text-lg animate-fade-in opacity-0" 
             style={{ animationDelay: "600ms" }}
             onClick={() => window.location.href="#contato"}
           >
@@ -165,15 +185,24 @@ const Index = () => {
 
       <section id="sobre" className="bg-white section-padding">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 mb-8 md:mb-0">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            <div className="md:w-1/2">
               <RevealOnScroll>
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <img 
-                    src="https://images.unsplash.com/photo-1581034756046-074e5c67092f" 
-                    alt="Anderson e Elaine, fundadores do Estúdio Evydência" 
-                    className="w-full h-auto"
-                  />
+                <div className="flex gap-4">
+                  <div className="w-1/2 rounded-lg overflow-hidden shadow-lg">
+                    <img 
+                      src="https://evydencia.com.br/bio/img/anderson.jpg" 
+                      alt="Anderson, fotógrafo do Estúdio Evydência" 
+                      className="w-full h-auto aspect-[3/4] object-cover"
+                    />
+                  </div>
+                  <div className="w-1/2 rounded-lg overflow-hidden shadow-lg">
+                    <img 
+                      src="https://evydencia.com.br/bio/img/elaine.jpg" 
+                      alt="Elaine, fotógrafa do Estúdio Evydência" 
+                      className="w-full h-auto aspect-[3/4] object-cover"
+                    />
+                  </div>
                 </div>
               </RevealOnScroll>
             </div>
@@ -208,29 +237,46 @@ const Index = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Nossos Serviços</h2>
           </RevealOnScroll>
           
-          <div className="flex flex-wrap -mx-4">
-            {services.map((service, index) => (
-              <ServiceCard
-                key={index}
-                title={service.title}
-                description={service.description}
-                icon={service.icon}
-                delay={index * 200}
-              />
-            ))}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <ServiceCard
+              title="Em Estúdio"
+              description={`
+                • Ensaios Temáticos (Natal, Dia das Mães, Páscoa e mais)
+                • Acompanhamento Mensal
+                • Ensaio de Gestante
+                • Ensaio de Família
+                • Ensaio de Casal
+                • Ensaio Corporativo
+                • Ensaio com Fundo Branco
+                • Smash The Cake
+                • Chá Revelação
+              `}
+              icon={<Camera size={24} />}
+              delay={0}
+            />
+            <ServiceCard
+              title="Ensaios Externos"
+              description={`
+                • Ensaio de Família
+                • Ensaio de Casal
+                • Ensaio de Gestante
+                • Ensaio Corporativo
+                • Chá Revelação
+                • Sessão de Aniversário Infantil
+              `}
+              icon={<Image size={24} />}
+              delay={200}
+            />
+            <ServiceCard
+              title="Cobertura de Eventos"
+              description={`
+                • Batizados
+                • Aniversários Infantis
+              `}
+              icon={<Calendar size={24} />}
+              delay={400}
+            />
           </div>
-          
-          <RevealOnScroll delay={800}>
-            <div className="text-center mt-8">
-              <Button 
-                variant="outline" 
-                className="border-evydencia-gold text-evydencia-gold hover:bg-evydencia-gold hover:text-white"
-                onClick={() => window.location.href="#contato"}
-              >
-                Saiba mais sobre nossos serviços
-              </Button>
-            </div>
-          </RevealOnScroll>
         </div>
       </section>
       
