@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Image, Camera, Calendar, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
 import Navbar from '@/components/Navbar';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
 import ServiceCard from '@/components/ServiceCard';
 import Testimonials from '@/components/Testimonials';
 import RevealOnScroll from '@/components/RevealOnScroll';
 import GalleryImage from '@/components/GalleryImage';
+import BackgroundSlideshow from '@/components/BackgroundSlideshow';
+import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
 const Index = () => {
   const [showMore, setShowMore] = useState(false);
@@ -140,27 +141,36 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       
-      <section 
-        id="hero" 
-        className="min-h-screen flex items-center justify-center relative pt-20"
-        style={{ 
-          background: "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://evydencia.com.br/bio/img/banner.jpg') center/cover no-repeat",
-          backgroundAttachment: "fixed"
-        }}
-      >
+      <section id="hero" className="min-h-screen flex items-center justify-center relative pt-20">
+        <BackgroundSlideshow />
         <div className="container mx-auto px-4 text-center text-white z-10">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">Cada foto, uma história eterna.</h1>
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in font-playfair">
+            Cada foto, uma história eterna.
+          </h1>
           <p className="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: "300ms" }}>
             Momentos especiais, registrados com amor e sensibilidade.
           </p>
-          <Button 
-            size="lg" 
-            className="bg-evydencia-gold hover:bg-opacity-90 text-black font-bold text-lg animate-fade-in opacity-0" 
-            style={{ animationDelay: "600ms" }}
-            onClick={() => window.location.href="#contato"}
-          >
-            Agende seu Ensaio!
-          </Button>
+          <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+            <Button 
+              size="lg" 
+              className="bg-evydencia-gold hover:bg-opacity-90 text-black font-bold text-lg animate-fade-in opacity-0 hover:scale-105 transform transition-all shadow-lg"
+              style={{ animationDelay: "600ms" }}
+              onClick={() => window.location.href="#contato"}
+            >
+              <Calendar className="w-5 h-5 mr-2" />
+              Agende seu Ensaio!
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              className="bg-white/10 hover:bg-white/20 text-white border-white animate-fade-in opacity-0 backdrop-blur-sm"
+              style={{ animationDelay: "800ms" }}
+              onClick={() => window.location.href="#servicos"}
+            >
+              <Camera className="w-5 h-5 mr-2" />
+              Conheça Nosso Estúdio
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -399,6 +409,7 @@ const Index = () => {
       </footer>
 
       <ScrollToTopButton />
+      <FloatingWhatsApp />
     </div>
   );
 };
