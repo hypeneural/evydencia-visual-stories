@@ -1,8 +1,9 @@
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 import RevealOnScroll from './RevealOnScroll';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import VanillaTilt from 'vanilla-tilt';
 
 interface ServiceCardProps {
   title: string;
@@ -12,9 +13,28 @@ interface ServiceCardProps {
 }
 
 const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
+  const tiltRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (tiltRef.current) {
+      VanillaTilt.init(tiltRef.current, {
+        max: 10,
+        speed: 400,
+        glare: true,
+        'max-glare': 0.2,
+        scale: 1.05,
+      });
+    }
+  }, []);
+
   return (
-    <RevealOnScroll delay={delay} className="w-full px-4 mb-8">
-      <Card className="hover:shadow-lg transition-all duration-300 h-full border border-evydencia-beige hover:border-evydencia-gold group hover:translate-y-[-5px]">
+    <div 
+      ref={tiltRef}
+      data-aos="fade-up"
+      data-aos-delay={delay}
+      className="w-full px-4 mb-8"
+    >
+      <Card className="hover:shadow-lg transition-all duration-300 h-full border border-evydencia-beige hover:border-evydencia-gold group">
         <CardHeader>
           <div className="flex justify-center mb-4">
             <div className="text-evydencia-gold p-3 rounded-full bg-evydencia-beige group-hover:bg-evydencia-gold group-hover:text-white transition-all duration-300 transform group-hover:scale-110">
@@ -29,7 +49,7 @@ const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
           </div>
         </CardContent>
       </Card>
-    </RevealOnScroll>
+    </div>
   );
 };
 

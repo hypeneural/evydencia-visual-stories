@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useTypedText } from '@/hooks/useTypedText';
 import { Image, Camera, Calendar, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
@@ -11,6 +13,14 @@ import BackgroundSlideshow from '@/components/BackgroundSlideshow';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 
 const Index = () => {
+  useScrollAnimation();
+  const typedElement = useTypedText({
+    strings: ['Cada foto, uma história eterna.', 'Momentos únicos, eternizados.', 'Memórias que duram para sempre.'],
+    typeSpeed: 40,
+    backSpeed: 30,
+    loop: true
+  });
+
   const [showMore, setShowMore] = useState(false);
   
   useEffect(() => {
@@ -141,11 +151,11 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       
-      <section id="hero" className="min-h-screen flex items-center justify-center relative pt-20">
+      <section id="hero" className="min-h-screen flex items-center justify-center relative pt-20" data-aos="fade-up">
         <BackgroundSlideshow />
         <div className="container mx-auto px-4 text-center text-white z-10">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in font-playfair">
-            Cada foto, uma história eterna.
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 font-playfair">
+            <span ref={typedElement}></span>
           </h1>
           <p className="text-xl md:text-2xl mb-10 max-w-2xl mx-auto animate-fade-in opacity-0" style={{ animationDelay: "300ms" }}>
             Momentos especiais, registrados com amor e sensibilidade.
@@ -174,7 +184,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="sobre" className="bg-white section-padding">
+      <section id="sobre" className="bg-white section-padding" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-8">
             <div className="md:w-1/2">
@@ -222,7 +232,7 @@ const Index = () => {
         </div>
       </section>
       
-      <section id="servicos" className="bg-evydencia-beige section-padding">
+      <section id="servicos" className="bg-evydencia-beige section-padding" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <RevealOnScroll>
             <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Nossos Serviços</h2>
