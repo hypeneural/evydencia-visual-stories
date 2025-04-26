@@ -14,14 +14,14 @@ interface ServiceCardProps {
 const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
   return (
     <RevealOnScroll delay={delay} className="w-full px-4 mb-8">
-      <Card className="hover:shadow-lg transition-all duration-300 h-full border border-evydencia-beige hover:border-evydencia-gold group">
+      <Card className="hover:shadow-lg transition-all duration-300 h-full border border-evydencia-beige hover:border-evydencia-gold group hover:translate-y-[-5px]">
         <CardHeader>
           <div className="flex justify-center mb-4">
-            <div className="text-evydencia-gold p-3 rounded-full bg-evydencia-beige group-hover:bg-evydencia-gold group-hover:text-white transition-all duration-300">
+            <div className="text-evydencia-gold p-3 rounded-full bg-evydencia-beige group-hover:bg-evydencia-gold group-hover:text-white transition-all duration-300 transform group-hover:scale-110">
               {icon}
             </div>
           </div>
-          <h3 className="text-xl font-medium text-center font-playfair">{title}</h3>
+          <h3 className="text-xl font-medium text-center font-playfair group-hover:text-evydencia-gold transition-colors">{title}</h3>
         </CardHeader>
         <CardContent>
           <div className="text-muted-foreground text-left whitespace-pre-line">
