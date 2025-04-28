@@ -1,7 +1,8 @@
+
 import { useEffect, useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useTypedText } from '@/hooks/useTypedText';
-import { Image, Camera, Calendar, Users } from 'lucide-react';
+import { Image, Camera, Calendar, Users, Clock, Award, ShieldCheck, HeartHandshake, ThumbsUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
@@ -12,6 +13,7 @@ import GalleryImage from '@/components/GalleryImage';
 import BackgroundSlideshow from '@/components/BackgroundSlideshow';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import AnimatedCounter from '@/components/AnimatedCounter';
+import IconFeature from '@/components/IconFeature';
 
 const Index = () => {
   useScrollAnimation();
@@ -53,7 +55,7 @@ const Index = () => {
     {
       src: "https://evydencia.com.br/bio/img/ACOMPANHAMENO_MENSAL.png",
       alt: "Acompanhamento Mensal",
-      title: "Color"
+      title: "Acompanhamento"
     },
     {
       src: "https://evydencia.com.br/bio/img/ANIVERSARIO.png",
@@ -68,7 +70,7 @@ const Index = () => {
     {
       src: "https://evydencia.com.br/bio/img/CORPORATIVO.png",
       alt: "Ensaio Corporativo",
-      title: "Coorporativo"
+      title: "Corporativo"
     },
     {
       src: "https://evydencia.com.br/bio/img/GESTANTES.png",
@@ -101,7 +103,8 @@ const Index = () => {
         • Smash The Cake
         • Chá Revelação
       `,
-      icon: <Camera size={24} />
+      icon: <Camera size={24} />,
+      imageSrc: "https://evydencia.com.br/bio/img/CORPORATIVO.png"
     },
     {
       title: "Ensaios Externos",
@@ -113,7 +116,8 @@ const Index = () => {
         • Chá Revelação
         • Sessão de Aniversário Infantil
       `,
-      icon: <Image size={24} />
+      icon: <Image size={24} />,
+      imageSrc: "https://evydencia.com.br/bio/img/GESTANTES.png"
     },
     {
       title: "Cobertura de Eventos",
@@ -121,31 +125,44 @@ const Index = () => {
         • Batizados
         • Aniversários Infantis
       `,
-      icon: <Calendar size={24} />
+      icon: <Calendar size={24} />,
+      imageSrc: "https://evydencia.com.br/bio/img/ANIVERSARIO.png"
     }
   ];
 
   const benefits = [
     {
       title: "Agendamento flexível",
-      description: "Horários disponíveis inclusive aos finais de semana."
+      description: "Horários disponíveis inclusive aos finais de semana.",
+      icon: <Clock size={20} />
     },
     {
       title: "Estúdio climatizado",
-      description: "Ambiente confortável para você e sua família."
+      description: "Ambiente confortável para você e sua família.",
+      icon: <ThumbsUp size={20} />
     },
     {
       title: "Higiene e segurança",
-      description: "Espaço higienizado diariamente para sua tranquilidade."
+      description: "Espaço higienizado diariamente para sua tranquilidade.",
+      icon: <ShieldCheck size={20} />
     },
     {
       title: "Experiência personalizada",
-      description: "Cada sessão é única e pensada especialmente para você."
+      description: "Cada sessão é única e pensada especialmente para você.",
+      icon: <HeartHandshake size={20} />
     },
     {
       title: "Mais de 12 anos de história",
-      description: "Experiência e profissionalismo para registrar seus momentos."
+      description: "Experiência e profissionalismo para registrar seus momentos.",
+      icon: <Award size={20} />
     }
+  ];
+
+  // Stats for animated counters
+  const stats = [
+    { value: 12, label: "Anos de experiência", suffix: "+" },
+    { value: 5000, label: "Clientes satisfeitos", suffix: "+" },
+    { value: 15000, label: "Ensaios realizados", suffix: "+" }
   ];
 
   return (
@@ -220,7 +237,7 @@ const Index = () => {
               </RevealOnScroll>
               <RevealOnScroll delay={600}>
                 <p className="text-lg mb-6 text-muted-foreground">
-                  Há mais de 12 anos, temos o privilégio de registrar histórias únicas e emocionantes. Cada ensaio é tratado com dedicação e sensibilidade, buscando capturar não apenas imagens, mas sentimentos genuínos.
+                  Há mais de <AnimatedCounter end={12} /> anos, temos o privilégio de registrar histórias únicas e emocionantes. Cada ensaio é tratado com dedicação e sensibilidade, buscando capturar não apenas imagens, mas sentimentos genuínos.
                 </p>
               </RevealOnScroll>
               <RevealOnScroll delay={800}>
@@ -233,51 +250,42 @@ const Index = () => {
         </div>
       </section>
       
+      <section id="stats" className="bg-evydencia-gold py-12">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {stats.map((stat, index) => (
+              <RevealOnScroll key={index} delay={index * 200} className="text-center">
+                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                  <AnimatedCounter 
+                    end={stat.value}
+                    suffix={stat.suffix}
+                    delay={index * 300}
+                  />
+                </div>
+                <p className="text-lg text-white/80">{stat.label}</p>
+              </RevealOnScroll>
+            ))}
+          </div>
+        </div>
+      </section>
+      
       <section id="servicos" className="bg-evydencia-beige section-padding" data-aos="fade-up">
         <div className="container mx-auto px-4">
           <RevealOnScroll>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Nossos Serviços</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-playfair">Nossos Serviços</h2>
           </RevealOnScroll>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ServiceCard
-              title="Em Estúdio"
-              description={`
-                • Ensaios Temáticos (Natal, Dia das Mães, Páscoa e mais)
-                • Acompanhamento Mensal
-                • Ensaio de Gestante
-                • Ensaio de Família
-                • Ensaio de Casal
-                • Ensaio Corporativo
-                • Ensaio com Fundo Branco
-                • Smash The Cake
-                • Chá Revelação
-              `}
-              icon={<Camera size={24} />}
-              delay={0}
-            />
-            <ServiceCard
-              title="Ensaios Externos"
-              description={`
-                • Ensaio de Família
-                • Ensaio de Casal
-                • Ensaio de Gestante
-                • Ensaio Corporativo
-                • Chá Revelação
-                • Sessão de Aniversário Infantil
-              `}
-              icon={<Image size={24} />}
-              delay={200}
-            />
-            <ServiceCard
-              title="Cobertura de Eventos"
-              description={`
-                • Batizados
-                • Aniversários Infantis
-              `}
-              icon={<Calendar size={24} />}
-              delay={400}
-            />
+            {services.map((service, index) => (
+              <ServiceCard
+                key={index}
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+                imageSrc={service.imageSrc}
+                delay={index * 200}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -285,17 +293,18 @@ const Index = () => {
       <section className="bg-white section-padding">
         <div className="container mx-auto px-4">
           <RevealOnScroll>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Nossos Diferenciais</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-playfair">Nossos Diferenciais</h2>
           </RevealOnScroll>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {benefits.map((benefit, index) => (
-              <RevealOnScroll key={index} delay={index * 150}>
-                <div className="bg-evydencia-beige p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-                  <h3 className="text-xl font-bold mb-2 text-evydencia-gold">{benefit.title}</h3>
-                  <p className="text-muted-foreground">{benefit.description}</p>
-                </div>
-              </RevealOnScroll>
+              <IconFeature
+                key={index}
+                title={benefit.title}
+                description={benefit.description}
+                icon={benefit.icon}
+                delay={index * 150}
+              />
             ))}
           </div>
         </div>
@@ -304,7 +313,7 @@ const Index = () => {
       <section id="galeria" className="bg-evydencia-beige section-padding">
         <div className="container mx-auto px-4">
           <RevealOnScroll>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Nossa Galeria</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-playfair">Nossa Galeria</h2>
           </RevealOnScroll>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -328,7 +337,7 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <RevealOnScroll>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">Entre em Contato</h2>
+              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-playfair">Entre em Contato</h2>
             </RevealOnScroll>
             <RevealOnScroll delay={200}>
               <p className="text-center text-lg text-muted-foreground mb-12">
@@ -370,12 +379,34 @@ const Index = () => {
                       Para ensaios fotográficos atendemos com horários agendados, então temos flexibilidade conforme necessidade.
                     </p>
                   </div>
+
+                  <div className="mt-6 flex flex-col gap-2">
+                    <h3 className="text-xl font-bold mb-2">Navegue até nós</h3>
+                    <a 
+                      href="https://www.google.com/maps/place/Evyd%C3%AAncia/@-27.24173,-48.646721,17z/data=!3m1!4b1!4m6!3m5!1s0x94d8abe77ad9d3db:0x6c2f30b48e88088f!8m2!3d-27.24173!4d-48.646721!16s%2Fg%2F1yfjlrv5g?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 bg-white/50 hover:bg-white transition-colors p-3 rounded-md"
+                    >
+                      <img src="https://cdn-icons-png.flaticon.com/512/2875/2875331.png" alt="Google Maps" className="w-6 h-6" />
+                      <span className="font-medium">Abrir no Google Maps</span>
+                    </a>
+                    <a 
+                      href="https://www.waze.com/ul?ll=-27.24173,-48.646721&navigate=yes&zoom=17"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 bg-white/50 hover:bg-white transition-colors p-3 rounded-md"
+                    >
+                      <img src="https://cdn-icons-png.flaticon.com/512/732/732257.png" alt="Waze" className="w-6 h-6" />
+                      <span className="font-medium">Abrir no Waze</span>
+                    </a>
+                  </div>
                 </RevealOnScroll>
                 
                 <RevealOnScroll delay={500} className="md:w-1/2">
-                  <div className="h-64 rounded-lg overflow-hidden shadow-md">
+                  <div className="h-64 md:h-full rounded-lg overflow-hidden shadow-md">
                     <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14139.991540096336!2d-48.63387!3d-27.235694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8cb7c4a7c877f%3A0xfb04adc00678de60!2sTijucas%2C%20SC!5e0!3m2!1spt-BR!2sbr!4v1713239997841!5m2!1spt-BR!2sbr" 
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14139.991540096336!2d-48.64857873022461!3d-27.24173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8abe77ad9d3db%3A0x6c2f30b48e88088f!2sEvyd%C3%AAncia!5e0!3m2!1spt-BR!2sbr!4v1713239997841!5m2!1spt-BR!2sbr" 
                       width="100%" 
                       height="100%" 
                       style={{ border: 0 }} 
@@ -394,6 +425,14 @@ const Index = () => {
       
       <footer className="bg-foreground text-white py-10">
         <div className="container mx-auto px-4">
+          <div className="flex flex-col items-center mb-10">
+            <img 
+              src="https://evydencia.com.br/img/logo.png" 
+              alt="Estúdio Evydência"
+              className="h-16 mb-6 brightness-0 invert"
+            />
+          </div>
+          
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-6 md:mb-0">
               <h2 className="text-2xl font-playfair font-bold">Estúdio Evydência</h2>
@@ -401,13 +440,13 @@ const Index = () => {
             </div>
             
             <div className="flex space-x-4 mb-6 md:mb-0">
-              <a href="#" className="hover:text-evydencia-gold transition-colors p-2" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              </a>
-              <a href="#" className="hover:text-evydencia-gold transition-colors p-2" aria-label="Instagram">
+              <a href="https://www.instagram.com/estudioevydencia" target="_blank" rel="noopener noreferrer" className="hover:text-evydencia-gold transition-colors p-2" aria-label="Instagram">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
               </a>
-              <a href="#" className="hover:text-evydencia-gold transition-colors p-2" aria-label="WhatsApp">
+              <a href="https://www.facebook.com/profile.php?id=61573374213482" target="_blank" rel="noopener noreferrer" className="hover:text-evydencia-gold transition-colors p-2" aria-label="Facebook">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+              </a>
+              <a href="https://wa.me/5548996425287" target="_blank" rel="noopener noreferrer" className="hover:text-evydencia-gold transition-colors p-2" aria-label="WhatsApp">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-whatsapp"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 1 1 0c0 .97 1.12 1.67 2 1.67a.5.5 0 0 1 0 1"/></svg>
               </a>
             </div>
@@ -421,7 +460,6 @@ const Index = () => {
 
       <ScrollToTopButton />
       <FloatingWhatsApp />
-      <AnimatedCounter />
     </div>
   );
 };

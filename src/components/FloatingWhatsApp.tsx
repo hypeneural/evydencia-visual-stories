@@ -11,7 +11,7 @@ const FloatingWhatsApp = () => {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-green-500 text-white transition-all hover:bg-green-600",
+        "fixed bottom-6 left-6 z-50 flex items-center gap-2 rounded-full bg-green-500 text-white transition-all hover:bg-green-600 shadow-lg",
         isHovered ? "px-6 pr-8" : "p-4"
       )}
       onMouseEnter={() => setIsHovered(true)}

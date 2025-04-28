@@ -38,14 +38,15 @@ const Navbar = () => {
     )}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <a 
-            href="#" 
-            className={cn(
-              "text-2xl font-playfair font-bold transition-all duration-300",
-              isScrolled ? "text-evydencia-gold drop-shadow-sm" : "text-white drop-shadow-md"
-            )}
-          >
-            Evydência
+          <a href="#hero" className="flex items-center">
+            <img 
+              src="https://evydencia.com.br/img/logo.png" 
+              alt="Estúdio Evydência" 
+              className={cn(
+                "h-12 transition-all duration-300",
+                isScrolled ? "" : "filter drop-shadow-md"
+              )}
+            />
           </a>
 
           <div className="hidden md:flex items-center gap-4">

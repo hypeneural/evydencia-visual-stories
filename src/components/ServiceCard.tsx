@@ -10,9 +10,10 @@ interface ServiceCardProps {
   description: string;
   icon: ReactNode;
   delay: number;
+  imageSrc?: string;
 }
 
-const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, icon, delay, imageSrc }: ServiceCardProps) => {
   const tiltRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,7 +35,16 @@ const ServiceCard = ({ title, description, icon, delay }: ServiceCardProps) => {
       data-aos-delay={delay}
       className="w-full px-4 mb-8"
     >
-      <Card className="hover:shadow-lg transition-all duration-300 h-full border border-evydencia-beige hover:border-evydencia-gold group">
+      <Card className="hover:shadow-lg transition-all duration-300 h-full border border-evydencia-beige hover:border-evydencia-gold group overflow-hidden">
+        {imageSrc && (
+          <div className="w-full h-48 overflow-hidden">
+            <img 
+              src={imageSrc} 
+              alt={title} 
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+            />
+          </div>
+        )}
         <CardHeader>
           <div className="flex justify-center mb-4">
             <div className="text-evydencia-gold p-3 rounded-full bg-evydencia-beige group-hover:bg-evydencia-gold group-hover:text-white transition-all duration-300 transform group-hover:scale-110">

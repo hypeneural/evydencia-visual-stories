@@ -10,7 +10,13 @@ interface AnimatedCounterProps {
   suffix?: string;
 }
 
-const AnimatedCounter = ({ end, duration = 2000, delay = 0, prefix = '', suffix = '' }: AnimatedCounterProps) => {
+const AnimatedCounter = ({ 
+  end = 12, // Default value to fix the error
+  duration = 2000, 
+  delay = 0, 
+  prefix = '', 
+  suffix = '' 
+}: AnimatedCounterProps) => {
   const [count, setCount] = useState(0);
   const { ref, inView } = useInView({
     threshold: 0.3,
