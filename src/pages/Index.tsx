@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useTypedText } from '@/hooks/useTypedText';
 import { Image, Camera, Calendar, Users } from 'lucide-react';
@@ -11,6 +11,7 @@ import RevealOnScroll from '@/components/RevealOnScroll';
 import GalleryImage from '@/components/GalleryImage';
 import BackgroundSlideshow from '@/components/BackgroundSlideshow';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
+import AnimatedCounter from '@/components/AnimatedCounter';
 
 const Index = () => {
   useScrollAnimation();
@@ -420,6 +421,7 @@ const Index = () => {
 
       <ScrollToTopButton />
       <FloatingWhatsApp />
+      <AnimatedCounter />
     </div>
   );
 };
