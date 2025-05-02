@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useTypedText } from '@/hooks/useTypedText';
@@ -14,6 +13,7 @@ import BackgroundSlideshow from '@/components/BackgroundSlideshow';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import AnimatedCounter from '@/components/AnimatedCounter';
 import IconFeature from '@/components/IconFeature';
+import { cn } from '@/lib/utils';
 
 const Index = () => {
   useScrollAnimation();
@@ -50,44 +50,64 @@ const Index = () => {
     {
       src: "https://evydencia.com.br/bio/img/15_ANOS.png",
       alt: "Ensaio 15 Anos",
-      title: "15 Anos"
+      title: "15 Anos",
+      category: "eventos"
     },
     {
       src: "https://evydencia.com.br/bio/img/ACOMPANHAMENO_MENSAL.png",
       alt: "Acompanhamento Mensal",
-      title: "Acompanhamento"
+      title: "Acompanhamento",
+      category: "estudio"
     },
     {
       src: "https://evydencia.com.br/bio/img/ANIVERSARIO.png",
       alt: "Aniversário",
-      title: "Aniversário"
+      title: "Aniversário",
+      category: "eventos"
     },
     {
       src: "https://evydencia.com.br/bio/img/BATIZADOS.png",
       alt: "Batizados",
-      title: "Batizado"
+      title: "Batizado",
+      category: "eventos"
     },
     {
       src: "https://evydencia.com.br/bio/img/CORPORATIVO.png",
       alt: "Ensaio Corporativo",
-      title: "Corporativo"
+      title: "Corporativo",
+      category: "estudio"
     },
     {
       src: "https://evydencia.com.br/bio/img/GESTANTES.png",
       alt: "Ensaio Gestante",
-      title: "Gestante"
+      title: "Gestante",
+      category: "estudio"
     },
     {
       src: "https://evydencia.com.br/bio/img/REVELACAO.png",
       alt: "Revelação",
-      title: "Revelação"
+      title: "Revelação",
+      category: "eventos"
     },
     {
       src: "https://evydencia.com.br/bio/img/SMASH_THE_CAKE.png",
       alt: "Smash the Cake",
-      title: "Smash the Cake"
+      title: "Smash the Cake",
+      category: "estudio"
     }
   ];
+
+  const categories = [
+    { id: "todos", label: "Todos" },
+    { id: "estudio", label: "Em Estúdio" },
+    { id: "eventos", label: "Eventos" }
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState("todos");
+
+  const filteredImages = galleryImages.filter(
+    img => selectedCategory === "todos" || img.category === selectedCategory
+  );
 
   const services = [
     {
@@ -103,8 +123,13 @@ const Index = () => {
         • Smash The Cake
         • Chá Revelação
       `,
-      icon: <Camera size={24} />,
-      imageSrc: "https://evydencia.com.br/bio/img/CORPORATIVO.png"
+      icon: Camera,
+      images: [
+        "https://evydencia.com.br/bio/img/CORPORATIVO.png",
+        "https://evydencia.com.br/bio/img/GESTANTES.png",
+        "https://evydencia.com.br/bio/img/SMASH_THE_CAKE.png",
+        "https://evydencia.com.br/bio/img/ACOMPANHAMENO_MENSAL.png"
+      ]
     },
     {
       title: "Ensaios Externos",
@@ -116,8 +141,12 @@ const Index = () => {
         • Chá Revelação
         • Sessão de Aniversário Infantil
       `,
-      icon: <Image size={24} />,
-      imageSrc: "https://evydencia.com.br/bio/img/GESTANTES.png"
+      icon: Image,
+      images: [
+        "https://evydencia.com.br/bio/img/GESTANTES.png",
+        "https://evydencia.com.br/bio/img/15_ANOS.png",
+        "https://evydencia.com.br/bio/img/ANIVERSARIO.png"
+      ]
     },
     {
       title: "Cobertura de Eventos",
@@ -125,8 +154,12 @@ const Index = () => {
         • Batizados
         • Aniversários Infantis
       `,
-      icon: <Calendar size={24} />,
-      imageSrc: "https://evydencia.com.br/bio/img/ANIVERSARIO.png"
+      icon: Calendar,
+      images: [
+        "https://evydencia.com.br/bio/img/ANIVERSARIO.png",
+        "https://evydencia.com.br/bio/img/BATIZADOS.png",
+        "https://evydencia.com.br/bio/img/REVELACAO.png"
+      ]
     }
   ];
 
@@ -134,27 +167,27 @@ const Index = () => {
     {
       title: "Agendamento flexível",
       description: "Horários disponíveis inclusive aos finais de semana.",
-      icon: <Clock size={20} />
+      icon: Clock
     },
     {
       title: "Estúdio climatizado",
       description: "Ambiente confortável para você e sua família.",
-      icon: <ThumbsUp size={20} />
+      icon: ThumbsUp
     },
     {
       title: "Higiene e segurança",
       description: "Espaço higienizado diariamente para sua tranquilidade.",
-      icon: <ShieldCheck size={20} />
+      icon: ShieldCheck
     },
     {
       title: "Experiência personalizada",
       description: "Cada sessão é única e pensada especialmente para você.",
-      icon: <HeartHandshake size={20} />
+      icon: HeartHandshake
     },
     {
       title: "Mais de 12 anos de história",
       description: "Experiência e profissionalismo para registrar seus momentos.",
-      icon: <Award size={20} />
+      icon: Award
     }
   ];
 
@@ -271,61 +304,56 @@ const Index = () => {
       
       <section id="servicos" className="bg-evydencia-beige section-padding" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <RevealOnScroll>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-playfair">Nossos Serviços</h2>
-          </RevealOnScroll>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossos Serviços</h2>
+            <p className="text-lg text-muted-foreground">Conheça nossas especialidades em fotografia</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
               <ServiceCard
                 key={index}
                 title={service.title}
                 description={service.description}
                 icon={service.icon}
-                imageSrc={service.imageSrc}
-                delay={index * 200}
+                images={service.images}
               />
             ))}
           </div>
         </div>
       </section>
       
-      <section className="bg-white section-padding">
+      <section id="galeria" className="bg-white section-padding" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <RevealOnScroll>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-playfair">Nossos Diferenciais</h2>
-          </RevealOnScroll>
-          
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossa Galeria</h2>
+            <p className="text-lg text-muted-foreground">Alguns dos nossos trabalhos mais recentes</p>
+          </div>
+
+          <div className="flex justify-center gap-4 mb-8">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setSelectedCategory(category.id)}
+                className={cn(
+                  "px-6 py-2 rounded-full transition-all",
+                  selectedCategory === category.id
+                    ? "bg-evydencia-gold text-white shadow-md"
+                    : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+                )}
+              >
+                {category.label}
+              </button>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {benefits.map((benefit, index) => (
-              <IconFeature
+            {filteredImages.map((image, index) => (
+              <GalleryImage
                 key={index}
-                title={benefit.title}
-                description={benefit.description}
-                icon={benefit.icon}
-                delay={index * 150}
+                images={[image.src]}
+                title={image.title}
               />
-            ))}
-          </div>
-        </div>
-      </section>
-      
-      <section id="galeria" className="bg-evydencia-beige section-padding">
-        <div className="container mx-auto px-4">
-          <RevealOnScroll>
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-playfair">Nossa Galeria</h2>
-          </RevealOnScroll>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {galleryImages.map((image, index) => (
-              <RevealOnScroll key={index} delay={index * 100} className="animate-fade-in opacity-0">
-                <GalleryImage
-                  src={image.src}
-                  alt={image.alt}
-                  title={image.title}
-                  delay={index * 100}
-                />
-              </RevealOnScroll>
             ))}
           </div>
         </div>
@@ -333,133 +361,226 @@ const Index = () => {
       
       <Testimonials />
       
-      <section id="contato" className="bg-white section-padding">
+      <section id="diferenciais" className="bg-evydencia-beige section-padding" data-aos="fade-up">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <RevealOnScroll>
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 font-playfair">Entre em Contato</h2>
-            </RevealOnScroll>
-            <RevealOnScroll delay={200}>
-              <p className="text-center text-lg text-muted-foreground mb-12">
-                Estamos prontos para eternizar seus momentos mais especiais!
-              </p>
-            </RevealOnScroll>
-            
-            <div className="bg-evydencia-beige p-8 rounded-lg shadow-md border border-evydencia-gold border-opacity-20">
-              <RevealOnScroll delay={300}>
-                <div className="text-center mb-8">
-                  <p className="text-xl mb-6">
-                    Agende seu horário e eternize seus momentos mais especiais.
-                  </p>
-                  <Button 
-                    size="lg" 
-                    className="bg-evydencia-gold hover:bg-opacity-90 text-black animate-pulse-slow flex items-center gap-2"
-                    onClick={() => window.open("https://wa.me/5548996425287", "_blank")}
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-whatsapp"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 1 1 0c0 .97 1.12 1.67 2 1.67a.5.5 0 0 1 0 1"/></svg>
-                    Quero Registrar Meu Momento!
-                  </Button>
-                </div>
-              </RevealOnScroll>
-              
-              <div className="flex flex-col md:flex-row gap-8">
-                <RevealOnScroll delay={400} className="md:w-1/2">
-                  <div className="mb-6">
-                    <h3 className="text-xl font-bold mb-2">Localização</h3>
-                    <p className="mb-1">Rua Principal, 123</p>
-                    <p className="mb-1">Centro - Tijucas/SC</p>
-                    <p>CEP: 88200-000</p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="text-xl font-bold mb-2">Horário de Atendimento</h3>
-                    <p className="mb-1">Segunda a Sexta: 13h às 18h</p>
-                    <p className="mb-4">Sábados: 08:30 às 11:00</p>
-                    <p className="text-sm text-muted-foreground italic">
-                      Para ensaios fotográficos atendemos com horários agendados, então temos flexibilidade conforme necessidade.
-                    </p>
-                  </div>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossos Diferenciais</h2>
+            <p className="text-lg text-muted-foreground">O que nos torna únicos</p>
+          </div>
 
-                  <div className="mt-6 flex flex-col gap-2">
-                    <h3 className="text-xl font-bold mb-2">Navegue até nós</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {benefits.map((benefit, index) => (
+              <IconFeature
+                key={index}
+                title={benefit.title}
+                description={benefit.description}
+                icon={benefit.icon}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      <section id="contato" className="bg-white section-padding" data-aos="fade-up">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Entre em Contato</h2>
+            <p className="text-lg text-muted-foreground">Estamos prontos para registrar seus momentos especiais</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <div className="bg-white rounded-xl shadow-lg p-6">
+                <a
+                  href="https://wa.me/5548996425287"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-evydencia-gold hover:bg-opacity-90 text-black font-semibold rounded-full shadow-md hover:shadow-lg transform hover:scale-105 transition-all mb-8 p-4 text-center animate-pulse"
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    Agende seu Ensaio
+                  </span>
+                </a>
+                <h3 className="text-2xl font-semibold mb-4">Informações de Contato</h3>
+                <div className="space-y-4">
+                  <p className="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-evydencia-gold"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    (48) 9642-5287
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-evydencia-gold"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    contato@evydencia.com.br
+                  </p>
+                  <p className="flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-evydencia-gold"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    R. Mauri Afonso da Silva, 892 - Universitário, Tijucas - SC
+                  </p>
+                  <div className="flex gap-4 mt-6">
                     <a 
-                      href="https://www.google.com/maps/place/Evyd%C3%AAncia/@-27.24173,-48.646721,17z/data=!3m1!4b1!4m6!3m5!1s0x94d8abe77ad9d3db:0x6c2f30b48e88088f!8m2!3d-27.24173!4d-48.646721!16s%2Fg%2F1yfjlrv5g?entry=ttu&g_ep=EgoyMDI1MDQyMy4wIKXMDSoJLDEwMjExNDU1SAFQAw%3D%3D"
+                      href="https://maps.app.goo.gl/8LWCyHni7TvovNAb9"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-white/50 hover:bg-white transition-colors p-3 rounded-md"
+                      className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 transition-colors rounded-lg px-4 py-2 text-sm font-medium"
                     >
-                      <img src="https://cdn-icons-png.flaticon.com/512/2875/2875331.png" alt="Google Maps" className="w-6 h-6" />
-                      <span className="font-medium">Abrir no Google Maps</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C7.802 0 4 3.403 4 7.602C4 11.8 7.469 16.812 12 24C16.531 16.812 20 11.8 20 7.602C20 3.403 16.199 0 12 0ZM12 11C10.343 11 9 9.657 9 8C9 6.343 10.343 5 12 5C13.657 5 15 6.343 15 8C15 9.657 13.657 11 12 11Z"/>
+                      </svg>
+                      Google Maps
                     </a>
                     <a 
-                      href="https://www.waze.com/ul?ll=-27.24173,-48.646721&navigate=yes&zoom=17"
+                      href="https://www.waze.com/ul?ll=-27.2417%2C-48.6467&navigate=yes"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-white/50 hover:bg-white transition-colors p-3 rounded-md"
+                      className="flex items-center gap-2 bg-gray-100 hover:bg-gray-200 transition-colors rounded-lg px-4 py-2 text-sm font-medium"
                     >
-                      <img src="https://cdn-icons-png.flaticon.com/512/732/732257.png" alt="Waze" className="w-6 h-6" />
-                      <span className="font-medium">Abrir no Waze</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 100 100" fill="currentColor">
+                        <path d="M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0zm0 7.8c23.3 0 42.2 18.9 42.2 42.2S73.3 92.2 50 92.2 7.8 73.3 7.8 50 26.7 7.8 50 7.8zm0 8.4c-18.6 0-33.8 15.2-33.8 33.8S31.4 83.8 50 83.8 83.8 68.6 83.8 50 68.6 16.2 50 16.2zm0 11.6c12.2 0 22.2 10 22.2 22.2S62.2 72.2 50 72.2 27.8 62.2 27.8 50 37.8 27.8 50 27.8z"/>
+                      </svg>
+                      Waze
                     </a>
                   </div>
-                </RevealOnScroll>
-                
-                <RevealOnScroll delay={500} className="md:w-1/2">
-                  <div className="h-64 md:h-full rounded-lg overflow-hidden shadow-md">
-                    <iframe 
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14139.991540096336!2d-48.64857873022461!3d-27.24173!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8abe77ad9d3db%3A0x6c2f30b48e88088f!2sEvyd%C3%AAncia!5e0!3m2!1spt-BR!2sbr!4v1713239997841!5m2!1spt-BR!2sbr" 
-                      width="100%" 
-                      height="100%" 
-                      style={{ border: 0 }} 
-                      allowFullScreen 
-                      loading="lazy" 
-                      referrerPolicy="no-referrer-when-downgrade"
-                      title="Mapa do Estúdio Evydência"
-                    />
-                  </div>
-                </RevealOnScroll>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3548.5123456789!2d-48.6467!3d-27.2417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94d8abe77ad9d3db%3A0x6c2f30b48e88088f!2sEvyd%C3%AAncia!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr"
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localização do Estúdio Evydência"
+                ></iframe>
               </div>
             </div>
           </div>
         </div>
       </section>
       
-      <footer className="bg-foreground text-white py-10">
+      <footer className="bg-evydencia-gold text-white py-12">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center mb-10">
-            <img 
-              src="https://evydencia.com.br/img/logo.png" 
-              alt="Estúdio Evydência"
-              className="h-16 mb-6 brightness-0 invert"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div className="text-center md:text-left">
+              <img 
+                src="https://evydencia.com.br/img/logo-branca.png" 
+                alt="Estúdio Evydência" 
+                className="h-16 mx-auto md:mx-0 mb-4"
+              />
+              <p className="text-sm opacity-90">
+                Eternizando momentos especiais com amor e dedicação desde 2011.
+              </p>
+            </div>
+            
+            <div className="text-center md:text-left">
+              <h3 className="text-lg font-semibold mb-4">Horário de Atendimento</h3>
+              <p className="text-sm opacity-90">Segunda a Sexta: 13h às 18h</p>
+              <p className="text-sm opacity-90">Sábados: 08:30h às 11:00h</p>
+              <p className="text-xs mt-2 opacity-75">
+                *Horários especiais disponíveis com agendamento
+              </p>
+            </div>
+
+            <div className="text-center md:text-left">
+              <h3 className="text-lg font-semibold mb-4">Endereço</h3>
+              <p className="text-sm opacity-90 mb-4">
+                R. Mauri Afonso da Silva, 892 - Universitário<br />
+                Tijucas - SC
+              </p>
+              <div className="flex gap-3 justify-center md:justify-start">
+                <a 
+                  href="https://maps.app.goo.gl/8LWCyHni7TvovNAb9"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors rounded-lg px-4 py-2 text-sm font-medium"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C7.802 0 4 3.403 4 7.602C4 11.8 7.469 16.812 12 24C16.531 16.812 20 11.8 20 7.602C20 3.403 16.199 0 12 0ZM12 11C10.343 11 9 9.657 9 8C9 6.343 10.343 5 12 5C13.657 5 15 6.343 15 8C15 9.657 13.657 11 12 11Z"/>
+                  </svg>
+                  Google Maps
+                </a>
+                <a 
+                  href="https://www.waze.com/ul?ll=-27.2417%2C-48.6467&navigate=yes"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-white/10 hover:bg-white/20 transition-colors rounded-lg px-4 py-2 text-sm font-medium"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 100 100" fill="currentColor">
+                    <path d="M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0zm0 7.8c23.3 0 42.2 18.9 42.2 42.2S73.3 92.2 50 92.2 7.8 73.3 7.8 50 26.7 7.8 50 7.8zm0 8.4c-18.6 0-33.8 15.2-33.8 33.8S31.4 83.8 50 83.8 83.8 68.6 83.8 50 68.6 16.2 50 16.2zm0 11.6c12.2 0 22.2 10 22.2 22.2S62.2 72.2 50 72.2 27.8 62.2 27.8 50 37.8 27.8 50 27.8z"/>
+                  </svg>
+                  Waze
+                </a>
+              </div>
+            </div>
+
+            <div className="text-center md:text-left">
+              <h3 className="text-lg font-semibold mb-4">Contato</h3>
+              <div className="space-y-4">
+                <a
+                  href="https://wa.me/5548996425287"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 justify-center md:justify-start hover:text-white/80 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                  </svg>
+                  (48) 9642-5287
+                </a>
+                <a
+                  href="mailto:contato@evydencia.com.br"
+                  className="flex items-center gap-2 justify-center md:justify-start hover:text-white/80 transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                  contato@evydencia.com.br
+                </a>
+                <div className="flex justify-center md:justify-start gap-4 mt-4">
+                  <a
+                    href="https://www.instagram.com/estudioevydencia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
+                    aria-label="Instagram"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61573374213482"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white/10 hover:bg-white/20 p-2 rounded-full transition-colors"
+                    aria-label="Facebook"
+                  >
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
           
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0">
-              <h2 className="text-2xl font-playfair font-bold">Estúdio Evydência</h2>
-              <p className="text-sm mt-1 text-gray-300">Eternizando momentos desde 2011</p>
-            </div>
-            
-            <div className="flex space-x-4 mb-6 md:mb-0">
-              <a href="https://www.instagram.com/estudioevydencia" target="_blank" rel="noopener noreferrer" className="hover:text-evydencia-gold transition-colors p-2" aria-label="Instagram">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
-              </a>
-              <a href="https://www.facebook.com/profile.php?id=61573374213482" target="_blank" rel="noopener noreferrer" className="hover:text-evydencia-gold transition-colors p-2" aria-label="Facebook">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-              </a>
-              <a href="https://wa.me/5548996425287" target="_blank" rel="noopener noreferrer" className="hover:text-evydencia-gold transition-colors p-2" aria-label="WhatsApp">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-whatsapp"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/><path d="M9 10a.5.5 0 0 1 1 0c0 .97 1.12 1.67 2 1.67a.5.5 0 0 1 0 1"/></svg>
-              </a>
-            </div>
-            
-            <div className="text-sm text-center md:text-right">
-              <p>&copy; 2025 Estúdio Evydência - Todos os direitos reservados</p>
-            </div>
+          <div className="border-t border-white/20 pt-8 text-center">
+            <p className="text-sm opacity-90">
+              © {new Date().getFullYear()} Estúdio Evydência. Todos os direitos reservados.
+            </p>
           </div>
         </div>
       </footer>
 
-      <ScrollToTopButton />
       <FloatingWhatsApp />
+      <ScrollToTopButton />
     </div>
   );
 };

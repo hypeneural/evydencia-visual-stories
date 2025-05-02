@@ -1,127 +1,179 @@
-
 import { useState, useEffect, useRef, TouchEvent } from 'react';
-import TestimonialCard from './TestimonialCard';
-import RevealOnScroll from './RevealOnScroll';
+import { cn } from '@/lib/utils';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const testimonials = [
   {
-    id: 1,
-    quote: "Foram momentos incríveis! As fotografias capturam perfeitamente a essência da nossa família.",
-    author: "Ana Silva",
-    avatarSrc: "https://randomuser.me/api/portraits/women/32.jpg"
+    name: "Maria Silva",
+    role: "Cliente",
+    image: "https://evydencia.com.br/bio/img/anderson.jpg",
+    text: "Foi uma experiência incrível! O estúdio é lindo e o atendimento foi perfeito. As fotos ficaram maravilhosas!"
   },
   {
-    id: 2,
-    quote: "O carinho e o profissionalismo do Anderson e da Elaine fizeram toda diferença no nosso ensaio de gestante.",
-    author: "Mariana Costa",
-    avatarSrc: "https://randomuser.me/api/portraits/women/44.jpg"
+    name: "João Santos",
+    role: "Cliente",
+    image: "https://evydencia.com.br/bio/img/elaine.jpg",
+    text: "Profissionalismo e qualidade em cada detalhe. Recomendo muito o trabalho do Estúdio Evydência!"
   },
   {
-    id: 3,
-    quote: "Eternizaram o batizado do nosso filho de uma forma tão mágica que nos emociona até hoje ao ver as fotos.",
-    author: "Carlos e Patricia",
-    avatarSrc: "https://randomuser.me/api/portraits/men/22.jpg"
-  },
-  {
-    id: 4,
-    quote: "Já realizamos três ensaios com o Estúdio Evydência e sempre saímos maravilhados com o resultado!",
-    author: "Família Pereira",
-    avatarSrc: "https://randomuser.me/api/portraits/women/68.jpg"
+    name: "Ana Oliveira",
+    role: "Cliente",
+    image: "https://evydencia.com.br/bio/img/anderson.jpg",
+    text: "As fotos do meu ensaio de gestante ficaram perfeitas! O carinho e atenção que recebi foram especiais."
   }
 ];
 
 const Testimonials = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % testimonials.length);
-    }, 6000);
-
+    let interval: NodeJS.Timeout;
+    if (isAutoPlaying && !isDragging) {
+      interval = setInterval(() => {
+        setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      }, 5000);
+    }
     return () => clearInterval(interval);
-  }, []);
+  }, [isAutoPlaying, isDragging]);
 
-  const goToNext = () => {
-    setActiveIndex((current) => (current + 1) % testimonials.length);
-  };
-
-  const goToPrev = () => {
-    setActiveIndex((current) => (current - 1 + testimonials.length) % testimonials.length);
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    setIsAutoPlaying(false);
+    setStartX(e.pageX - (sliderRef.current?.offsetLeft || 0));
+    setScrollLeft(currentIndex * 100);
   };
 
   const handleTouchStart = (e: TouchEvent) => {
-    touchStartX.current = e.targetTouches[0].clientX;
+    setIsDragging(true);
+    setIsAutoPlaying(false);
+    setStartX(e.touches[0].pageX - (sliderRef.current?.offsetLeft || 0));
+    setScrollLeft(currentIndex * 100);
   };
 
-  const handleTouchMove = (e: TouchEvent) => {
-    touchEndX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    const diffX = touchStartX.current - touchEndX.current;
-    
-    if (diffX > 50) { // Swipe left
-      goToNext();
-    } else if (diffX < -50) { // Swipe right
-      goToPrev();
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - (sliderRef.current?.offsetLeft || 0);
+    const walk = (x - startX) * 2;
+    const newIndex = Math.round((scrollLeft - walk) / 100);
+    if (newIndex >= 0 && newIndex < testimonials.length) {
+      setCurrentIndex(newIndex);
     }
   };
 
-  return (
-    <section id="depoimentos" className="bg-evydencia-beige section-padding">
-      <div className="container mx-auto">
-        <RevealOnScroll>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 font-playfair">O Que Nossos Clientes Dizem</h2>
-        </RevealOnScroll>
+  const handleTouchMove = (e: TouchEvent) => {
+    if (!isDragging) return;
+    const x = e.touches[0].pageX - (sliderRef.current?.offsetLeft || 0);
+    const walk = (x - startX) * 2;
+    const newIndex = Math.round((scrollLeft - walk) / 100);
+    if (newIndex >= 0 && newIndex < testimonials.length) {
+      setCurrentIndex(newIndex);
+    }
+  };
 
-        <div className="max-w-3xl mx-auto px-4 relative">
+  const handleDragEnd = () => {
+    setIsDragging(false);
+  };
+
+  const nextTestimonial = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+    setIsAutoPlaying(false);
+  };
+
+  const prevTestimonial = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setIsAutoPlaying(false);
+  };
+
+  return (
+    <section id="depoimentos" className="relative overflow-hidden bg-white py-20">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">O que nossos clientes dizem</h2>
+          <p className="text-lg text-muted-foreground">Depoimentos de quem já viveu momentos especiais conosco</p>
+        </div>
+
+        <div className="relative max-w-4xl mx-auto">
           <div 
-            ref={containerRef}
-            className="relative h-80"
+            ref={sliderRef}
+            className="relative cursor-grab active:cursor-grabbing"
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleDragEnd}
+            onMouseLeave={handleDragEnd}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
+            onTouchEnd={handleDragEnd}
           >
-            {testimonials.map((testimonial, index) => (
-              <TestimonialCard
-                key={testimonial.id}
-                quote={testimonial.quote}
-                author={testimonial.author}
-                avatarSrc={testimonial.avatarSrc}
-                active={index === activeIndex}
-              />
-            ))}
-            
-            <button 
-              onClick={goToPrev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 md:-translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-evydencia-beige transition-colors z-20"
+            <div className="overflow-hidden">
+              <div
+                className={cn(
+                  "flex transition-transform duration-700",
+                  isDragging ? "transition-none" : "ease-out"
+                )}
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div
+                    key={index}
+                    className="w-full flex-shrink-0 px-4"
+                  >
+                    <div className="bg-white rounded-xl shadow-lg p-8">
+                      <div className="flex flex-col items-center mb-6">
+                        <div className="w-20 h-20 rounded-full overflow-hidden mb-4">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <h3 className="text-xl font-semibold text-center">{testimonial.name}</h3>
+                      </div>
+                      <p className="text-lg text-muted-foreground italic text-center">"{testimonial.text}"</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <Button
+              onClick={prevTestimonial}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/80 hover:bg-white text-foreground rounded-full p-2 shadow-lg"
               aria-label="Depoimento anterior"
             >
-              <ChevronLeft className="h-6 w-6 text-evydencia-gold" />
-            </button>
-            
-            <button 
-              onClick={goToNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 md:translate-x-12 bg-white rounded-full p-2 shadow-md hover:bg-evydencia-beige transition-colors z-20"
+              <ChevronLeft className="h-6 w-6" />
+            </Button>
+
+            <Button
+              onClick={nextTestimonial}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/80 hover:bg-white text-foreground rounded-full p-2 shadow-lg"
               aria-label="Próximo depoimento"
             >
-              <ChevronRight className="h-6 w-6 text-evydencia-gold" />
-            </button>
+              <ChevronRight className="h-6 w-6" />
+            </Button>
           </div>
 
-          <div className="flex justify-center mt-8">
+          <div className="flex justify-center gap-2 mt-8">
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setActiveIndex(index)}
-                className={`w-3 h-3 mx-2 rounded-full transition-all ${
-                  index === activeIndex ? 'bg-evydencia-gold scale-125' : 'bg-gray-300'
-                }`}
-                aria-label={`Ver depoimento ${index + 1}`}
+                onClick={() => {
+                  setCurrentIndex(index);
+                  setIsAutoPlaying(false);
+                }}
+                className={cn(
+                  "w-2 h-2 rounded-full transition-all",
+                  currentIndex === index
+                    ? "bg-evydencia-gold w-4"
+                    : "bg-gray-300 hover:bg-gray-400"
+                )}
+                aria-label={`Ir para depoimento ${index + 1}`}
               />
             ))}
           </div>

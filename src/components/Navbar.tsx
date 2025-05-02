@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -33,7 +32,7 @@ const Navbar = () => {
     <header className={cn(
       'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
       isScrolled ? 
-        'bg-white/80 backdrop-blur-md shadow-md py-2' : 
+        'bg-white/90 backdrop-blur-md shadow-md py-2' : 
         'bg-transparent py-4'
     )}>
       <div className="container mx-auto px-4">
