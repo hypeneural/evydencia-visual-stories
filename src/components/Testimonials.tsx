@@ -7,19 +7,19 @@ const testimonials = [
   {
     name: "Maria Silva",
     role: "Cliente",
-    image: "https://evydencia.com.br/bio/img/anderson.jpg",
+    image: "https://evydencia.com.br/imgs/anderson.jpg",
     text: "Foi uma experiência incrível! O estúdio é lindo e o atendimento foi perfeito. As fotos ficaram maravilhosas!"
   },
   {
     name: "João Santos",
     role: "Cliente",
-    image: "https://evydencia.com.br/bio/img/elaine.jpg",
+    image: "https://evydencia.com.br/imgs/elaine.jpg",
     text: "Profissionalismo e qualidade em cada detalhe. Recomendo muito o trabalho do Estúdio Evydência!"
   },
   {
     name: "Ana Oliveira",
     role: "Cliente",
-    image: "https://evydencia.com.br/bio/img/anderson.jpg",
+    image: "https://evydencia.com.br/imgs/anderson.jpg",
     text: "As fotos do meu ensaio de gestante ficaram perfeitas! O carinho e atenção que recebi foram especiais."
   }
 ];

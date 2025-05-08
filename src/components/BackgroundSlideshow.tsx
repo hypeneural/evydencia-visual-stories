@@ -1,12 +1,11 @@
-
 import { useEffect, useState } from 'react';
 import { cn } from '@/lib/utils';
 
 const slides = [
-  "https://evydencia.com.br/bio/img/banner.jpg",
-  "https://evydencia.com.br/bio/img/15_ANOS.png",
-  "https://evydencia.com.br/bio/img/GESTANTES.png",
-  "https://evydencia.com.br/bio/img/CORPORATIVO.png"
+  "https://evydencia.com.br/imgs/banner.jpg",
+  "https://evydencia.com.br/imgs/15_ANOS.png",
+  "https://evydencia.com.br/imgs/GESTANTES.png",
+  "https://evydencia.com.br/imgs/CORPORATIVO.png"
 ];
 
 const BackgroundSlideshow = () => {

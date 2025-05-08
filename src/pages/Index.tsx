@@ -48,49 +48,49 @@ const Index = () => {
 
   const galleryImages = [
     {
-      src: "https://evydencia.com.br/bio/img/15_ANOS.png",
+      src: "https://evydencia.com.br/imgs/15_ANOS.png",
       alt: "Ensaio 15 Anos",
       title: "15 Anos",
       category: "eventos"
     },
     {
-      src: "https://evydencia.com.br/bio/img/ACOMPANHAMENO_MENSAL.png",
+      src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png",
       alt: "Acompanhamento Mensal",
       title: "Acompanhamento",
       category: "estudio"
     },
     {
-      src: "https://evydencia.com.br/bio/img/ANIVERSARIO.png",
+      src: "https://evydencia.com.br/imgs/ANIVERSARIO.png",
       alt: "Aniversário",
       title: "Aniversário",
       category: "eventos"
     },
     {
-      src: "https://evydencia.com.br/bio/img/BATIZADOS.png",
+      src: "https://evydencia.com.br/imgs/BATIZADOS.png",
       alt: "Batizados",
       title: "Batizado",
       category: "eventos"
     },
     {
-      src: "https://evydencia.com.br/bio/img/CORPORATIVO.png",
+      src: "https://evydencia.com.br/imgs/CORPORATIVO.png",
       alt: "Ensaio Corporativo",
       title: "Corporativo",
       category: "estudio"
     },
     {
-      src: "https://evydencia.com.br/bio/img/GESTANTES.png",
+      src: "https://evydencia.com.br/imgs/GESTANTES.png",
       alt: "Ensaio Gestante",
       title: "Gestante",
       category: "estudio"
     },
     {
-      src: "https://evydencia.com.br/bio/img/REVELACAO.png",
+      src: "https://evydencia.com.br/imgs/REVELACAO.png",
       alt: "Revelação",
       title: "Revelação",
       category: "eventos"
     },
     {
-      src: "https://evydencia.com.br/bio/img/SMASH_THE_CAKE.png",
+      src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png",
       alt: "Smash the Cake",
       title: "Smash the Cake",
       category: "estudio"
@@ -125,10 +125,10 @@ const Index = () => {
       `,
       icon: Camera,
       images: [
-        "https://evydencia.com.br/bio/img/CORPORATIVO.png",
-        "https://evydencia.com.br/bio/img/GESTANTES.png",
-        "https://evydencia.com.br/bio/img/SMASH_THE_CAKE.png",
-        "https://evydencia.com.br/bio/img/ACOMPANHAMENO_MENSAL.png"
+        "https://evydencia.com.br/imgs/CORPORATIVO.png",
+        "https://evydencia.com.br/imgs/GESTANTES.png",
+        "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png",
+        "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png"
       ]
     },
     {
@@ -143,9 +143,9 @@ const Index = () => {
       `,
       icon: Image,
       images: [
-        "https://evydencia.com.br/bio/img/GESTANTES.png",
-        "https://evydencia.com.br/bio/img/15_ANOS.png",
-        "https://evydencia.com.br/bio/img/ANIVERSARIO.png"
+        "https://evydencia.com.br/imgs/GESTANTES.png",
+        "https://evydencia.com.br/imgs/15_ANOS.png",
+        "https://evydencia.com.br/imgs/ANIVERSARIO.png"
       ]
     },
     {
@@ -156,9 +156,9 @@ const Index = () => {
       `,
       icon: Calendar,
       images: [
-        "https://evydencia.com.br/bio/img/ANIVERSARIO.png",
-        "https://evydencia.com.br/bio/img/BATIZADOS.png",
-        "https://evydencia.com.br/bio/img/REVELACAO.png"
+        "https://evydencia.com.br/imgs/ANIVERSARIO.png",
+        "https://evydencia.com.br/imgs/BATIZADOS.png",
+        "https://evydencia.com.br/imgs/REVELACAO.png"
       ]
     }
   ];
@@ -243,14 +243,14 @@ const Index = () => {
                 <div className="flex gap-4">
                   <div className="w-1/2 rounded-lg overflow-hidden shadow-lg">
                     <img 
-                      src="https://evydencia.com.br/bio/img/anderson.jpg" 
+                      src="https://evydencia.com.br/imgs/anderson.jpg" 
                       alt="Anderson, fotógrafo do Estúdio Evydência" 
                       className="w-full h-auto aspect-[3/4] object-cover"
                     />
                   </div>
                   <div className="w-1/2 rounded-lg overflow-hidden shadow-lg">
                     <img 
-                      src="https://evydencia.com.br/bio/img/elaine.jpg" 
+                      src="https://evydencia.com.br/imgs/elaine.jpg" 
                       alt="Elaine, fotógrafa do Estúdio Evydência" 
                       className="w-full h-auto aspect-[3/4] object-cover"
                     />
