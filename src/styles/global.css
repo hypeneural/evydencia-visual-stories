@@ -17,6 +17,7 @@
 :root {
   --font-display: "Playfair Display", Georgia, serif;
   --font-body: "Montserrat", system-ui, -apple-system, sans-serif;
+  --section-padding: clamp(3.5rem, 6vw, 6.5rem);
 }
 
 html {
@@ -27,11 +28,28 @@ html {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, .font-serif-brand {
   font-family: var(--font-display);
   letter-spacing: -0.015em;
+}
+
+/* Escala Tipográfica Fluida */
+.hero-title {
+  font-size: clamp(2.25rem, 6vw, 4.25rem);
+  line-height: 1.05;
+}
+
+.section-title {
+  font-size: clamp(1.85rem, 4.5vw, 3rem);
+  line-height: 1.15;
 }
 
 /* Acessibilidade - Skip link */
@@ -41,7 +59,7 @@ h1, h2, h3, h4, .font-serif-brand {
   left: 1rem;
   background: var(--color-brand-gold);
   color: #ffffff;
-  padding: 10px 20px;
+  padding: 12px 24px;
   z-index: 1000;
   font-weight: 700;
   border-radius: 0 0 8px 8px;
@@ -61,7 +79,7 @@ h1, h2, h3, h4, .font-serif-brand {
   box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
 }
 
-/* Scroll snap container */
+/* Scroll snap container para galerias mobile */
 .scroll-snap-x {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
@@ -91,5 +109,15 @@ dialog[open] {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* Acessibilidade: Respeito a prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

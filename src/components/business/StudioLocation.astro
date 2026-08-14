@@ -1,63 +1,124 @@
 ---
 import { BUSINESS_DATA } from "@/data/business";
+import BusinessNAP from "./BusinessNAP.astro";
+import BusinessHours from "./BusinessHours.astro";
+
+interface Props {
+  showIframe?: boolean | undefined;
+  title?: string | undefined;
+  subtitle?: string | undefined;
+  class?: string | undefined;
+}
+
+const {
+  showIframe = false,
+  title = "Nossa Localização em Tijucas - SC",
+  subtitle = "Localizado estrategicamente no bairro Universitário, com fácil acesso para famílias de Tijucas, Itapema, Porto Belo e região.",
+  class: className = ""
+} = Astro.props;
 ---
 
-<section class="py-12 bg-white rounded-2xl shadow-xs border border-gray-100 p-6 sm:p-10 my-8">
+<section class={`py-12 bg-white rounded-2xl shadow-xs border border-gray-100 p-6 sm:p-10 my-8 ${className}`}>
   <div class="max-w-5xl mx-auto">
-    <div class="text-center mb-8">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand mb-2">
-        Nossa Localização em Tijucas - SC
+    <div class="text-center mb-8 space-y-2">
+      <span class="text-xs font-bold text-brand-gold uppercase tracking-wider bg-brand-gold/10 px-3 py-1 rounded-full">
+        📍 Como Chegar
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+        {title}
       </h2>
-      <p class="text-gray-600 text-sm sm:text-base">
-        Localizado estrategicamente no bairro Universitário, com fácil acesso e estacionamento tranquilo.
+      <p class="text-gray-600 text-sm sm:text-base max-w-2xl mx-auto">
+        {subtitle}
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-      <div class="lg:col-span-1 space-y-4">
-        <div class="p-5 bg-brand-beige rounded-xl border border-brand-gold/10">
-          <p class="font-semibold text-gray-900 text-sm mb-1">Endereço:</p>
-          <p class="text-sm text-gray-700 leading-relaxed mb-4">
-            {BUSINESS_DATA.address.street}<br />
-            Bairro {BUSINESS_DATA.address.neighborhood}<br />
-            {BUSINESS_DATA.address.city} - {BUSINESS_DATA.address.state}<br />
-            CEP {BUSINESS_DATA.address.postalCode}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+      
+      <!-- Bloco de Informações Cadastrais e Acesso -->
+      <div class="lg:col-span-1 space-y-4 flex flex-col justify-between p-6 bg-brand-beige/50 rounded-2xl border border-brand-gold/15">
+        <div class="space-y-3">
+          <p class="font-bold text-gray-900 font-serif-brand text-base">
+            Endereço & Atendimento
           </p>
-
-          <div class="flex flex-col gap-2.5">
-            <a 
-              href={BUSINESS_DATA.links.googleMaps}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg text-sm font-semibold text-gray-800 shadow-2xs transition-colors"
-            >
-              📍 Abrir no Google Maps
-            </a>
-            <a 
-              href={BUSINESS_DATA.links.waze}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-lg text-sm font-semibold text-gray-800 shadow-2xs transition-colors"
-            >
-              🚗 Navegar com Waze
-            </a>
+          <BusinessNAP />
+          <div class="pt-2 border-t border-brand-gold/15">
+            <BusinessHours showIcon={false} />
           </div>
+        </div>
+
+        <div class="flex flex-col gap-2.5 pt-4">
+          <a 
+            href={BUSINESS_DATA.links.googleMaps}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 w-full py-3 px-4 bg-brand-gold hover:bg-brand-gold-dark text-white rounded-xl text-xs sm:text-sm font-bold shadow-xs hover:shadow-md transition-all hover-lift"
+          >
+            Abrir no Google Maps →
+          </a>
+          <a 
+            href={BUSINESS_DATA.links.waze}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 w-full py-2.5 px-4 bg-white hover:bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm font-semibold text-gray-800 shadow-2xs transition-colors"
+          >
+            🚗 Navegar com Waze
+          </a>
         </div>
       </div>
 
-      <div class="lg:col-span-2 rounded-xl overflow-hidden shadow-sm border border-gray-200 aspect-[16/9] min-h-[300px]">
-        <iframe
-          src={BUSINESS_DATA.links.googleMapsEmbed}
-          width="100%"
-          height="100%"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Mapa do Estúdio Evydência em Tijucas SC"
-          class="w-full h-full min-h-[300px]"
-        ></iframe>
+      <!-- Preview de Mapa Estático de Alta Performance ou Iframe Opcional -->
+      <div class="lg:col-span-2 rounded-2xl overflow-hidden shadow-2xs border border-gray-100 min-h-[280px] relative bg-brand-beige flex flex-col justify-between p-6 sm:p-8">
+        {showIframe ? (
+          <iframe
+            src={BUSINESS_DATA.links.googleMapsEmbed}
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa do Estúdio Evydência em Tijucas SC"
+            class="w-full h-full min-h-[300px] rounded-xl"
+          ></iframe>
+        ) : (
+          <div class="space-y-6 my-auto">
+            <div class="space-y-2">
+              <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-dark bg-white px-3 py-1 rounded-full border border-brand-gold/20 inline-block">
+                Tijucas • Vale do Rio Tijucas & Costa Esmeralda
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 font-serif-brand">
+                Estúdio Evydência Fotografia
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed max-w-xl">
+                Rua Mauri Afonso da Silva, Universitário, Tijucas - SC (CEP {BUSINESS_DATA.address.postalCode}). Estacionamento facilitado em frente e rua tranquila para embarque e desembarque de carrinhos de bebê.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div class="p-4 bg-white rounded-xl border border-gray-100 space-y-1">
+                <p class="text-xs text-gray-500 font-semibold">Distância da BR-101</p>
+                <p class="text-sm font-bold text-gray-900">Aprox. 4 minutos</p>
+              </div>
+              <div class="p-4 bg-white rounded-xl border border-gray-100 space-y-1">
+                <p class="text-xs text-gray-500 font-semibold">Cidades Vizinhas</p>
+                <p class="text-sm font-bold text-gray-900">Itapema, Porto Belo e Canelinha</p>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a
+                href={BUSINESS_DATA.links.googleMaps}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-brand-gold hover:text-brand-gold-dark hover:underline"
+              >
+                <span>Ver rota e avaliações no Google Maps (4,7 ⭐ com 110+ avaliações) →</span>
+              </a>
+            </div>
+          </div>
+        )}
       </div>
+
     </div>
   </div>
 </section>
