@@ -61,6 +61,29 @@ const { Content } = await render(seasonal);
           <Content />
         </div>
 
+        <!-- Prova de Autoridade de Terceiros: Jornal Razão -->
+        <div class="bg-gradient-to-r from-amber-100/90 via-amber-50 to-amber-100/90 border border-amber-300/80 rounded-2xl p-8 text-center space-y-3 shadow-xs">
+          <span class="text-xs font-bold text-amber-900 uppercase tracking-wider bg-white/90 border border-amber-300/50 px-3.5 py-1 rounded-full">
+            ⭐ Reconhecimento na Mídia Regional
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+            "O Estúdio de Fotos de Natal Mais Completo do Sul do Brasil"
+          </h2>
+          <p class="text-gray-700 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            Apontado pelo <strong>Jornal Razão</strong> em matéria especial destacando a grandiosidade cenográfica, o acolhimento para bebês e crianças e a tradição que reúne centenas de famílias de Santa Catarina no Estúdio Evydência em Tijucas.
+          </p>
+          <div class="pt-2">
+            <a
+              href="https://jornalrazao.com/empreendedorismo/em-tijucas-estudio-de-fotos-de-natal-e-o-mais-completo-do-sul-do-brasil"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center text-sm font-bold text-amber-950 hover:underline"
+            >
+              Ler reportagem completa no Jornal Razão →
+            </a>
+          </div>
+        </div>
+
         <!-- Galeria Histórica -->
         <div class="space-y-6 pt-4">
           <h2 class="text-2xl font-bold text-gray-900 font-serif-brand">
@@ -82,10 +105,10 @@ const { Content } = await render(seasonal);
         <!-- Cobertura Temática na Imprensa Regional (Filtro Estrito: Apenas Natal) -->
         <div class="pt-6">
           <PressMentions 
-            limit={2} 
-            filterKeyword="Natal" 
+            limit={4} 
+            filterKeyword="natal" 
             title="O Natal Evydência na Mídia Regional" 
-            subtitle="Reportagens destacando os cenários exclusivos e a tradição de Natal do Estúdio Evydência" 
+            subtitle="Reportagens de grandes veículos destacando os cenários exclusivos e a tradição natalina em Tijucas" 
           />
         </div>
 

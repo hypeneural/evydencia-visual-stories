@@ -62,7 +62,8 @@ const pressCollection = defineCollection({
     headline: z.string(),
     summary: z.string(),
     url: z.string(),
-    logo: z.string().optional()
+    logo: z.string().optional(),
+    campaign: z.string().optional()
   })
 });
 

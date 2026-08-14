@@ -5,7 +5,7 @@ import { getCollection } from "astro:content";
 import { BUSINESS_DATA } from "@/data/business";
 
 const title = "Estúdio Evydência na Imprensa | Matérias e Reconhecimento";
-const description = `Confira notícias, matérias e reportagens sobre o trabalho do Estúdio Evydência ao longo de mais de ${BUSINESS_DATA.yearsOfExperience} anos em Tijucas e Santa Catarina.`;
+const description = `Confira notícias, matérias e reportagens sobre o trabalho do Estúdio Evydência desde ${BUSINESS_DATA.foundingYear} em Tijucas e Santa Catarina.`;
 
 const allPress = await getCollection("press");
 const pressList = allPress.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -18,7 +18,7 @@ const pressList = allPress.sort((a, b) => b.data.date.getTime() - a.data.date.ge
         Mídia & Imprensa
       </span>
       <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-serif-brand leading-tight">
-        Notícias e Menções na Mídia Regional
+        Notícias e Reconhecimento na Mídia Regional
       </h1>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
         Reportagens e coberturas jornalísticas reais sobre o trabalho de Anderson, Elaine e o Estúdio Evydência em Tijucas e no litoral de Santa Catarina.
@@ -63,7 +63,11 @@ const pressList = allPress.sort((a, b) => b.data.date.getTime() - a.data.date.ge
       ))}
 
       <div class="mt-12">
-        <WhatsAppCTA variant="banner" />
+        <WhatsAppCTA 
+          variant="banner" 
+          customTitle="Quer conhecer mais sobre o nosso trabalho?"
+          customSubtitle="Fale diretamente com Anderson e Elaine pelo WhatsApp e agende seu ensaio no estúdio em Tijucas."
+        />
       </div>
 
     </div>
