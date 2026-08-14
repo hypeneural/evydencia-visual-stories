@@ -4,7 +4,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import PictureCard from "@/components/gallery/PictureCard.astro";
 import FAQAccordion from "@/components/ui/FAQAccordion.astro";
 import StudioLocation from "@/components/business/StudioLocation.astro";
-import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import PressMentions from "@/components/business/PressMentions.astro";
 
 const seasonal = await getEntry("seasonals", "dia-das-maes");
 if (!seasonal) {
@@ -12,6 +12,7 @@ if (!seasonal) {
 }
 
 const { Content } = await render(seasonal);
+const isOpen = seasonal.data.bookingOpen;
 ---
 
 <BaseLayout
@@ -23,13 +24,16 @@ const { Content } = await render(seasonal);
     <header class="bg-gradient-to-b from-brand-beige via-brand-beige/50 to-white py-14 lg:py-20 border-b border-gray-100">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
         <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-dark bg-brand-gold/10 px-3 py-1 rounded-full">
-          Campanha Especial
+          {isOpen ? "Campanha Especial Ativa" : "Temporada Encerrada • Próxima Edição em Breve"}
         </span>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight font-serif-brand">
           {seasonal.data.h1}
         </h1>
         <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-          {seasonal.data.historySummary}
+          {isOpen 
+            ? seasonal.data.historySummary 
+            : `A campanha de Dia das Mães ${seasonal.data.currentYear} foi concluída com sucesso! Confira abaixo alguns dos momentos emocionantes registrados em nosso estúdio e entre na lista de espera para a próxima edição.`
+          }
         </p>
 
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -39,7 +43,7 @@ const { Content } = await render(seasonal);
             rel="noopener noreferrer"
             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-base rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover-lift"
           >
-            🌸 Agendar Ensaio de Dia das Mães
+            {isOpen ? "🌸 Agendar Ensaio de Dia das Mães" : "📋 Entrar na Lista de Espera da Próxima Edição"}
           </a>
           <a
             href="#galeria"
@@ -60,7 +64,7 @@ const { Content } = await render(seasonal);
 
         <div class="space-y-6 pt-4">
           <h2 class="text-2xl font-bold text-gray-900 font-serif-brand">
-            Registros de Amor Materno no Estúdio
+            Registros de Amor Materno no Estúdio Evydência
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {seasonal.data.gallery.map((photo) => (
@@ -75,17 +79,40 @@ const { Content } = await render(seasonal);
           </div>
         </div>
 
+        <!-- Cobertura Temática na Imprensa -->
+        <div class="pt-6">
+          <PressMentions 
+            limit={2} 
+            filterKeyword="Mães" 
+            title="O Especial de Dia das Mães na Mídia" 
+            subtitle="Destaque nos portais de notícias regionais para os ensaios de mães e filhos" 
+          />
+        </div>
+
         {seasonal.data.faqs.length > 0 && (
           <FAQAccordion faqs={seasonal.data.faqs} title="Dúvidas sobre o Especial de Dia das Mães" />
         )}
 
-        <WhatsAppCTA
-          variant="banner"
-          service="dia-das-maes"
-          customTitle="Presenteie sua mãe com memórias eternas"
-          customSubtitle="Entre em contato no WhatsApp para conhecer os pacotes especiais com fotolivro e revelações de alta qualidade."
-          customMessage="Olá! Gostaria de informações sobre os ensaios de Dia das Mães no Estúdio Evydência."
-        />
+        <!-- Banner de Conversão / Lista de Espera -->
+        <div class="bg-brand-beige border border-brand-gold/20 rounded-2xl p-8 text-center my-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2 font-serif-brand">
+            {isOpen ? "Presenteie sua Mãe com Memórias Eternas" : "Seja Avisada com Antecedência"}
+          </h3>
+          <p class="text-gray-600 max-w-xl mx-auto mb-6 text-sm sm:text-base">
+            {isOpen 
+              ? "Entre em contato no WhatsApp para conhecer os pacotes especiais com fotolivro e revelações de alta qualidade."
+              : "As vagas para os especiais temáticos são limitadas. Cadastre-se na lista de aviso prévio para garantir seu horário com prioridade."
+            }
+          </p>
+          <a
+            href={seasonal.data.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-gold-dark text-white font-semibold text-base px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all"
+          >
+            {isOpen ? "Falar no WhatsApp →" : "Receber Aviso da Próxima Campanha →"}
+          </a>
+        </div>
 
       </div>
     </section>

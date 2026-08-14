@@ -5,6 +5,7 @@ interface Props {
   title?: string | undefined;
   subtitle?: string | undefined;
   limit?: number | undefined;
+  filterKeyword?: string | undefined;
   class?: string | undefined;
 }
 
@@ -12,12 +13,22 @@ const {
   title = "Reconhecimento e Imprensa Regional",
   subtitle = "O trabalho e os cenários do Estúdio Evydência destacados nos principais veículos de comunicação",
   limit,
+  filterKeyword,
   class: className = ""
 } = Astro.props;
 
 const allPress = await getCollection("press");
+
+// Filtrar se houver palavra-chave temática
+const filteredPress = filterKeyword
+  ? allPress.filter(p => 
+      p.data.headline.toLowerCase().includes(filterKeyword.toLowerCase()) ||
+      p.data.summary.toLowerCase().includes(filterKeyword.toLowerCase())
+    )
+  : allPress;
+
 // Ordenar por data decrescente
-const sortedPress = allPress.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const sortedPress = filteredPress.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 const pressList = limit ? sortedPress.slice(0, limit) : sortedPress;
 ---
 

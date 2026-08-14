@@ -11,33 +11,33 @@ const description = `Conheça a cobertura do Estúdio Evydência: sede em Tijuca
 const cities = [
   {
     name: "Tijucas (Sede)",
-    distance: "Sede Própria",
-    text: "Atendimento no estúdio climatizado no bairro Universitário e sessões externas em áreas verdes e locais históricos da cidade."
+    route: "Sede Própria no Bairro Universitário",
+    text: "Atendimento no estúdio climatizado na Rua Mauri Afonso da Silva e ensaios externos em áreas verdes e locais históricos da cidade."
   },
   {
     name: "Itapema & Meia Praia",
-    distance: "~15 minutos via BR-101",
-    text: "Muitas gestantes e famílias de Itapema escolhem nosso estúdio pelo conforto térmico, estacionamento e privacidade durante o ensaio."
+    route: "Acesso direto pela BR-101",
+    text: "Muitas gestantes e famílias de Itapema escolhem nosso estúdio pelo conforto térmico, estacionamento facilitado e privacidade durante a sessão."
   },
   {
     name: "Porto Belo & Bombinhas",
-    distance: "~20 a 30 minutos",
-    text: "Atendimento tanto no estúdio em Tijucas quanto em sessões ao ar livre nas praias e cenários naturais da península."
+    route: "Acesso via BR-101 e SC-412",
+    text: "Atendimento no estúdio em Tijucas e também em ensaios externos nas enseadas e costões da península de Porto Belo."
   },
   {
     name: "São João Batista & Canelinha",
-    distance: "~10 a 15 minutos via SC-410",
-    text: "Fácil acesso direto para famílias do Vale do Rio Tijucas que buscam ensaios de acompanhamento de bebês e Smash the Cake."
+    route: "Acesso direto pela SC-410",
+    text: "Deslocamento rápido para famílias do Vale do Rio Tijucas que buscam ensaios de acompanhamento de bebês e Smash the Cake."
   },
   {
     name: "Balneário Camboriú & Camboriú",
-    distance: "~25 a 30 minutos via BR-101",
+    route: "Acesso via BR-101 Sul",
     text: "Opção procurada por quem deseja um atendimento exclusivo com horário marcado e direção fotográfica acolhedora."
   },
   {
     name: "Nova Trento & Biguaçu",
-    distance: "~20 a 25 minutos",
-    text: "Atendimento a clientes que valorizam fotografia afetiva, iluminação profissional e álbuns impressos de alto padrão."
+    route: "Acesso via SC-410 e BR-101",
+    text: "Atendimento a clientes que valorizam fotografia afetiva, iluminação de estúdio profissional e álbuns impressos de alto padrão."
   }
 ];
 ---
@@ -52,7 +52,7 @@ const cities = [
         Região de Atendimento do Estúdio Evydência
       </h1>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Com sede estratégica em Tijucas, recebemos famílias, gestantes e profissionais de todo o Vale do Rio Tijucas e Litoral Centro-Norte de Santa Catarina.
+        Com sede em Tijucas, recebemos famílias, gestantes e profissionais de todo o Vale do Rio Tijucas e Litoral Centro-Norte de Santa Catarina.
       </p>
     </div>
   </section>
@@ -62,11 +62,22 @@ const cities = [
       
       <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
-          Localização Privilegiada no Bairro Universitário em Tijucas
+          Localização no Bairro Universitário em Tijucas
         </h2>
         <p>
-          Nosso estúdio está situado na <strong>{BUSINESS_DATA.address.street}</strong> em Tijucas - SC (CEP {BUSINESS_DATA.address.postalCode}), com acesso facilitado pela BR-101 e pela SC-410. Oferecemos estacionamento e atendimento com hora marcada, permitindo que famílias de cidades vizinhas realizem suas sessões com total tranquilidade.
+          Nosso estúdio está situado na <strong>{BUSINESS_DATA.address.street}</strong> em Tijucas - SC (CEP {BUSINESS_DATA.address.postalCode}), com acesso facilitado pela BR-101 e pela SC-410. Oferecemos estacionamento e atendimento com horário reservado, permitindo que famílias de cidades vizinhas realizem suas sessões com total tranquilidade.
         </p>
+        <div class="pt-2">
+          <a
+            href={BUSINESS_DATA.links.googleMaps}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-sm font-bold text-brand-gold hover:text-brand-gold-dark hover:underline"
+          >
+            <span>🗺️ Calcular rota até o estúdio no Google Maps</span>
+            <span>→</span>
+          </a>
+        </div>
       </div>
 
       <!-- Grade de Cidades Atendidas -->
@@ -76,13 +87,11 @@ const cities = [
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
           {cities.map((city) => (
-            <div class="bg-brand-beige/40 p-6 rounded-2xl border border-brand-gold/15 space-y-2 hover:bg-brand-beige/70 transition-colors flex flex-col justify-between">
+            <div class="bg-brand-beige/40 p-6 rounded-2xl border border-brand-gold/15 space-y-3 hover:bg-brand-beige/70 transition-colors flex flex-col justify-between">
               <div class="space-y-2">
-                <div class="flex items-center justify-between">
-                  <h3 class="font-bold text-gray-900 font-serif-brand text-lg">{city.name}</h3>
-                </div>
+                <h3 class="font-bold text-gray-900 font-serif-brand text-lg">{city.name}</h3>
                 <span class="inline-block text-2xs font-semibold text-brand-gold-dark bg-brand-gold/15 px-2.5 py-0.5 rounded-full">
-                  {city.distance}
+                  {city.route}
                 </span>
                 <p class="text-xs sm:text-sm text-gray-600 leading-relaxed pt-1">
                   {city.text}
@@ -102,16 +111,21 @@ const cities = [
           {SERVICES_NAVIGATION.map((service) => (
             <a
               href={service.href}
-              class="p-4 rounded-xl border border-gray-100 bg-brand-beige/30 hover:border-brand-gold/40 hover:bg-brand-beige/60 transition-all block"
+              class="p-4 bg-brand-beige/30 rounded-xl border border-brand-gold/10 hover:border-brand-gold transition-colors block"
             >
-              <p class="text-xs text-brand-gold uppercase font-bold">{service.category}</p>
-              <p class="font-bold text-gray-900 text-sm pt-0.5">{service.label}</p>
+              <p class="text-xs text-brand-gold font-bold uppercase">{service.category}</p>
+              <p class="font-bold text-gray-900 text-sm pt-1">{service.label} →</p>
             </a>
           ))}
         </div>
       </div>
 
-      <WhatsAppCTA variant="banner" />
+      <WhatsAppCTA
+        variant="banner"
+        service="regiao"
+        customTitle="Planeje seu ensaio em Tijucas"
+        customSubtitle="Fale conosco no WhatsApp para tirar dúvidas sobre acesso, agendamentos e horários exclusivos."
+      />
 
     </div>
   </section>

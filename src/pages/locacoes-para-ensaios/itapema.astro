@@ -37,7 +37,7 @@ const gallery = [
           Locais para Ensaio Fotográfico em Itapema: Experiência da Evydência
         </h1>
         <p class="text-lg text-gray-600 leading-relaxed pt-2">
-          Itapema oferece um dos cenários costeiros mais fotogênicos de Santa Catarina. Conheça as nuances de luz, vento e os pontos ideais para ensaios de gestante, casal e família.
+          Itapema oferece um dos cenários costeiros mais procurados de Santa Catarina. Com base em anos de ensaios na região, compartilhamos como lidamos com a luz, o vento e a logística para cada família.
         </p>
       </div>
     </header>
@@ -46,35 +46,36 @@ const gallery = [
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-          <h2>1. Canto da Praia: Charme Rústico e Águas Tranquilas</h2>
+          <h2>1. Canto da Praia: Charme Rústico e Cenário Costeiro</h2>
           <p>
-            O <strong>Canto da Praia</strong> é o nosso local favorito em Itapema para famílias e gestantes. Por estar situado em uma enseada protegida, as águas costumam ser calmas e o vento é significativamente mais brando do que na praia central.
+            Nas sessões que realizamos no <strong>Canto da Praia</strong>, normalmente encontramos condições mais protegidas que em trechos muito abertos da costa; ainda assim, vento, maré e movimento de pessoas variam conforme o dia.
           </p>
           <ul>
-            <li><strong>Destaques Visuais:</strong> Barquinhos de pescadores coloridos, vegetação de restinga e píer de madeira.</li>
-            <li><strong>Melhor Luz:</strong> Final da tarde, quando o sol se põe atrás dos morros e cria um contraluz dourado sem ofuscar os olhos.</li>
-            <li><strong>Acesso:</strong> Fácil estacionamento e caminhada curta até a faixa de areia, ideal para crianças e gestantes.</li>
+            <li><strong>Destaques Visuais:</strong> Barquinhos de pescadores coloridos, vegetação costeira e píer de madeira.</li>
+            <li><strong>Comportamento da Luz:</strong> Fim de tarde, quando a luz do sol se suaviza atrás dos morros, gerando contraluz natural agradável.</li>
+            <li><strong>Acesso e Mobilidade:</strong> Acesso próximo à faixa de areia, tornando a caminhada curta para gestantes e crianças.</li>
           </ul>
 
           <h2>2. Meia Praia: Amplitude e Linha do Horizonte</h2>
           <p>
-            A <strong>Meia Praia</strong> se destaca pela extensa faixa de areia e pelo visual aberto do mar. Funciona muito bem para ensaios dinâmicos com casais e famílias que gostam de caminhar à beira da água.
+            A <strong>Meia Praia</strong> se destaca pela extensa faixa de areia clara e horizonte limpo. Indicada para casais e ensaios com propostas de movimento e dinamismo.
           </p>
           <ul>
-            <li><strong>Atenção ao Vento:</strong> No meio da tarde o vento costuma ser mais forte; recomendamos vestidos fluidos e penteados que suportem a brisa marinha com naturalidade.</li>
-            <li><strong>Horários:</strong> Dias de semana ou primeiras horas da manhã e fim de tarde para evitar praias cheias na alta temporada.</li>
+            <li><strong>Cuidados com o Vento:</strong> Por ser uma praia aberta, o vento costeiro é comum. Sugerimos cabelos semipresos e roupas fluidas que valorizem o movimento natural.</li>
+            <li><strong>Melhor Horário:</strong> Início da manhã (com menos movimento) ou no pôr do sol para evitar sombras duras.</li>
           </ul>
 
-          <h2>3. O Que Vestir em um Ensaio na Praia</h2>
-          <p>
-            Sugerimos tons neutros como branco, off-white, bege, tons terra e tons pastéis (azul claro e verde sálvia). Tecidos naturais como linho e algodão conferem elegância e movimento às fotografias.
-          </p>
+          <h2>3. O Que Levar para o Ensaio na Praia</h2>
+          <ol>
+            <li>Roupas em tons claros ou terrosos (branco, cru, areia, terracota suave) em tecidos como linho e algodão.</li>
+            <li>Toalha e uma muda de roupa extra caso decidam molhar os pés nas ondas no final da sessão.</li>
+            <li>Água e protetor solar.</li>
+          </ol>
         </div>
 
-        <!-- Galeria de Fotos em Itapema -->
         <div class="space-y-6 pt-4">
           <h2 class="text-2xl font-bold text-gray-900 font-serif-brand">
-            Registros Realizados em Itapema
+            Exemplos de Ensaios Realizados em Itapema
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {gallery.map((photo) => (
@@ -82,20 +83,21 @@ const gallery = [
                 src={photo.src}
                 alt={photo.alt}
                 caption={photo.caption}
-                aspectRatio="square"
+                aspectRatio="portrait"
                 enableZoom={true}
               />
             ))}
           </div>
         </div>
 
-        <WhatsAppCTA
-          variant="banner"
-          service="ensaio_itapema"
-          customTitle="Gostaria de fazer seu ensaio em Itapema?"
-          customSubtitle="Fale conosco no WhatsApp para planejar data, horário da melhor luz e o roteiro do seu ensaio externo."
-          customMessage="Olá! Vi o guia de locais em Itapema no site da Evydência e gostaria de planejar um ensaio externo."
-        />
+        <div class="mt-8">
+          <WhatsAppCTA
+            variant="banner"
+            service="locacao_itapema"
+            customTitle="Quer fotografar em Itapema?"
+            customSubtitle="Fale conosco no WhatsApp para planejarmos o local e o melhor horário de acordo com a maré e a luz."
+          />
+        </div>
 
       </div>
     </section>

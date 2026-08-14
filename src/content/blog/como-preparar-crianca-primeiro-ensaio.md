@@ -1,6 +1,6 @@
 ---
 title: "Como Preparar Crianças Pequenas para a Sessão de Fotos no Estúdio"
-description: "Dicas práticas de fotógrafos com mais de 12 anos de experiência para garantir um ensaio infantil leve, alegre e sem estresse para pais e filhos."
+description: "Dicas práticas de Anderson e Elaine (Desde 2011 no Estúdio Evydência) para garantir um ensaio infantil leve, alegre e sem estresse para pais e filhos."
 pubDate: 2026-08-01
 author: "Anderson e Elaine"
 featuredImage: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png"

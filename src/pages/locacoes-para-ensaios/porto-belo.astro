@@ -37,7 +37,7 @@ const gallery = [
           Locais para Ensaio Fotográfico em Porto Belo: Experiência da Evydência
         </h1>
         <p class="text-lg text-gray-600 leading-relaxed pt-2">
-          Com suas enseadas protegidas de mar verde-esmeralda e rica vegetação de Mata Atlântica, Porto Belo é ideal para ensaios intimistas e pré-wedding.
+          Com suas enseadas protegidas e vegetação de Mata Atlântica preservada, Porto Belo proporciona cenários marcantes para ensaios intimistas de casais, gestantes e famílias.
         </p>
       </div>
     </header>
@@ -46,24 +46,25 @@ const gallery = [
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
-          <h2>1. Enseadas e Praias Protegidas</h2>
+          <h2>1. Enseadas e Praias Naturais</h2>
           <p>
-            Porto Belo tem a particularidade de contar com baías muito calmas, sem ondas fortes. Isso facilita fotos próximas à linha d'água sem molhar os figurinos antes da hora.
+            Nas enseadas de <strong>Porto Belo</strong>, a geografia costuma proporcionar águas calmas e proteção natural contra ventos muito fortes; ainda assim, maré, fluxo de embarcações e movimento de turistas variam conforme a época do ano.
           </p>
           <ul>
-            <li><strong>Caixa d'Aço e Enseada:</strong> Paisagens deslumbrantes com trapiches de madeira e embarcações.</li>
-            <li><strong>Costões de Pedra:</strong> Oferecem texturas ricas para composições elegantes de casais e gestantes.</li>
+            <li><strong>Caixa d'Aço e Trapiches:</strong> Cenário clássico de península, com trapiches de madeira e recantos arborizados.</li>
+            <li><strong>Costões de Pedra e Vegetação:</strong> Riqueza de texturas para composições elegantes e artísticas.</li>
+            <li><strong>Privacidade:</strong> Sempre que possível, sugerimos agendar essas sessões em dias de semana ou no início do dia para maior tranquilidade.</li>
           </ul>
 
           <h2>2. Cuidados com Calçados e Deslocamento</h2>
           <p>
-            Recomendamos levar chinelos ou rasteirinhas confortáveis para as caminhadas entre os pontos de foto e colocar o calçado principal do look no momento dos cliques.
+            Recomendamos levar calçados confortáveis (rasteirinhas ou chinelos) para as caminhadas entre os recantos rochosos, reservando o calçado principal do look para o momento exato dos cliques.
           </p>
         </div>
 
         <div class="space-y-6 pt-4">
           <h2 class="text-2xl font-bold text-gray-900 font-serif-brand">
-            Registros Realizados em Porto Belo
+            Exemplos de Ensaios Realizados em Porto Belo
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {gallery.map((photo) => (
@@ -71,20 +72,21 @@ const gallery = [
                 src={photo.src}
                 alt={photo.alt}
                 caption={photo.caption}
-                aspectRatio="square"
+                aspectRatio="portrait"
                 enableZoom={true}
               />
             ))}
           </div>
         </div>
 
-        <WhatsAppCTA
-          variant="banner"
-          service="ensaio_porto_belo"
-          customTitle="Quer fotografar em Porto Belo com a Evydência?"
-          customSubtitle="Fale conosco no WhatsApp para planejar sua sessão ao ar livre na Costa Esmeralda."
-          customMessage="Olá! Gostaria de planejar um ensaio externo em Porto Belo com o Estúdio Evydência."
-        />
+        <div class="mt-8">
+          <WhatsAppCTA
+            variant="banner"
+            service="locacao_portobelo"
+            customTitle="Quer fotografar em Porto Belo?"
+            customSubtitle="Fale conosco no WhatsApp para definirmos a melhor época e recanto para o seu ensaio ao ar livre."
+          />
+        </div>
 
       </div>
     </section>
