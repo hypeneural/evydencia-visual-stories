@@ -1,0 +1,64 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import { getCollection } from "astro:content";
+
+const title = "Estúdio Evydência na Imprensa | Matérias e Reconhecimento";
+const description = "Confira notícias, matérias e reportagens sobre o trabalho do Estúdio Evydência ao longo de mais de 12 anos em Tijucas e Santa Catarina.";
+
+const pressList = await getCollection("press");
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-gradient-to-b from-brand-beige to-white py-14 lg:py-20 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="text-xs font-bold text-brand-gold-dark uppercase tracking-wider bg-brand-gold/10 px-3 py-1 rounded-full">
+        Mídia & Imprensa
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-serif-brand leading-tight">
+        Notícias e Menções na Mídia
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Reconhecimento do trabalho de Anderson, Elaine e toda a equipe do Estúdio Evydência na comunidade de Tijucas e veículos regionais.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      {pressList.map((item) => (
+        <article class="bg-white rounded-2xl p-8 shadow-xs hover:shadow-md transition-shadow border border-gray-100 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-sm text-gray-500">
+            <span class="font-bold text-brand-gold">{item.data.outlet}</span>
+            <time datetime={item.data.date.toISOString()}>
+              {new Intl.DateTimeFormat("pt-BR", { day: "numeric", month: "long", year: "numeric" }).format(item.data.date)}
+            </time>
+          </div>
+
+          <h2 class="text-xl sm:text-2xl font-bold text-gray-900 font-serif-brand">
+            {item.data.headline}
+          </h2>
+
+          <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
+            {item.data.summary}
+          </p>
+
+          <div class="pt-2">
+            <a
+              href={item.data.url}
+              class="inline-flex items-center text-sm font-semibold text-brand-gold hover:text-brand-gold-dark hover:underline"
+            >
+              Conheça mais sobre nossa história →
+            </a>
+          </div>
+        </article>
+      ))}
+
+      <div class="mt-12">
+        <WhatsAppCTA variant="banner" />
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

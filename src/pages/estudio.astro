@@ -1,0 +1,99 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import StudioLocation from "@/components/business/StudioLocation.astro";
+import PictureCard from "@/components/gallery/PictureCard.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+
+const title = "Conheça o Estúdio Evydência em Tijucas | Estrutura e Bastidores";
+const description = "Conheça a estrutura física do Estúdio Evydência em Tijucas - SC: estúdio climatizado, higienizado, iluminação profissional e espaço privativo para sua família.";
+
+const studioPhotos = [
+  { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Cenário com iluminação difusa para gestantes e famílias no Estúdio Evydência", caption: "Iluminação Suave & Difusa" },
+  { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Espaço preparado com piso lavável e banheira quentinha para Smash the Cake", caption: "Cenário para Smash the Cake" },
+  { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Ambiente higienizado e climatizado para bebês e recém-nascidos", caption: "Climatização para Bebês" }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-gradient-to-b from-brand-beige to-white py-14 lg:py-20 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="text-xs font-bold text-brand-gold-dark uppercase tracking-wider bg-brand-gold/10 px-3 py-1 rounded-full">
+        Espaço Físico
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-serif-brand leading-tight">
+        Nosso Estúdio de Fotografia em Tijucas
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Um espaço projetado com carinho em cada detalhe para oferecer conforto térmico, segurança e privacidade durante sua sessão fotográfica.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      <!-- Pilares da Estrutura -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-brand-beige/50 p-8 rounded-2xl border border-brand-gold/15 space-y-3">
+          <div class="text-3xl">❄️</div>
+          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Ambiente Climatizado</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Temperatura e umidade controladas para o máximo bem-estar de recém-nascidos, bebês e gestantes em qualquer estação do ano.
+          </p>
+        </div>
+
+        <div class="bg-brand-beige/50 p-8 rounded-2xl border border-brand-gold/15 space-y-3">
+          <div class="text-3xl">🧼</div>
+          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Higiene Rigorosa</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Higienização diária de todos os cenários, tecidos, mantas e acessórios antes e depois de cada sessão fotográfica.
+          </p>
+        </div>
+
+        <div class="bg-brand-beige/50 p-8 rounded-2xl border border-brand-gold/15 space-y-3">
+          <div class="text-3xl">💡</div>
+          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Iluminação Profissional</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Equipamentos de luz difusa e modificadores de luz de última geração que garantem fotos suaves e cores fiéis.
+          </p>
+        </div>
+      </div>
+
+      <!-- Galeria de Fotos da Estrutura com PictureCard e Lightbox -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand text-center">
+          Bastidores e Ambientes do Estúdio
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
+          {studioPhotos.map((photo) => (
+            <PictureCard
+              src={photo.src}
+              alt={photo.alt}
+              caption={photo.caption}
+              aspectRatio="square"
+              enableZoom={true}
+            />
+          ))}
+        </div>
+      </div>
+
+      <!-- Texto Institucional -->
+      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+          Pensado para Toda a Família
+        </h2>
+        <p>
+          Localizado na <strong>Rua Mauri Afonso da Silva, 892</strong> no bairro Universitário em Tijucas - SC, o Estúdio Evydência foi planejado para que sua visita seja agradável desde a chegada. Contamos com trocador para bebês, poltrona de amamentação e espaço privativo para troca de figurinos.
+        </p>
+        <p>
+          Trabalhamos com agendamentos individuais, garantindo que o estúdio seja exclusivo para você e sua família durante todo o período do ensaio.
+        </p>
+      </div>
+
+      <WhatsAppCTA variant="banner" />
+
+    </div>
+  </section>
+
+  <StudioLocation />
+</BaseLayout>

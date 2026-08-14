@@ -1,0 +1,77 @@
+---
+import SEOHead from "@/components/seo/SEOHead.astro";
+import JsonLd from "@/components/seo/JsonLd.astro";
+import Breadcrumbs from "@/components/seo/Breadcrumbs.astro";
+import Header from "@/components/layout/Header.astro";
+import Footer from "@/components/layout/Footer.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import LightboxDialog from "@/components/gallery/LightboxDialog.astro";
+import { getCanonicalUrl } from "@/lib/seo/canonical";
+import { buildLocalBusinessGraph } from "@/lib/seo/schema";
+import "@/styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string | undefined;
+  type?: "website" | "article" | "profile" | undefined;
+  noindex?: boolean | undefined;
+  schema?: Record<string, unknown> | Array<Record<string, unknown>> | undefined;
+  showBreadcrumbs?: boolean | undefined;
+}
+
+const {
+  title,
+  description,
+  image,
+  type = "website",
+  noindex = false,
+  schema,
+  showBreadcrumbs = true
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+const canonicalUrl = getCanonicalUrl(pathname);
+const defaultGraph = buildLocalBusinessGraph(canonicalUrl, title, description);
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <SEOHead
+    title={title}
+    description={description}
+    canonicalUrl={canonicalUrl}
+    image={image}
+    type={type}
+    noindex={noindex}
+  />
+  
+  <body class="min-h-screen flex flex-col bg-white text-gray-900 font-sans antialiased selection:bg-brand-gold/20 selection:text-brand-dark">
+    <!-- Acessibilidade: Skip Link para conteúdo principal -->
+    <a href="#conteudo-principal" class="skip-link">
+      Pular para o conteúdo principal
+    </a>
+
+    <!-- Grafo de Entidade LocalBusiness -->
+    <JsonLd schema={defaultGraph} />
+    {schema && <JsonLd schema={schema} />}
+
+    <Header currentPath={pathname} />
+
+    {showBreadcrumbs && pathname !== "/" && (
+      <Breadcrumbs pathname={pathname} />
+    )}
+
+    <main id="conteudo-principal" class="grow">
+      <slot />
+    </main>
+
+    <Footer />
+    
+    <!-- CTA WhatsApp Flutuante -->
+    <WhatsAppCTA variant="floating" />
+
+    <!-- Visualizador de Imagens Lightbox Global -->
+    <LightboxDialog />
+  </body>
+</html>

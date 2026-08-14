@@ -1,0 +1,63 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+  title?: string | undefined;
+  subtitle?: string | undefined;
+  limit?: number | undefined;
+  class?: string | undefined;
+}
+
+const {
+  title = "Reconhecimento e Imprensa",
+  subtitle = "O trabalho do Estúdio Evydência destacado na mídia regional",
+  limit,
+  class: className = ""
+} = Astro.props;
+
+const allPress = await getCollection("press");
+const pressList = limit ? allPress.slice(0, limit) : allPress;
+---
+
+<section class={`py-12 bg-white rounded-2xl p-6 sm:p-10 border border-gray-100 shadow-2xs my-8 ${className}`}>
+  <div class="max-w-4xl mx-auto space-y-6">
+    <div class="text-center space-y-2">
+      <span class="text-xs font-bold text-brand-gold-dark uppercase tracking-wider bg-brand-gold/10 px-3 py-1 rounded-full">
+        Autoridade & Notícias
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+        {title}
+      </h2>
+      <p class="text-gray-600 text-sm sm:text-base">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="space-y-4 pt-4">
+      {pressList.map((item) => (
+        <article class="p-6 bg-brand-beige/40 rounded-xl border border-brand-gold/15 space-y-3 hover:bg-brand-beige/60 transition-colors">
+          <div class="flex items-center justify-between gap-2 text-xs text-gray-500 font-medium">
+            <span class="font-bold text-brand-gold uppercase">{item.data.outlet}</span>
+            <time datetime={item.data.date.toISOString()}>
+              {new Intl.DateTimeFormat("pt-BR", { day: "numeric", month: "short", year: "numeric" }).format(item.data.date)}
+            </time>
+          </div>
+          <h3 class="text-lg font-bold text-gray-900 font-serif-brand">
+            {item.data.headline}
+          </h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            {item.data.summary}
+          </p>
+          <div>
+            <a
+              href={item.data.url}
+              class="inline-flex items-center text-xs font-semibold text-brand-gold hover:text-brand-gold-dark hover:underline"
+            >
+              Ler matéria completa →
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,131 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import PressMentions from "@/components/business/PressMentions.astro";
+import { BUSINESS_DATA } from "@/data/business";
+
+const title = "Sobre Nós - Mais de 12 Anos de História | Estúdio Evydência";
+const description = "Conheça a história dos fundadores Anderson e Elaine e a trajetória de mais de 12 anos do Estúdio Evydência em Tijucas - SC.";
+
+const timeline = [
+  {
+    year: "2011",
+    title: "Fundação do Estúdio",
+    text: "Anderson e Elaine iniciam a jornada da Evydência Fotografia em Tijucas, com foco em casamentos e famílias."
+  },
+  {
+    year: "2015",
+    title: "Especialização em Gestantes e Primeira Infância",
+    text: "Criação de cenários dedicados ao acompanhamento de bebês e ensaios Smash the Cake em ambiente climatizado."
+  },
+  {
+    year: "2020",
+    title: "Expansão de Estrutura no Bairro Universitário",
+    text: "Inauguração do estúdio completo na Rua Mauri Afonso da Silva, com camarim privativo e iluminação de última geração."
+  },
+  {
+    year: "Hoje",
+    title: "Mais de 5.000 Famílias Fotografadas",
+    text: "Reconhecimento contínuo como referência em fotografia afetiva e de alto padrão em Tijucas e litoral catarinense."
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-gradient-to-b from-brand-beige to-white py-14 lg:py-20 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="text-xs font-bold text-brand-gold-dark uppercase tracking-wider bg-brand-gold/10 px-3 py-1 rounded-full">
+        Nossa História
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-serif-brand leading-tight">
+        Quem Somos: Anderson e Elaine
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Mais de {BUSINESS_DATA.yearsOfExperience} anos dedicados a registrar momentos únicos e eternizar o amor de famílias em Tijucas e Santa Catarina.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      <!-- Fotos dos Fundadores -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div class="rounded-2xl overflow-hidden shadow-md aspect-[3/4] bg-gray-100 relative group">
+          <img
+            src="https://evydencia.com.br/imgs/anderson.jpg"
+            alt="Anderson, fotógrafo do Estúdio Evydência"
+            width="400"
+            height="533"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
+            loading="eager"
+          />
+          <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 text-white">
+            <p class="font-bold text-lg font-serif-brand">Anderson</p>
+            <p class="text-xs text-brand-gold-light">Fotógrafo Fundador • Direção & Iluminação</p>
+          </div>
+        </div>
+        
+        <div class="rounded-2xl overflow-hidden shadow-md aspect-[3/4] bg-gray-100 relative group">
+          <img
+            src="https://evydencia.com.br/imgs/elaine.jpg"
+            alt="Elaine, fotógrafa do Estúdio Evydência"
+            width="400"
+            height="533"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
+            loading="eager"
+          />
+          <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 text-white">
+            <p class="font-bold text-lg font-serif-brand">Elaine</p>
+            <p class="text-xs text-brand-gold-light">Fotógrafa Fundadora • Acolhimento & Produção</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Texto Institucional -->
+      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+          O Nascimento do Estúdio Evydência
+        </h2>
+        <p>
+          O <strong>Estúdio Evydência</strong> foi fundado em 2011 pelo casal de fotógrafos Anderson e Elaine. O que começou com um amor compartilhado pelas artes visuais transformou-se em uma missão de vida: criar registros fotográficos de alta sensibilidade para marcar os momentos mais valiosos de cada família.
+        </p>
+
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+          Nossa Filosofia de Trabalho
+        </h2>
+        <p>
+          Acreditamos que a melhor fotografia não é fruto de rigidez ou poses engessadas, mas sim do conforto, da espontaneidade e do respeito ao tempo de cada pessoa — especialmente gestantes, recém-nascidos e crianças pequenas.
+        </p>
+      </div>
+
+      <!-- Linha do Tempo -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand text-center">
+          Nossa Trajetória em Tijucas
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+          {timeline.map((item) => (
+            <div class="p-6 bg-brand-beige/50 rounded-2xl border border-brand-gold/20 space-y-2">
+              <span class="text-xs font-bold text-white bg-brand-gold px-3 py-1 rounded-full">
+                {item.year}
+              </span>
+              <h3 class="text-lg font-bold text-gray-900 font-serif-brand pt-2">
+                {item.title}
+              </h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Menções de Imprensa -->
+      <PressMentions />
+
+      <WhatsAppCTA variant="banner" />
+
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-gold: #c5a059;
+  --color-brand-gold-dark: #a9833b;
+  --color-brand-gold-light: #dfc288;
+  --color-brand-beige: #faf7f2;
+  --color-brand-beige-dark: #f0eae1;
+  --color-brand-dark: #1a1a1a;
+  --color-brand-muted: #666666;
+  
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Montserrat", system-ui, -apple-system, sans-serif;
+}
+
+:root {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Montserrat", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  font-family: var(--font-body);
+  color: var(--color-brand-dark);
+  background-color: #ffffff;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-serif-brand {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+/* Acessibilidade - Skip link */
+.skip-link {
+  position: absolute;
+  top: -60px;
+  left: 1rem;
+  background: var(--color-brand-gold);
+  color: #ffffff;
+  padding: 10px 20px;
+  z-index: 1000;
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  transition: top 0.2s ease-in-out;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Micro interações sem layout shift */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.12), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+}
+
+/* Scroll snap container */
+.scroll-snap-x {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scroll-snap-x::-webkit-scrollbar {
+  display: none;
+}
+.scroll-snap-align-start {
+  scroll-snap-align: start;
+}
+
+/* Diálogo Lightbox nativo */
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(4px);
+}
+dialog[open] {
+  animation: dialog-zoom 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dialog-zoom {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

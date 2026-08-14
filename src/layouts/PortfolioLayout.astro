@@ -1,0 +1,59 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import PictureCard from "@/components/gallery/PictureCard.astro";
+
+interface GalleryImageItem {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  category: string;
+  gallery: GalleryImageItem[];
+}
+
+const { title, description, category, gallery } = Astro.props;
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-gradient-to-b from-brand-beige via-brand-beige/40 to-white py-14 lg:py-20 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-gold/15 text-brand-gold-dark text-xs sm:text-sm font-semibold rounded-full uppercase tracking-wider">
+        Portfólio Fotográfico • {category.toUpperCase()}
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-serif-brand">
+        {title}
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Grade de Imagens de Portfólio com PictureCard e Lightbox Nativo -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {gallery.map((img, index) => (
+          <PictureCard
+            src={img.src}
+            alt={img.alt}
+            aspectRatio="square"
+            loading={index < 3 ? "eager" : "lazy"}
+            enableZoom={true}
+          />
+        ))}
+      </div>
+
+      <div class="my-14 prose max-w-3xl mx-auto text-gray-700 leading-relaxed text-center">
+        <slot />
+      </div>
+
+      <WhatsAppCTA variant="banner" />
+    </div>
+  </section>
+</BaseLayout>

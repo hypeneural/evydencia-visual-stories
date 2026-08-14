@@ -1,0 +1,61 @@
+---
+import { BUSINESS_DATA } from "@/data/business";
+import { formatTitle, formatDescription } from "@/lib/seo/metadata";
+
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl: string;
+  image?: string | undefined;
+  type?: "website" | "article" | "profile" | undefined;
+  noindex?: boolean | undefined;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl,
+  image = BUSINESS_DATA.logoUrl,
+  type = "website",
+  noindex = false
+} = Astro.props;
+
+const formattedTitle = formatTitle(title);
+const formattedDescription = formatDescription(description);
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>{formattedTitle}</title>
+  <meta name="description" content={formattedDescription} />
+  <link rel="canonical" href={canonicalUrl} />
+  
+  {noindex ? (
+    <meta name="robots" content="noindex, nofollow" />
+  ) : (
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  )}
+  
+  <!-- Open Graph / Facebook / WhatsApp -->
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content={BUSINESS_DATA.name} />
+  <meta property="og:title" content={formattedTitle} />
+  <meta property="og:description" content={formattedDescription} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={image} />
+  <meta property="og:locale" content="pt_BR" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={formattedTitle} />
+  <meta name="twitter:description" content={formattedDescription} />
+  <meta name="twitter:image" content={image} />
+  
+  <!-- Favicon e Ícones -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href={BUSINESS_DATA.logoUrl} />
+  
+  <slot />
+</head>

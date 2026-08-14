@@ -1,0 +1,79 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import { getCollection } from "astro:content";
+
+const title = "Blog de Dicas e Fotografia | Estúdio Evydência";
+const description = "Dicas práticas, guias de preparação para ensaios, figurinos e bastidores da fotografia pelo Estúdio Evydência em Tijucas - SC.";
+
+const posts = await getCollection("blog");
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-gradient-to-b from-brand-beige to-white py-14 lg:py-20 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="text-xs font-bold text-brand-gold-dark uppercase tracking-wider bg-brand-gold/10 px-3 py-1 rounded-full">
+        Dicas & Guias
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-serif-brand leading-tight">
+        Blog do Estúdio Evydência
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Orientações de fotógrafos com mais de 12 anos de experiência para ajudar você a planejar seu ensaio com tranquilidade.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {sortedPosts.map((post) => (
+          <article class="bg-white rounded-2xl overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 border border-gray-100 flex flex-col justify-between">
+            <div class="aspect-[16/9] bg-gray-100 overflow-hidden">
+              <img
+                src={post.data.featuredImage}
+                alt={post.data.title}
+                width="600"
+                height="338"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+            
+            <div class="p-6 space-y-3 flex-1 flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center gap-2 text-xs text-gray-500 font-medium">
+                  <span>{new Intl.DateTimeFormat("pt-BR", { day: "numeric", month: "short", year: "numeric" }).format(post.data.pubDate)}</span>
+                  <span>•</span>
+                  <span>{post.data.readingTime}</span>
+                </div>
+                <h2 class="text-xl font-bold text-gray-900 font-serif-brand">
+                  {post.data.title}
+                </h2>
+                <p class="text-gray-600 text-sm leading-relaxed">
+                  {post.data.description}
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-gray-50">
+                <a
+                  href={`/blog/${post.id}/`}
+                  class="inline-flex items-center text-sm font-semibold text-brand-gold hover:text-brand-gold-dark hover:underline"
+                >
+                  Ler artigo completo →
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-16">
+        <WhatsAppCTA variant="banner" />
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

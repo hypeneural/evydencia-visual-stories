@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const title = "Página Não Encontrada | Estúdio Evydência";
+const description = "A página solicitada não foi encontrada. Navegue pelas seções principais do Estúdio Evydência em Tijucas - SC.";
+---
+
+<BaseLayout title={title} description={description} noindex={true} showBreadcrumbs={false}>
+  <section class="py-20 lg:py-32 bg-white text-center">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      
+      <div class="text-6xl sm:text-7xl font-bold text-brand-gold font-serif-brand">
+        404
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 font-serif-brand">
+        Página Não Encontrada
+      </h1>
+
+      <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+        O endereço que você tentou acessar não existe ou foi atualizado para uma nova versão mais rápida e organizada.
+      </p>
+
+      <div class="pt-6 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/"
+          class="px-6 py-3 bg-brand-gold hover:bg-brand-gold-dark text-white font-semibold rounded-full shadow-xs transition-colors"
+        >
+          Voltar para a Página Inicial
+        </a>
+        <a
+          href="/ensaios/"
+          class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold rounded-full transition-colors"
+        >
+          Ver Nossos Ensaios
+        </a>
+        <a
+          href="/contato/"
+          class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold rounded-full transition-colors"
+        >
+          Falar Conosco
+        </a>
+      </div>
+
+    </div>
+  </section>
+</BaseLayout>

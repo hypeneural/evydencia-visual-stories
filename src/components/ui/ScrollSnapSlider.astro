@@ -1,0 +1,84 @@
+---
+interface Props {
+  id?: string | undefined;
+  title?: string | undefined;
+  subtitle?: string | undefined;
+  class?: string | undefined;
+}
+
+const {
+  id = "slider-" + Math.random().toString(36).slice(2, 8),
+  title,
+  subtitle,
+  class: className = ""
+} = Astro.props;
+---
+
+<div class={`space-y-4 ${className}`}>
+  {(title || subtitle) && (
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div>
+        {title && <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">{title}</h2>}
+        {subtitle && <p class="text-gray-600 text-sm sm:text-base mt-1">{subtitle}</p>}
+      </div>
+      
+      <!-- Controles de navegação desktop -->
+      <div class="hidden sm:flex items-center gap-2">
+        <button
+          type="button"
+          class="slider-prev p-2.5 rounded-full border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 shadow-2xs hover:border-brand-gold transition-colors focus:outline-hidden focus:ring-2 focus:ring-brand-gold"
+          data-target={id}
+          aria-label="Item anterior"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          class="slider-next p-2.5 rounded-full border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 shadow-2xs hover:border-brand-gold transition-colors focus:outline-hidden focus:ring-2 focus:ring-brand-gold"
+          data-target={id}
+          aria-label="Próximo item"
+        >
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  )}
+
+  <!-- Conteiner com Scroll Snap Nativo -->
+  <div
+    id={id}
+    class="scroll-snap-x flex gap-6 overflow-x-auto pb-4 pt-1 px-1 focus:outline-hidden"
+    tabindex="0"
+    aria-label={title || "Galeria em carrossel"}
+  >
+    <slot />
+  </div>
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.slider-prev').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const container = document.getElementById(targetId);
+        if (container) {
+          container.scrollBy({ left: -350, behavior: 'smooth' });
+        }
+      });
+    });
+
+    document.querySelectorAll('.slider-next').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const container = document.getElementById(targetId);
+        if (container) {
+          container.scrollBy({ left: 350, behavior: 'smooth' });
+        }
+      });
+    });
+  });
+</script>

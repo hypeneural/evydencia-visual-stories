@@ -1,73 +1,66 @@
-# Welcome to your Lovable project
+# Estúdio Evydência — Website Oficial & Plataforma de SEO de Alta Performance
 
-## Project info
+Site institucional e portfólio de alta performance do **Estúdio Evydência** (`https://evydencia.com.br/`), desenvolvido em **Astro 5 SSG (Static Site Generation)** com **Tailwind CSS v4**, **TypeScript (strictest)**, **schema-dts**, **Playwright** e automações rigorosas de auditoria de SEO.
 
-**URL**: https://lovable.dev/projects/50c099f7-7fc7-40e1-8a43-e91178cbfaa3
+---
 
-## How can I edit this code?
+## 🛠️ Stack Tecnológica
 
-There are several ways of editing your application.
+| Camada | Tecnologia | Propósito |
+| :--- | :--- | :--- |
+| **Framework** | [Astro](https://docs.astro.build/en/) | Static Site Generation (HTML pré-renderizado no build) |
+| **Renderização** | `output: "static"` | HTML estático puro, 0 dependência de serverless |
+| **Estilização** | [Tailwind CSS v4](https://tailwindcss.com/blog/tailwindcss-v4-3) | CSS utilitário moderno via plugin `@tailwindcss/vite` |
+| **Linguagem** | [TypeScript](https://www.typescriptlang.org/) | Tipagem estrita com preset `astro/tsconfigs/strictest` |
+| **Dados Estruturados** | [schema-dts](https://github.com/google/schema-dts) | Tipagem Schema.org v30 oficial para JSON-LD |
+| **Conteúdo** | [Content Collections](https://docs.astro.build/en/guides/content-collections/) | Validação de frontmatter com Zod |
+| **Sitemap** | [@astrojs/sitemap](https://docs.astro.build/en/guides/integrations-guide/sitemap/) | Geração automática de sitemaps estáticos |
+| **Testes E2E** | [Playwright](https://playwright.dev/docs/intro) | Testes end-to-end e validação de acessibilidade |
+| **Auditoria** | [Lighthouse CI](https://github.com/GoogleChrome/lighthouse-ci) | Orçamentos e métricas contínuas de Core Web Vitals |
 
-**Use Lovable**
+---
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/50c099f7-7fc7-40e1-8a43-e91178cbfaa3) and start prompting.
+## 📚 Documentação Técnica Interna
 
-Changes made via Lovable will be committed automatically to this repo.
+- [`docs/SEO_ARCHITECTURE.md`](docs/SEO_ARCHITECTURE.md): Arquitetura de silos, entidade central e políticas de indexação.
+- [`docs/CONTENT_MAP.md`](docs/CONTENT_MAP.md): Matriz de páginas, títulos, H1s e intenções de busca.
+- [`docs/NAP_SOURCE_OF_TRUTH.md`](docs/NAP_SOURCE_OF_TRUTH.md): Dados cadastrais imutáveis (Nome, Endereço, Telefone, Horários).
+- [`docs/REDIRECT_MAP.md`](docs/REDIRECT_MAP.md): Mapeamento de redirecionamentos 301 legados.
 
-**Use your preferred IDE**
+---
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🚀 Comandos de Desenvolvimento e Produção
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+```powershell
+# Instalar dependências
+npm install
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Iniciar servidor de desenvolvimento local
 npm run dev
+
+# Verificar diagnósticos TypeScript e Astro
+npm run check
+
+# Executar build de produção com gerador de sitemaps e validação total de SEO
+npm run build
+
+# Pré-visualizar o build estático gerado em dist/
+npm run preview
+
+# Executar a bateria de testes automatizados E2E
+npm test
+
+# Disparar URLs atualizadas para o protocolo IndexNow (Bing / Buscadores)
+node scripts/submit-indexnow.mjs
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🔗 Referências Oficiais de SEO & Performance
 
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/50c099f7-7fc7-40e1-8a43-e91178cbfaa3) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- **Google SEO Starter Guide:** [https://developers.google.com/search/docs/fundamentals/seo-starter-guide](https://developers.google.com/search/docs/fundamentals/seo-starter-guide)
+- **Google Helpful Content:** [https://developers.google.com/search/docs/fundamentals/creating-helpful-content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
+- **Google Images Best Practices:** [https://developers.google.com/search/docs/appearance/google-images](https://developers.google.com/search/docs/appearance/google-images)
+- **Google Core Web Vitals:** [https://developers.google.com/search/docs/appearance/core-web-vitals](https://developers.google.com/search/docs/appearance/core-web-vitals)
+- **Google LocalBusiness Schema:** [https://developers.google.com/search/docs/appearance/structured-data/local-business](https://developers.google.com/search/docs/appearance/structured-data/local-business)
+- **Google AI Search Guidance:** [https://developers.google.com/search/docs/fundamentals/ai-optimization-guide](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide)
