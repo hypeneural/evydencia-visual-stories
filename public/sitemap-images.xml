@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
+    <loc>https://evydencia.com.br/</loc>
+    <image:image>
+      <image:loc>https://evydencia.com.br/imgs/GESTANTES.png</image:loc>
+      <image:title>Estúdio Evydência em Tijucas - Ensaios de Família e Gestante</image:title>
+      <image:caption>Estúdio de fotografia no bairro Universitário em Tijucas SC</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://evydencia.com.br/imgs/anderson.jpg</image:loc>
+      <image:title>Anderson - Fotógrafo Fundador do Estúdio Evydência</image:title>
+      <image:caption>Fotógrafo profissional especialista em retratos e famílias</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://evydencia.com.br/imgs/elaine.jpg</image:loc>
+      <image:title>Elaine - Fotógrafa Fundadora do Estúdio Evydência</image:title>
+      <image:caption>Fotógrafa especialista em gestantes e primeira infância</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://evydencia.com.br/ensaios/gestante-tijucas/</loc>
     <image:image>
       <image:loc>https://evydencia.com.br/imgs/GESTANTES.png</image:loc>
@@ -44,6 +62,30 @@
       <image:loc>https://evydencia.com.br/imgs/CORPORATIVO.png</image:loc>
       <image:title>Retrato Corporativo e Foto de Perfil Profissional em Tijucas</image:title>
       <image:caption>Fotografia corporativa com iluminação de alto padrão para profissionais e executivos</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://evydencia.com.br/blog/o-que-vestir-ensaio-familia/</loc>
+    <image:image>
+      <image:loc>https://evydencia.com.br/imgs/GESTANTES.png</image:loc>
+      <image:title>O Que Vestir no Ensaio de Família - Dicas de Roupas e Cores</image:title>
+      <image:caption>Paletas harmônicas para fotos de família em estúdio e externo</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://evydencia.com.br/blog/smash-the-cake-como-funciona/</loc>
+    <image:image>
+      <image:loc>https://evydencia.com.br/imgs/SMASH_THE_CAKE.png</image:loc>
+      <image:title>Smash the Cake em Tijucas - Preparação e Dicas</image:title>
+      <image:caption>Sessão divertida de 1 ano com banho quentinho no Estúdio Evydência</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://evydencia.com.br/blog/foto-perfil-profissional-linkedin/</loc>
+    <image:image>
+      <image:loc>https://evydencia.com.br/imgs/CORPORATIVO.png</image:loc>
+      <image:title>Foto Profissional para LinkedIn e Negócios</image:title>
+      <image:caption>Retrato corporativo com iluminação e postura de autoridade</image:caption>
     </image:image>
   </url>
   <url>

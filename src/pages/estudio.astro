@@ -6,12 +6,12 @@ import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
 import { BUSINESS_DATA } from "@/data/business";
 
 const title = "Conheça o Estúdio Evydência em Tijucas | Estrutura e Atendimento";
-const description = `Conheça a estrutura do Estúdio Evydência na Rua Mauri Afonso da Silva em Tijucas - SC: ambiente climatizado, higienizado, iluminação profissional e atendimento com hora marcada.`;
+const description = `Conheça a estrutura do Estúdio Evydência na Rua Mauri Afonso da Silva em Tijucas - SC: ambiente climatizado, iluminação profissional controlada e atendimento com hora marcada.`;
 
 const studioHighlights = [
-  { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Ensaio fotográfico realizado com iluminação suave no Estúdio Evydência", caption: "Iluminação Suave & Direção de Poses" },
-  { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Cenário temático para primeiro aniversário no Estúdio Evydência", caption: "Cenários Temáticos & Higienizados" },
-  { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Sessão de acompanhamento infantil em estúdio climatizado", caption: "Ambiente Climatizado para Bebês" }
+  { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Área de fotografia com iluminação controlada no Estúdio Evydência em Tijucas", caption: "Área de Fotografia & Iluminação Suave" },
+  { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Cenários fotográficos higienizados para bebês e famílias", caption: "Cenários Temáticos & Higienizados" },
+  { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Ambiente climatizado e confortável para bebês no bairro Universitário", caption: "Ambiente Climatizado & Conforto Térmico" }
 ];
 ---
 
@@ -25,7 +25,7 @@ const studioHighlights = [
         Nosso Estúdio de Fotografia em Tijucas
       </h1>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Um espaço acolhedor e seguro, planejado para oferecer conforto térmico, tranquilidade e privacidade durante sua sessão fotográfica.
+        Um espaço acolhedor e privativo, planejado para oferecer conforto térmico, tranquilidade e precisão de iluminação durante sua sessão.
       </p>
     </div>
   </section>
@@ -39,7 +39,7 @@ const studioHighlights = [
           <div class="text-3xl">❄️</div>
           <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Ambiente Climatizado</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Temperatura controlada para garantir conforto total para gestantes, bebês e famílias em qualquer época do ano.
+            Temperatura e umidade controladas para garantir conforto total para gestantes, bebês e famílias em qualquer época do ano.
           </p>
         </div>
 
@@ -47,15 +47,15 @@ const studioHighlights = [
           <div class="text-3xl">🧼</div>
           <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Higienização e Cuidado</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Cenários, superfícies e acessórios rigorosamente higienizados antes e depois de cada sessão fotográfica.
+            Cenários, pisos, mantas e acessórios rigorosamente higienizados antes e depois de cada atendimento individual.
           </p>
         </div>
 
         <div class="bg-brand-beige/50 p-8 rounded-2xl border border-brand-gold/15 space-y-3">
           <div class="text-3xl">💡</div>
-          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Iluminação Profissional</h3>
+          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Iluminação Controlada</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Equipamentos e modificadores de luz pensados para criar retratos suaves, artísticos e fiéis às cores naturais.
+            Utilizamos flashes e modificadores de luz (como octaboxes e difusores de grande porte) para controlar direção, contraste e suavidade.
           </p>
         </div>
       </div>
@@ -63,7 +63,7 @@ const studioHighlights = [
       <!-- Destaques Visuais com PictureCard e Lightbox -->
       <div class="space-y-6">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand text-center">
-          Bastidores e Resultados das Sessões
+          Bastidores e Ambientes do Estúdio
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
           {studioHighlights.map((photo) => (
@@ -78,6 +78,43 @@ const studioHighlights = [
         </div>
       </div>
 
+      <!-- Detalhamento dos Ambientes e Conforto -->
+      <div class="space-y-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+          Estrutura Pensada para o Bem-Estar da Sua Família
+        </h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="p-6 bg-brand-beige/30 rounded-2xl border border-brand-gold/15 space-y-2">
+            <h3 class="font-bold text-gray-900 font-serif-brand text-lg">Área Principal de Fotografia</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Espaço amplo com fundos infinitos neutros, iluminação modulada e piso antiderrapante para total segurança de crianças e idosos.
+            </p>
+          </div>
+
+          <div class="p-6 bg-brand-beige/30 rounded-2xl border border-brand-gold/15 space-y-2">
+            <h3 class="font-bold text-gray-900 font-serif-brand text-lg">Camarim e Troca de Looks</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Área privativa com espelho e cabides para organização tranquila de roupas, maquiagem e acessórios durante a sessão.
+            </p>
+          </div>
+
+          <div class="p-6 bg-brand-beige/30 rounded-2xl border border-brand-gold/15 space-y-2">
+            <h3 class="font-bold text-gray-900 font-serif-brand text-lg">Conforto para Mães e Bebês</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Espaço de apoio com trocador higienizado e ambiente calmo para pausas de amamentação e descanso da criança.
+            </p>
+          </div>
+
+          <div class="p-6 bg-brand-beige/30 rounded-2xl border border-brand-gold/15 space-y-2">
+            <h3 class="font-bold text-gray-900 font-serif-brand text-lg">Fácil Acesso e Estacionamento</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              Rua tranquila no bairro Universitário com facilidade para estacionar em frente ao estúdio, trazendo praticidade no desembarque de carrinhos de bebê.
+            </p>
+          </div>
+        </div>
+      </div>
+
       <!-- Texto Institucional -->
       <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
@@ -87,11 +124,17 @@ const studioHighlights = [
           Localizado na <strong>{BUSINESS_DATA.address.street}</strong> no bairro {BUSINESS_DATA.address.neighborhood} em Tijucas - SC (CEP {BUSINESS_DATA.address.postalCode}), o Estúdio Evydência realiza atendimentos individuais por agendamento prévio.
         </p>
         <p>
-          Isso assegura que o espaço seja 100% exclusivo para você e sua família durante todo o período do ensaio, sem pressa e com total privacidade para trocas de figurinos e momentos de descanso.
+          Isso assegura que o espaço seja 100% exclusivo para você e sua família durante todo o período do ensaio, sem pressa e com total privacidade.
         </p>
       </div>
 
-      <WhatsAppCTA variant="banner" />
+      <WhatsAppCTA
+        variant="banner"
+        service="estudio"
+        customTitle="Quer conhecer nosso espaço em Tijucas?"
+        customSubtitle="Fale conosco no WhatsApp para tirar dúvidas sobre nossa estrutura ou agendar sua visita com hora marcada."
+        customMessage="Olá! Gostaria de informações sobre a estrutura e disponibilidade de datas do Estúdio Evydência."
+      />
 
     </div>
   </section>

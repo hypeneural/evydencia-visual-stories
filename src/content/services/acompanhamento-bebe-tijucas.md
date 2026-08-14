@@ -14,11 +14,22 @@ relatedServices:
   - "smash-the-cake-tijucas"
 faqs:
   - question: "Com que frequência são realizadas as sessões?"
-    answer: "Oferecemos opções de acompanhamento mensal (12 sessões), bimestral (6 sessões) ou trimestral (4 sessões), de acordo com a preferência da família."
-  - question: "Os pais podem participar das fotos de acompanhamento?"
-    answer: "Sim! Incentivamos fotos com os pais em cada etapa para registrar o vínculo e a evolução de toda a família."
+    answer: "Oferecemos planos flexíveis: acompanhamento mensal (12 sessões), bimestral (6 sessões) ou trimestral (4 sessões), de acordo com a preferência da família."
+  - question: "Os pais participam das sessões de acompanhamento?"
+    answer: "Sim! Incentivamos fotos com a mamãe, o papai e os irmãos em todas as sessões para documentar a evolução da família e o carinho mútuo."
+  - question: "Como funciona a higienização do estúdio para bebês pequenos?"
+    answer: "Todo o espaço é previamente limpo e desinfetado, mantas e acessórios são lavados com sabão neutro e o ar-condicionado é ajustado em temperatura suave e agradável."
 ---
 
 ## Do Primeiro Sorriso aos Primeiros Passos
 
-O primeiro ano é repleto de marcos inesquecíveis: o bebê aprendendo a sustentar a cabecinha, o primeiro sorriso intencional, o sentar sozinho, o engatinhar e os primeiros passinhos. Nosso acompanhamento cria uma linha do tempo fotográfica emocionante e harmoniosa.
+O primeiro ano de um bebê é o período de maior desenvolvimento da vida. Em doze meses, ele passa de um recém-nascido delicado para uma criancinha cheia de personalidade e curiosidade. Nosso plano de acompanhamento documenta essa evolução em uma linha do tempo fotográfica harmoniosa.
+
+### 1. Os Marcos do Primeiro Ano Registrados
+* **3 Meses:** O bebê já sustenta a cabeça com firmeza de bruços, sorri com facilidade para os pais e descobre as mãozinhas.
+* **6 Meses:** A fase dos pezinhos! O bebê senta com apoio ou sozinho, segura brinquedos e demonstra muita expressividade.
+* **9 Meses:** Curiosidade aguçada, engatinhando pelo estúdio, batendo palminhas e interagindo com Anderson e Elaine.
+* **12 Meses:** Ficar em pé, primeiros passinhos e a celebração do primeiro aniversário (geralmente combinado com o Smash the Cake).
+
+### 2. Consistência Visual e Álbum de Recordação
+Mantemos uma identidade de cores e iluminação consistente ao longo de todas as sessões para que, ao final do ano, a família receba uma coleção coesa e pronta para ser impressa em fotolivros de alta durabilidade.

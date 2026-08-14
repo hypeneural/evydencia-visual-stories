@@ -21,13 +21,13 @@ const sliderImages = [
 ];
 
 const serviceDetails: Record<string, string> = {
-  "/ensaios/gestante-tijucas/": "Registrar a doce espera com direção acolhedora, conforto absoluto e valorização da beleza materna.",
-  "/ensaios/familia-tijucas/": "Criar retratos autênticos de afeto, cumplicidade e conexão entre as diferentes gerações da família.",
-  "/ensaios/infantil-tijucas/": "Fotografar a espontaneidade, as descobertas e a alegria das crianças em um ambiente lúdico e seguro.",
-  "/ensaios/acompanhamento-bebe-tijucas/": "Documentar a evolução e cada detalhe do primeiro ano de vida com respeito ao ritmo do bebê.",
-  "/ensaios/smash-the-cake-tijucas/": "Celebrar o primeiro aniversário com diversão, brincadeiras com o bolo e banho quentinho no final.",
-  "/ensaios/casal-tijucas/": "Eternizar o amor, o carinho e a sintonia do casal em estúdio ou em cenários ao ar livre.",
-  "/ensaios/corporativo-tijucas/": "Construir posicionamento, autoridade e confiança visual para sua carreira, escritório ou negócio."
+  "/ensaios/gestante-tijucas/": "Registre a espera pelo bebê com direção de poses, conforto e participação da família, em estúdio climatizado ou sessão externa.",
+  "/ensaios/familia-tijucas/": "Retratos naturais de pais, filhos, avós e gerações, com direção leve e espaço para momentos espontâneos.",
+  "/ensaios/infantil-tijucas/": "Uma sessão lúdica construída no ritmo da criança, priorizando interação, brincadeiras e expressões naturais.",
+  "/ensaios/acompanhamento-bebe-tijucas/": "Registre as mudanças, expressões e conquistas do bebê ao longo de cada etapa do primeiro ano.",
+  "/ensaios/smash-the-cake-tijucas/": "Celebre o primeiro aniversário com retratos clássicos, o momento do bolo e banho quentinho no final.",
+  "/ensaios/casal-tijucas/": "Fotografias de conexão e cumplicidade em estúdio intimista ou locações externas selecionadas.",
+  "/ensaios/corporativo-tijucas/": "Retratos profissionais para LinkedIn, sites, redes sociais, imprensa e posicionamento de marca."
 };
 
 const verifiedReviews = [
@@ -76,7 +76,9 @@ const verifiedReviews = [
             href={BUSINESS_DATA.links.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-base rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover-lift focus:outline-hidden focus:ring-2 focus:ring-brand-gold"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-base rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover-lift focus:outline-hidden focus:ring-2 focus:ring-brand-gold whatsapp-track"
+            data-whatsapp-service="home_hero"
+            data-whatsapp-position="hero"
           >
             Agendar Ensaio pelo WhatsApp
           </a>
@@ -98,16 +100,15 @@ const verifiedReviews = [
       <ScrollSnapSlider
         id="home-gallery-slider"
         title="Momentos Reais, Histórias Eternizadas"
-        subtitle="Explore alguns dos registros fotográficos capturados pela equipe do Estúdio Evydência."
+        subtitle="Fotografias autorais realizadas em nosso estúdio e em locações de Tijucas e região."
       >
-        {sliderImages.map((img, index) => (
-          <div class="scroll-snap-align-start shrink-0 w-[280px] sm:w-[340px]">
+        {sliderImages.map((img) => (
+          <div class="shrink-0 w-72 sm:w-80 snap-start">
             <PictureCard
               src={img.src}
               alt={img.alt}
               caption={img.caption}
-              aspectRatio="landscape"
-              loading={index < 2 ? "eager" : "lazy"}
+              aspectRatio="square"
               enableZoom={true}
             />
           </div>
@@ -116,36 +117,74 @@ const verifiedReviews = [
     </div>
   </section>
 
-  <!-- Estatísticas de Autoridade -->
-  <section class="bg-brand-gold py-12 text-white">
+  <!-- Diferenciais / Pilares da Experiência Evydência -->
+  <section class="py-16 bg-brand-beige/40 border-y border-brand-gold/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        {BUSINESS_DATA.stats.map((stat) => (
-          <div class="space-y-1">
-            <p class="text-4xl sm:text-5xl font-bold font-serif-brand">
-              {stat.value}{stat.suffix}
-            </p>
-            <p class="text-base sm:text-lg text-white/90 font-medium">
-              {stat.label}
-            </p>
+      
+      <div class="text-center max-w-3xl mx-auto mb-12 space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+          Por que Escolher o Estúdio Evydência em Tijucas?
+        </h2>
+        <p class="text-gray-600 text-sm sm:text-base">
+          Cuidado em cada detalhe para que sua sessão seja um momento leve, especial e inesquecível.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="bg-white p-8 rounded-2xl shadow-xs border border-gray-100 space-y-4 hover:border-brand-gold/30 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-brand-beige flex items-center justify-center text-brand-gold font-bold text-xl font-serif-brand">
+            01
           </div>
-        ))}
+          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">
+            Ambiente Climatizado & Confortável
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Nosso estúdio possui controle de temperatura e higiene rigorosa para garantir o bem-estar de recém-nascidos, crianças e gestantes.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-xs border border-gray-100 space-y-4 hover:border-brand-gold/30 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-brand-beige flex items-center justify-center text-brand-gold font-bold text-xl font-serif-brand">
+            02
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">
+            Direção de Poses Leve e Afetiva
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Conduzimos cada momento com calma e empatia, para que até quem nunca foi fotografado se sinta natural e confiante em frente às câmeras.
+          </p>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-xs border border-gray-100 space-y-4 hover:border-brand-gold/30 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-brand-beige flex items-center justify-center text-brand-gold font-bold text-xl font-serif-brand">
+            03
+          </div>
+          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">
+            Equipamentos e Iluminação de Alta Precisão
+          </h3>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Iluminação profissional ajustada para cada tipo de sessão, garantindo cores fiéis, nitidez e acabamento artístico em todas as imagens.
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Seção de Serviços e Ensaios -->
-  <section id="ensaios" class="py-20 bg-brand-beige/40 border-y border-gray-100">
+  <!-- Ensaios Fotográficos em Destaque -->
+  <section id="ensaios" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
-        <span class="text-xs font-bold text-brand-gold uppercase tracking-wider bg-white px-3 py-1 rounded-full shadow-2xs border border-brand-gold/10">
-          Nossas Especialidades
+        <span class="text-xs font-bold text-brand-gold uppercase tracking-wider bg-brand-gold/10 px-3 py-1 rounded-full">
+          Especialidades do Estúdio
         </span>
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 font-serif-brand">
           Ensaios Fotográficos em Tijucas
         </h2>
         <p class="text-gray-600 text-base sm:text-lg">
-          Do início da gravidez ao crescimento dos filhos, comemorações e retratos profissionais.
+          Conheça as modalidades fotográficas que realizamos em nosso estúdio e em locações externas.
         </p>
       </div>
 
@@ -251,54 +290,73 @@ const verifiedReviews = [
         <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 font-serif-brand">
           O Que Nossos Clientes Dizem
         </h2>
-        <p class="text-gray-600 text-base sm:text-lg">
-          Depoimentos de famílias e profissionais que realizaram seus ensaios com o Estúdio Evydência.
+        <p class="text-gray-600 text-sm sm:text-base">
+          Depoimentos de famílias que confiam suas memórias mais preciosas ao nosso estúdio.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {verifiedReviews.map((t) => (
-          <div class="bg-white rounded-2xl p-8 shadow-xs border border-gray-100 space-y-4 flex flex-col justify-between">
-            <div class="space-y-3">
-              <div class="text-amber-400 text-lg">★★★★★</div>
-              <p class="text-gray-700 text-sm sm:text-base leading-relaxed italic">
-                "{t.text}"
+        {verifiedReviews.map((review) => (
+          <div class="bg-white p-8 rounded-2xl shadow-xs border border-gray-100 flex flex-col justify-between">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <div class="flex text-brand-gold text-sm tracking-widest">
+                  ★★★★★
+                </div>
+                <span class="text-2xs font-bold text-gray-400 bg-gray-50 px-2 py-0.5 rounded-full">
+                  {review.source}
+                </span>
+              </div>
+              <p class="text-gray-700 italic text-sm sm:text-base leading-relaxed">
+                "{review.text}"
               </p>
             </div>
-            <div class="pt-4 border-t border-gray-50 flex items-center justify-between">
+            
+            <div class="pt-6 border-t border-gray-50 mt-6 flex items-center justify-between">
               <div>
-                <p class="font-bold text-gray-900 text-sm">{t.name}</p>
-                <p class="text-xs text-gray-500">{t.role}</p>
+                <p class="font-bold text-gray-900 text-sm">{review.name}</p>
+                <p class="text-xs text-gray-500">{review.role}</p>
               </div>
-              <span class="text-2xs text-brand-gold-dark font-medium bg-brand-gold/10 px-2 py-0.5 rounded">
-                {t.source}
-              </span>
+              <a
+                href={BUSINESS_DATA.links.googleMaps}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs font-semibold text-brand-gold hover:underline"
+              >
+                Ver no Google →
+              </a>
             </div>
           </div>
         ))}
       </div>
 
-      <div class="mt-8 text-center">
+      <!-- CTA para Avaliações no Google Maps -->
+      <div class="mt-12 text-center">
         <a
-          href={BUSINESS_DATA.links.googleReviews}
+          href={BUSINESS_DATA.links.googleMaps}
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center text-sm font-semibold text-brand-gold hover:text-brand-gold-dark hover:underline gap-1.5"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-gray-700 hover:text-brand-gold hover:underline transition-colors"
         >
-          <span>Consulte todas as avaliações no Google Maps</span>
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
+          <span>📍 Veja todas as avaliações públicas na ficha do Google Maps</span>
+          <span>→</span>
         </a>
-      </div>
-
-      <div class="mt-14 text-center">
-        <WhatsAppCTA variant="banner" />
       </div>
     </div>
   </section>
 
-  <!-- Localização e Mapa em Tijucas -->
+  <!-- Banner de Conversão WhatsApp -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <WhatsAppCTA
+      variant="banner"
+      service="home"
+      customTitle="Pronto para registrar momentos inesquecíveis?"
+      customSubtitle="Entre em contato direto conosco pelo WhatsApp. Tiramos todas as suas dúvidas sobre datas, pacotes e valores de ensaios em Tijucas."
+      customMessage="Olá! Vi o site do Estúdio Evydência e gostaria de mais informações sobre os ensaios em Tijucas."
+    />
+  </div>
+
+  <!-- Localização do Estúdio no Bairro Universitário -->
   <StudioLocation />
 
 </BaseLayout>

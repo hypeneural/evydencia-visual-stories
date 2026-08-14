@@ -14,11 +14,22 @@ relatedServices:
   - "gestante-tijucas"
 faqs:
   - question: "Quais são as melhores locações para ensaio externo de casal?"
-    answer: "Tijucas e as cidades vizinhas (Governador Celso Ramos, Porto Belo, Itapema) possuem praias, campos, fazendas e cenários urbanos incríveis. Ajudamos o casal a escolher a locação que mais combina com a história dos dois."
-  - question: "Quantas trocas de roupas são permitidas?"
-    answer: "Normalmente recomendamos 2 a 3 opções de roupas para criar variedade de estilos e ambientes durante o ensaio."
+    answer: "Tijucas e as cidades vizinhas (Porto Belo, Itapema, Governador Celso Ramos) possuem praias, enseadas e campos incríveis. Ajudamos o casal a escolher o local que melhor reflete a identidade e história de vocês."
+  - question: "Quantas trocas de roupas são recomendadas?"
+    answer: "Recomendamos levar de 2 a 3 combinações de roupas (por exemplo, um look casual, um elegante e um mais descontraído) para variar os estilos durante a sessão."
+  - question: "Como funciona a sessão no estúdio?"
+    answer: "No estúdio climatizado, utilizamos fundos neutros e iluminação intimista, perfeita para retratos minimalistas de alto padrão."
 ---
 
 ## Uma Celebração a Dois
 
-Seja no estúdio com iluminação artística e intimista ou em uma praia ao entardecer, nosso objetivo é captar os olhares sinceros, os sorrisos despretensiosos e a conexão única de cada casal.
+O ensaio de casal do Estúdio Evydência é um convite para desacelerar da correria do dia a dia e curtir um momento exclusivo a dois. Conduzimos a sessão com naturalidade, criando uma atmosfera onde o casal se sinta à vontade para conversar, rir e se abraçar.
+
+### 1. Ocasiões Especiais que Registramos
+* **Ensaio Pré-Wedding:** Fotos românticas para os convites de casamento, site dos noivos e retrospectiva.
+* **Bodas e Aniversários de Casamento:** Celebração de 1, 5, 10, 25 ou 50 anos de união e companheirismo.
+* **Sessões Espontâneas de Casal:** Um registro do momento atual para quem deseja fotos bonitas e atemporais juntos.
+
+### 2. Estúdio Intimista vs. Cenários ao Ar Livre
+* **Estúdio em Tijucas:** Iluminação focada, clima agradável e sofisticação artística com fundos limpos.
+* **Locações Externas:** A luz dourada do final da tarde (Golden Hour) em praias e paisagens naturais do litoral de Santa Catarina.

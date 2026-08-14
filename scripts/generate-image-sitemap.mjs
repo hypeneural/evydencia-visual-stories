@@ -6,6 +6,26 @@ const PUBLIC_DIR = path.resolve("./public");
 
 const IMAGES_DATA = [
   {
+    loc: "https://evydencia.com.br/",
+    images: [
+      {
+        url: "https://evydencia.com.br/imgs/GESTANTES.png",
+        title: "Estúdio Evydência em Tijucas - Ensaios de Família e Gestante",
+        caption: "Estúdio de fotografia no bairro Universitário em Tijucas SC"
+      },
+      {
+        url: "https://evydencia.com.br/imgs/anderson.jpg",
+        title: "Anderson - Fotógrafo Fundador do Estúdio Evydência",
+        caption: "Fotógrafo profissional especialista em retratos e famílias"
+      },
+      {
+        url: "https://evydencia.com.br/imgs/elaine.jpg",
+        title: "Elaine - Fotógrafa Fundadora do Estúdio Evydência",
+        caption: "Fotógrafa especialista em gestantes e primeira infância"
+      }
+    ]
+  },
+  {
     loc: "https://evydencia.com.br/ensaios/gestante-tijucas/",
     images: [
       {
@@ -61,6 +81,36 @@ const IMAGES_DATA = [
     ]
   },
   {
+    loc: "https://evydencia.com.br/blog/o-que-vestir-ensaio-familia/",
+    images: [
+      {
+        url: "https://evydencia.com.br/imgs/GESTANTES.png",
+        title: "O Que Vestir no Ensaio de Família - Dicas de Roupas e Cores",
+        caption: "Paletas harmônicas para fotos de família em estúdio e externo"
+      }
+    ]
+  },
+  {
+    loc: "https://evydencia.com.br/blog/smash-the-cake-como-funciona/",
+    images: [
+      {
+        url: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png",
+        title: "Smash the Cake em Tijucas - Preparação e Dicas",
+        caption: "Sessão divertida de 1 ano com banho quentinho no Estúdio Evydência"
+      }
+    ]
+  },
+  {
+    loc: "https://evydencia.com.br/blog/foto-perfil-profissional-linkedin/",
+    images: [
+      {
+        url: "https://evydencia.com.br/imgs/CORPORATIVO.png",
+        title: "Foto Profissional para LinkedIn e Negócios",
+        caption: "Retrato corporativo com iluminação e postura de autoridade"
+      }
+    ]
+  },
+  {
     loc: "https://evydencia.com.br/eventos/batizado-tijucas/",
     images: [
       {
@@ -104,27 +154,30 @@ function generateXml() {
   return xml;
 }
 
-const xmlContent = generateXml();
-
-// Salvar no public/ e no dist/ se existir
-fs.writeFileSync(path.join(PUBLIC_DIR, "sitemap-images.xml"), xmlContent, "utf-8");
-
-if (fs.existsSync(DIST_DIR)) {
-  fs.writeFileSync(path.join(DIST_DIR, "sitemap-images.xml"), xmlContent, "utf-8");
-
-  // Atualizar sitemap-index.xml para incluir sitemap-images.xml se ainda não estiver incluso
-  const sitemapIndexPath = path.join(DIST_DIR, "sitemap-index.xml");
-  if (fs.existsSync(sitemapIndexPath)) {
-    let indexContent = fs.readFileSync(sitemapIndexPath, "utf-8");
-    if (!indexContent.includes("sitemap-images.xml")) {
-      indexContent = indexContent.replace(
-        "</sitemapindex>",
-        "<sitemap><loc>https://evydencia.com.br/sitemap-images.xml</loc></sitemap></sitemapindex>"
-      );
-      fs.writeFileSync(sitemapIndexPath, indexContent, "utf-8");
-      console.log("✅ sitemap-images.xml indexado com sucesso no sitemap-index.xml principal!");
-    }
+function updateSitemapIndex(indexPath) {
+  if (!fs.existsSync(indexPath)) return;
+  let indexContent = fs.readFileSync(indexPath, "utf-8");
+  if (!indexContent.includes("sitemap-images.xml")) {
+    indexContent = indexContent.replace(
+      "</sitemapindex>",
+      `  <sitemap>\n    <loc>https://evydencia.com.br/sitemap-images.xml</loc>\n  </sitemap>\n</sitemapindex>`
+    );
+    fs.writeFileSync(indexPath, indexContent, "utf-8");
+    console.log("✅ sitemap-images.xml indexado com sucesso no sitemap-index.xml principal!");
   }
 }
 
-console.log("✅ Image Sitemap gerado com sucesso em public/sitemap-images.xml e dist/sitemap-images.xml");
+function main() {
+  const xmlContent = generateXml();
+  fs.mkdirSync(PUBLIC_DIR, { recursive: true });
+  fs.writeFileSync(path.join(PUBLIC_DIR, "sitemap-images.xml"), xmlContent, "utf-8");
+
+  if (fs.existsSync(DIST_DIR)) {
+    fs.writeFileSync(path.join(DIST_DIR, "sitemap-images.xml"), xmlContent, "utf-8");
+    updateSitemapIndex(path.join(DIST_DIR, "sitemap-index.xml"));
+  }
+
+  console.log("✅ Image Sitemap gerado com sucesso em public/sitemap-images.xml e dist/sitemap-images.xml");
+}
+
+main();

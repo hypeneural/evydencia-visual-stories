@@ -13,8 +13,8 @@ relatedServices:
   - "acompanhamento-bebe-tijucas"
   - "familia-tijucas"
 faqs:
-  - question: "Qual é o período ideal da gestação para realizar as fotos?"
-    answer: "Do ponto de vista de poses e conforto, costumamos recomendar realizar o ensaio entre a 27ª e a 32ª semana de gestação, quando a barriga está bem delineada e a gestante se sente disposta."
+  - question: "Qual é o período recomendado para realizar o ensaio de gestante?"
+    answer: "Do ponto de vista fotográfico, costumamos sugerir o período entre a 27ª e a 32ª semana porque a barriga geralmente já está bem evidente. Cada gestação é única; o conforto da gestante e as orientações do profissional de saúde devem sempre prevalecer."
   - question: "O papai e outros filhos podem participar do ensaio?"
     answer: "Com certeza! A presença do parceiro e dos outros filhos enriquece as fotos e torna o ensaio um verdadeiro registro da história da família."
   - question: "Como funciona a escolha das roupas para a gestante?"
@@ -31,7 +31,16 @@ No Estúdio Evydência, entendemos que a gravidez é uma fase de transformaçõe
 Nosso estúdio em Tijucas conta com estrutura privativa para troca de roupas, temperatura controlada e ambiente higienizado para garantir o máximo de tranquilidade para você e sua família.
 
 ### 2. Participação da Família
-A gravidez é vivida por toda a família. O parceiro, os irmãos mais velhos e animais de estimação da família são bem-vindos (mediante aviso prévio para preparo e conforto).
+A gravidez é vivida por toda a família. O parceiro, os irmãos mais velhos e avós são muito bem-vindos para participar dos retratos em família.
 
 ### 3. Direção Suave e Acolhedora
 Não se preocupe se você não tem experiência em posar para fotos. Nós conduzimos cada pose de forma leve, espontânea e tranquila, valorizando seus melhores ângulos com uma iluminação artística pensada para destacar a conexão maternal.
+
+### 4. Estúdio Climatizado vs. Sessão Externa
+* **No Estúdio:** Total privacidade, controle de luz, ar-condicionado e facilidade para troca de looks com conforto.
+* **Ao Ar Livre:** Luz natural suave ao entardecer (Golden Hour) em locações campestres ou praias selecionadas do litoral catarinense.
+
+### 5. Como se Preparar para a Sessão
+* **Hidratação e Descanso:** Tenha uma boa noite de sono na véspera e mantenha-se bem hidratada.
+* **Roupas Confortáveis:** Venha com peças soltinhas que não deixem marcas na pele antes de vestir os looks do ensaio.
+* **Maquiagem Leve:** Indicamos tons naturais que realcem o brilho característico da gestação.
