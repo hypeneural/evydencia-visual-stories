@@ -108,7 +108,7 @@ for (const filePath of htmlFiles) {
       try {
         const parsed = JSON.parse(jsonLdMatch[1]);
         const jsonStr = JSON.stringify(parsed);
-        const validTypes = ["LocalBusiness", "Service", "BlogPosting", "Article", "WebPage", "WebSite"];
+        const validTypes = ["LocalBusiness", "Service", "BlogPosting", "Article", "WebPage", "WebSite", "AboutPage"];
         const hasValidType = validTypes.some(t => jsonStr.includes(t));
         if (!hasValidType) {
           console.warn(`⚠️ [${relPath}] Schema JSON-LD sem tipo principal reconhecido.`);

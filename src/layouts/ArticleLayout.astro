@@ -1,14 +1,14 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
-import { BUSINESS_DATA } from "@/data/business";
 import { getCanonicalUrl } from "@/lib/seo/canonical";
+import { CANONICAL_IDS } from "@/lib/seo/schema";
 
 interface Props {
   title: string;
   description: string;
   pubDate: Date;
-  author: string;
+  author?: string | undefined;
   featuredImage: string;
   tags?: string[];
   readingTime?: string;
@@ -18,7 +18,6 @@ const {
   title,
   description,
   pubDate,
-  author,
   featuredImage,
   tags = [],
   readingTime = "5 min"
@@ -31,21 +30,63 @@ const formattedDate = new Intl.DateTimeFormat("pt-BR", {
   year: "numeric"
 }).format(pubDate);
 
-const articleSchema = {
+const articleGraph = {
   "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": title,
-  "description": description,
-  "image": featuredImage,
-  "datePublished": pubDate.toISOString(),
-  "author": {
-    "@type": "Person",
-    "name": author
-  },
-  "publisher": {
-    "@id": `${BUSINESS_DATA.url}/#business`
-  },
-  "mainEntityOfPage": canonicalUrl
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "description": description,
+      "isPartOf": {
+        "@id": CANONICAL_IDS.website
+      },
+      "about": {
+        "@id": `${canonicalUrl}#article`
+      },
+      "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "BlogPosting",
+      "@id": `${canonicalUrl}#article`,
+      "headline": title,
+      "description": description,
+      "image": featuredImage,
+      "datePublished": pubDate.toISOString(),
+      "author": {
+        "@id": CANONICAL_IDS.anderson
+      },
+      "publisher": {
+        "@id": CANONICAL_IDS.business
+      },
+      "mainEntityOfPage": canonicalUrl
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonicalUrl}#breadcrumb`,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://evydencia.com.br/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://evydencia.com.br/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": title,
+          "item": canonicalUrl
+        }
+      ]
+    }
+  ]
 };
 ---
 
@@ -54,12 +95,12 @@ const articleSchema = {
   description={description}
   image={featuredImage}
   type="article"
-  schema={articleSchema}
+  schema={articleGraph}
 >
   <article class="py-12 bg-white">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Cabeçalho do Artigo -->
+      <!-- Cabeçalho do Artigo com Autoria Transparente -->
       <header class="text-center space-y-4 mb-8">
         <div class="flex flex-wrap items-center justify-center gap-2 text-xs font-semibold text-brand-gold-dark uppercase tracking-wider">
           {tags.map((tag) => (
@@ -73,10 +114,13 @@ const articleSchema = {
           {title}
         </h1>
 
-        <div class="flex items-center justify-center gap-3 text-sm text-gray-500 pt-2">
-          <span>Por <strong>{author}</strong></span>
-          <span>•</span>
-          <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+        <div class="bg-brand-beige/50 p-4 rounded-xl border border-brand-gold/15 max-w-xl mx-auto text-xs sm:text-sm text-gray-700 space-y-1">
+          <p>
+            ✍️ <strong>Escrito por Anderson</strong> (Fotógrafo e Fundador do Estúdio Evydência)
+          </p>
+          <p>
+            🔍 <strong>Revisado por Elaine</strong> (Fotógrafa e Fundadora) • <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+          </p>
         </div>
       </header>
 
@@ -98,8 +142,13 @@ const articleSchema = {
       </div>
 
       <!-- Banner de Conversão -->
-      <div class="mt-16">
-        <WhatsAppCTA variant="banner" />
+      <div class="mt-12">
+        <WhatsAppCTA
+          variant="banner"
+          service="blog_post"
+          customTitle="Gostou das dicas e quer planejar seu ensaio?"
+          customSubtitle="Fale com Anderson e Elaine no WhatsApp para tirar dúvidas e agendar sua sessão em Tijucas."
+        />
       </div>
 
     </div>

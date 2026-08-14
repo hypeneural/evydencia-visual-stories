@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
 import PressMentions from "@/components/business/PressMentions.astro";
 import { BUSINESS_DATA } from "@/data/business";
+import { CANONICAL_IDS } from "@/lib/seo/schema";
 
 const title = `Sobre Nós - Desde ${BUSINESS_DATA.foundingYear} em Tijucas | Estúdio Evydência`;
 const description = `Conheça a história dos fundadores Anderson e Elaine e a trajetória de mais de ${BUSINESS_DATA.yearsOfExperience} anos do Estúdio Evydência em Tijucas - SC.`;
@@ -21,7 +22,7 @@ const timeline = [
   {
     year: "2020",
     title: "Consolidação da Estrutura no Bairro Universitário",
-    text: "Estruturação do estúdio na Rua Mauri Afonso da Silva, com ambiente privativo e equipamentos de iluminação de última geração."
+    text: "Estruturação do estúdio na Rua Mauri Afonso da Silva, com ambiente privativo e modificadores de luz para controle refinado de direção, contraste e suavidade."
   },
   {
     year: "Hoje",
@@ -29,9 +30,46 @@ const timeline = [
     text: "Mais de 5.000 famílias e clientes fotografados com reconhecimento contínuo em Tijucas e no litoral catarinense."
   }
 ];
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "AboutPage",
+      "@id": "https://evydencia.com.br/sobre/#webpage",
+      "url": "https://evydencia.com.br/sobre/",
+      "name": title,
+      "description": description,
+      "isPartOf": {
+        "@id": CANONICAL_IDS.website
+      },
+      "about": {
+        "@id": CANONICAL_IDS.business
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://evydencia.com.br/sobre/#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://evydencia.com.br/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Sobre Nós",
+          "item": "https://evydencia.com.br/sobre/"
+        }
+      ]
+    }
+  ]
+};
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} schema={aboutSchema}>
   <section class="bg-gradient-to-b from-brand-beige to-white py-14 lg:py-20 border-b border-gray-100">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
       <span class="text-xs font-bold text-brand-gold-dark uppercase tracking-wider bg-brand-gold/10 px-3 py-1 rounded-full">
@@ -54,77 +92,79 @@ const timeline = [
         <div class="rounded-2xl overflow-hidden shadow-md aspect-[3/4] bg-gray-100 relative group">
           <img
             src="https://evydencia.com.br/imgs/anderson.jpg"
-            alt="Anderson, fotógrafo do Estúdio Evydência"
+            alt="Anderson, fotógrafo e fundador do Estúdio Evydência"
             width="400"
             height="533"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
             loading="eager"
           />
-          <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 text-white">
-            <p class="font-bold text-lg font-serif-brand">Anderson</p>
-            <p class="text-xs text-brand-gold-light">Fotógrafo Fundador • Direção & Iluminação</p>
+          <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white">
+            <p class="font-bold text-lg">Anderson</p>
+            <p class="text-xs text-gray-200">Fotógrafo e Fundador</p>
           </div>
         </div>
-        
+
         <div class="rounded-2xl overflow-hidden shadow-md aspect-[3/4] bg-gray-100 relative group">
           <img
             src="https://evydencia.com.br/imgs/elaine.jpg"
-            alt="Elaine, fotógrafa do Estúdio Evydência"
+            alt="Elaine, fotógrafa e fundadora do Estúdio Evydência"
             width="400"
             height="533"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
             loading="eager"
           />
-          <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 text-white">
-            <p class="font-bold text-lg font-serif-brand">Elaine</p>
-            <p class="text-xs text-brand-gold-light">Fotógrafa Fundadora • Acolhimento & Produção</p>
+          <div class="absolute bottom-0 inset-x-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white">
+            <p class="font-bold text-lg">Elaine</p>
+            <p class="text-xs text-gray-200">Fotógrafa e Fundadora</p>
           </div>
         </div>
       </div>
 
       <!-- Texto Institucional -->
       <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
-          O Nascimento do Estúdio Evydência
-        </h2>
+        <h2>A Essência do Nosso Trabalho</h2>
         <p>
-          O <strong>Estúdio Evydência</strong> foi fundado em 2011 pelo casal de fotógrafos Anderson e Elaine. O que começou com a paixão pelas artes visuais transformou-se em uma missão de vida: criar registros fotográficos de alta sensibilidade para marcar os momentos mais valiosos de cada família.
+          Acreditamos que a fotografia vai muito além do registro estético: ela é a guardiã da memória de uma família. Desde 2011, quando fundamos o Estúdio Evydência em Tijucas, nosso compromisso tem sido criar um ambiente onde as pessoas se sintam acolhidas, confortáveis e livres para expressar seu afeto genuíno.
         </p>
-
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
-          Nossa Filosofia de Trabalho
-        </h2>
         <p>
-          Acreditamos que a melhor fotografia não é fruto de rigidez ou poses forçadas, mas sim do conforto, da espontaneidade e do respeito ao tempo de cada pessoa — especialmente gestantes, recém-nascidos e crianças pequenas.
+          Conduzimos cada ensaio com calma e empatia. Sabemos que gestantes precisam de pausas e conforto térmico; que bebês têm seu próprio tempo para mamar e descansar; e que muitas pessoas se sentem tímidas diante das lentes. Nosso trabalho é tornar o momento agradável e natural.
         </p>
       </div>
 
       <!-- Linha do Tempo -->
-      <div class="space-y-6">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand text-center">
-          Nossa Trajetória em Tijucas
+      <div class="space-y-8">
+        <h2 class="text-2xl font-bold text-gray-900 font-serif-brand text-center">
+          Nossa Linha do Tempo
         </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+        <div class="space-y-6">
           {timeline.map((item) => (
-            <div class="p-6 bg-brand-beige/50 rounded-2xl border border-brand-gold/20 space-y-2">
-              <span class="text-xs font-bold text-white bg-brand-gold px-3 py-1 rounded-full">
+            <div class="flex gap-6 items-start bg-brand-beige/30 p-6 rounded-2xl border border-brand-gold/15">
+              <span class="text-xl font-bold text-brand-gold font-serif-brand shrink-0">
                 {item.year}
               </span>
-              <h3 class="text-lg font-bold text-gray-900 font-serif-brand pt-2">
-                {item.title}
-              </h3>
-              <p class="text-sm text-gray-600 leading-relaxed">
-                {item.text}
-              </p>
+              <div>
+                <h3 class="text-base font-bold text-gray-900">{item.title}</h3>
+                <p class="text-sm text-gray-600 mt-1 leading-relaxed">{item.text}</p>
+              </div>
             </div>
           ))}
         </div>
       </div>
 
-      <!-- Menções de Imprensa Real -->
-      <PressMentions />
+      <!-- Cobertura na Imprensa -->
+      <div class="pt-8">
+        <h2 class="text-2xl font-bold text-gray-900 font-serif-brand mb-6 text-center">
+          Reconhecimento na Mídia Regional
+        </h2>
+        <PressMentions limit={4} />
+      </div>
 
-      <WhatsAppCTA variant="banner" />
+      <WhatsAppCTA
+        variant="banner"
+        service="sobre"
+        customTitle="Venha nos conhecer pessoalmente"
+        customSubtitle="Fale conosco no WhatsApp para agendar uma visita ao estúdio ou tirar dúvidas sobre os ensaios."
+      />
 
     </div>
   </section>
