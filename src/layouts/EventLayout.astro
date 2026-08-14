@@ -1,0 +1,338 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import FAQAccordion from "@/components/ui/FAQAccordion.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import StudioLocation from "@/components/business/StudioLocation.astro";
+import PictureCard from "@/components/gallery/PictureCard.astro";
+import EventQuickFacts from "@/components/events/EventQuickFacts.astro";
+import EventProcessSteps from "@/components/events/EventProcessSteps.astro";
+import EventLogisticsDetails from "@/components/events/EventLogisticsDetails.astro";
+import RelatedStories from "@/components/seo/RelatedStories.astro";
+import RelatedPortfolio from "@/components/seo/RelatedPortfolio.astro";
+import RelatedArticles from "@/components/seo/RelatedArticles.astro";
+import { getCanonicalUrl } from "@/lib/seo/canonical";
+import { BUSINESS_DATA } from "@/data/business";
+import { EVENTS_NAVIGATION } from "@/data/navigation";
+import { CANONICAL_IDS } from "@/lib/seo/schema";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface FactItem {
+  label: string;
+  value: string;
+}
+
+interface GalleryPhoto {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  h1: string;
+  serviceName: string;
+  featuredImage: string;
+  heroText: string;
+  summary?: string | undefined;
+  facts?: FactItem[];
+  photos?: GalleryPhoto[];
+  faqs?: FAQItem[];
+  whatsappMessage?: string | undefined;
+  portfolioSlug?: string | undefined;
+  storyCategory?: string | undefined;
+  blogTag?: string | undefined;
+}
+
+const {
+  title,
+  description,
+  h1,
+  serviceName,
+  featuredImage,
+  heroText,
+  facts = [],
+  photos = [],
+  faqs = [],
+  whatsappMessage,
+  portfolioSlug = "eventos",
+  storyCategory = "familia",
+  blogTag = "Infantil"
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const canonicalUrl = getCanonicalUrl(currentPath);
+
+// Grafo Semântico de Serviço de Evento com IDs canônicos
+const eventGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "description": description,
+      "isPartOf": {
+        "@id": CANONICAL_IDS.website
+      },
+      "about": {
+        "@id": `${canonicalUrl}#service`
+      },
+      "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "Service",
+      "@id": `${canonicalUrl}#service`,
+      "name": serviceName,
+      "description": description,
+      "provider": {
+        "@id": CANONICAL_IDS.business
+      },
+      "url": canonicalUrl,
+      "image": featuredImage,
+      "areaServed": BUSINESS_DATA.areaServed.map(city => ({
+        "@type": "City",
+        "name": `${city}, SC`
+      }))
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonicalUrl}#breadcrumb`,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://evydencia.com.br/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Eventos",
+          "item": "https://evydencia.com.br/eventos/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": serviceName,
+          "item": canonicalUrl
+        }
+      ]
+    },
+    ...(faqs.length > 0 ? [{
+      "@type": "FAQPage",
+      "@id": `${canonicalUrl}#faq`,
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }] : [])
+  ]
+};
+
+// Outros eventos para navegação lateral
+const otherEvents = EVENTS_NAVIGATION.filter(e => e.href !== currentPath);
+
+const defaultWaText = `Olá! Gostaria de consultar a disponibilidade de data e valores para a cobertura de ${serviceName} com o Estúdio Evydência.`;
+const waText = whatsappMessage || defaultWaText;
+const waUrl = `https://wa.me/${BUSINESS_DATA.telephoneE164.replace(/\D/g, "")}?text=${encodeURIComponent(waText)}`;
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={featuredImage}
+  schema={eventGraph}
+>
+  <!-- Hero do Evento -->
+  <section class="bg-gradient-to-b from-brand-beige via-brand-beige/50 to-white py-12 lg:py-16 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-brand-gold/10 text-brand-gold-dark text-xs sm:text-sm font-semibold rounded-full uppercase tracking-wider">
+            📍 Cobertura Fotográfica • Tijucas e Região
+          </div>
+          
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight font-serif-brand">
+            {h1}
+          </h1>
+          
+          <p class="text-lg sm:text-xl text-gray-700 leading-relaxed">
+            {heroText}
+          </p>
+
+          <!-- Fatos Rápidos da Cobertura (<dl> Semântico) -->
+          <EventQuickFacts facts={facts} eventName={serviceName} />
+
+          <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
+            <a
+              href={waUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-base rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover-lift whatsapp-track"
+              data-whatsapp-service={serviceName}
+              data-whatsapp-position="hero"
+            >
+              Consultar Data no WhatsApp
+            </a>
+            <a
+              href="#sobre-evento"
+              class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-base border border-gray-200 rounded-full shadow-2xs transition-colors"
+            >
+              Ver Detalhes da Cobertura
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-100 aspect-[4/5] bg-gray-100 relative">
+            <img
+              src={featuredImage}
+              alt={h1}
+              width="600"
+              height="750"
+              class="w-full h-full object-cover"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeria de Fotos do Evento -->
+  {photos.length > 0 && (
+    <section class="py-12 bg-white border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-2 mb-8 text-center sm:text-left">
+          <span class="text-xs font-bold text-brand-gold uppercase tracking-wider">
+            Galeria da Cobertura
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+            Registros Selecionados de {serviceName}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {photos.map((photo) => (
+            <PictureCard
+              src={photo.src}
+              alt={photo.alt}
+              caption={photo.caption}
+              aspectRatio="square"
+              enableZoom={true}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Conteúdo Principal e Informações do Evento -->
+  <section id="sobre-evento" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Artigo Principal do Evento -->
+        <div class="lg:col-span-8 space-y-12">
+          
+          <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+            <slot />
+          </div>
+
+          <!-- Metodologia e Passos da Cobertura do Evento -->
+          <EventProcessSteps />
+
+          <!-- Logística e Cuidado Técnico no Local -->
+          <EventLogisticsDetails />
+
+          <!-- História Real Relacionada -->
+          <RelatedStories serviceCategory={storyCategory} />
+
+          <!-- Link para o Portfólio Dedicado -->
+          {portfolioSlug && (
+            <RelatedPortfolio portfolioSlug={portfolioSlug} categoryName={serviceName} />
+          )}
+
+          <!-- Artigos Relevantes no Blog -->
+          <RelatedArticles tag={blogTag} />
+
+          <!-- FAQ Accordion com Schema FAQPage -->
+          {faqs.length > 0 && (
+            <FAQAccordion faqs={faqs} title={`Dúvidas Frequentes sobre ${serviceName}`} />
+          )}
+
+          <!-- Banner WhatsApp Personalizado para Evento -->
+          <WhatsAppCTA
+            variant="banner"
+            service={serviceName}
+            customTitle={`Planejando um ${serviceName}?`}
+            customSubtitle="Como as datas de eventos são limitadas, recomendamos consultar a agenda com antecedência para garantir a sua reserva."
+            customMessage={whatsappMessage}
+          />
+
+        </div>
+
+        <!-- Sidebar com Outros Eventos e Contato Rápido -->
+        <div class="lg:col-span-4 space-y-8">
+          
+          <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+            <h3 class="text-lg font-bold text-gray-900 font-serif-brand">
+              Outras Coberturas de Eventos
+            </h3>
+            <div class="space-y-3">
+              {otherEvents.map((other) => (
+                <a
+                  href={other.href}
+                  class="block p-3 bg-white rounded-xl border border-gray-100 hover:border-brand-gold/40 transition-colors"
+                >
+                  <p class="text-xs text-brand-gold font-bold uppercase">Cobertura Fotográfica</p>
+                  <p class="font-bold text-gray-900 text-sm">{other.label}</p>
+                </a>
+              ))}
+              <a
+                href="/ensaios/familia-tijucas/"
+                class="block p-3 bg-white rounded-xl border border-gray-100 hover:border-brand-gold/40 transition-colors"
+              >
+                <p class="text-xs text-brand-gold font-bold uppercase">Ensaio em Família</p>
+                <p class="font-bold text-gray-900 text-sm">Ensaio de Família no Estúdio</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="bg-brand-beige/50 p-6 rounded-2xl border border-brand-gold/20 space-y-3 text-sm">
+            <h3 class="font-bold text-gray-900 font-serif-brand text-base">
+              Atendimento e Reservas
+            </h3>
+            <p class="text-gray-600">
+              📍 <strong>Base:</strong> {BUSINESS_DATA.address.street}, {BUSINESS_DATA.address.neighborhood} - Tijucas SC
+            </p>
+            <p class="text-gray-600">
+              🚗 <strong>Atendimento:</strong> Igrejas, capelas, salões e residências em Tijucas e região
+            </p>
+            <p class="text-gray-600">
+              📞 <strong>Telefone:</strong> {BUSINESS_DATA.telephone}
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Localização do Estúdio -->
+  <StudioLocation />
+</BaseLayout>

@@ -4,10 +4,23 @@ Allow: /
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
 User-agent: Bingbot
 Allow: /
 
 User-agent: OAI-SearchBot
 Allow: /
 
+User-agent: Meta-WebIndexer
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
 Sitemap: https://evydencia.com.br/sitemap-index.xml
+Sitemap: https://evydencia.com.br/sitemap-images.xml

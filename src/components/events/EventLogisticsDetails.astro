@@ -1,0 +1,52 @@
+---
+const logistics = [
+  {
+    icon: "⛪",
+    title: "Respeito ao Rito Sagrado",
+    text: "Em cerimônias religiosas e batizados, atuamos com extrema discrição e posicionamento silencioso, alinhando previamente as orientações do celebrante."
+  },
+  {
+    icon: "📷",
+    title: "Equipamentos de Backup e Lentes Claras",
+    text: "Utilizamos câmeras profissionais duplas e lentes luminosas de alta precisão, permitindo imagens nítidas mesmo em igrejas ou salões com iluminação suave."
+  },
+  {
+    icon: "⏱️",
+    title: "Pontualidade e Organização",
+    text: "Chegamos com antecedência ao local para fazer a leitura da luz do ambiente, registrar a decoração e organizar as fotos de família sem correria."
+  },
+  {
+    icon: "👨‍👩‍👧‍👦",
+    title: "Registro de Todas as Gerações",
+    text: "Cuidamos para fotografar não apenas os protagonistas, mas também avós, padrinhos, amigos e convidados que tornam o momento especial."
+  }
+];
+---
+
+<section class="space-y-6 pt-4">
+  <div class="space-y-2">
+    <span class="text-xs font-bold text-brand-gold uppercase tracking-wider">
+      Logística e Cuidado Técnico
+    </span>
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+      Tranquilidade e Discrição no Dia da Celebração
+    </h2>
+    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+      Sabemos que o dia do evento deve ser vivido com leveza. Cuidamos de todos os detalhes técnicos para que você aproveite a festa com seus convidados.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+    {logistics.map((item) => (
+      <div class="p-6 bg-brand-beige/40 rounded-2xl border border-brand-gold/20 space-y-2">
+        <div class="text-2xl">{item.icon}</div>
+        <h3 class="font-bold text-gray-900 font-serif-brand text-lg">
+          {item.title}
+        </h3>
+        <p class="text-sm text-gray-600 leading-relaxed">
+          {item.text}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>

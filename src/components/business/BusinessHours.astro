@@ -1,0 +1,27 @@
+---
+import { BUSINESS_DATA } from "@/data/business";
+
+interface Props {
+  class?: string | undefined;
+  showIcon?: boolean | undefined;
+}
+
+const {
+  class: className = "",
+  showIcon = true
+} = Astro.props;
+---
+
+<div class={`text-sm text-gray-600 space-y-1 ${className}`}>
+  <div class="flex items-center gap-1.5 font-medium text-gray-900">
+    {showIcon && <span>🕒</span>}
+    <span>Horários de Atendimento</span>
+  </div>
+  <ul class="text-xs sm:text-sm text-gray-600 space-y-0.5 pl-5">
+    {BUSINESS_DATA.openingHours.map((schedule) => (
+      <li>
+        <strong>{schedule.days.join(", ")}:</strong> {schedule.hours}
+      </li>
+    ))}
+  </ul>
+</div>

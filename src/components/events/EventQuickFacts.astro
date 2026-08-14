@@ -1,0 +1,32 @@
+---
+interface FactItem {
+  label: string;
+  value: string;
+}
+
+interface Props {
+  facts?: FactItem[] | undefined;
+  eventName?: string | undefined;
+}
+
+const {
+  facts = [],
+  eventName = "Evento"
+} = Astro.props;
+---
+
+{facts.length > 0 && (
+  <div class="bg-white/90 backdrop-blur-xs p-6 rounded-2xl border border-brand-gold/20 shadow-2xs">
+    <h2 class="text-xs font-bold uppercase tracking-wider text-brand-gold-dark mb-4">
+      Informações da Cobertura de {eventName}
+    </h2>
+    <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+      {facts.map((fact) => (
+        <div class="space-y-0.5">
+          <dt class="text-gray-500 font-semibold text-xs">{fact.label}</dt>
+          <dd class="text-gray-900 font-medium">{fact.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+)}

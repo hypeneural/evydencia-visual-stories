@@ -1,0 +1,40 @@
+---
+import { BUSINESS_DATA } from "@/data/business";
+
+interface Props {
+  class?: string | undefined;
+}
+
+const {
+  class: className = ""
+} = Astro.props;
+---
+
+<div class={`text-sm text-gray-600 space-y-2 ${className}`}>
+  <p class="flex items-center gap-2">
+    <span>📞</span>
+    <span><strong>Telefone:</strong> {BUSINESS_DATA.telephone}</span>
+  </p>
+  <p class="flex items-center gap-2">
+    <span>💬</span>
+    <a
+      href={BUSINESS_DATA.links.whatsapp}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-brand-gold hover:text-brand-gold-dark hover:underline font-semibold"
+    >
+      WhatsApp: {BUSINESS_DATA.telephone}
+    </a>
+  </p>
+  <p class="flex items-center gap-2">
+    <span>📷</span>
+    <a
+      href={BUSINESS_DATA.links.instagram}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-brand-gold hover:text-brand-gold-dark hover:underline font-semibold"
+    >
+      Instagram: @estudioevydenciaa
+    </a>
+  </p>
+</div>

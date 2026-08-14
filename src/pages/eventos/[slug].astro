@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import ServiceLayout from "@/layouts/ServiceLayout.astro";
+import EventLayout from "@/layouts/EventLayout.astro";
 
 export async function getStaticPaths() {
   const services = await getCollection("services");
@@ -32,10 +32,30 @@ const eventFactsMap: Record<string, Array<{ label: string; value: string }>> = {
   ]
 };
 
+const eventPhotosMap: Record<string, Array<{ src: string; alt: string; caption?: string }>> = {
+  "batizado-tijucas": [
+    { src: "https://evydencia.com.br/imgs/BATIZADOS.png", alt: "Cerimônia de batizado com respeito ao rito religioso em igreja", caption: "Respeito e Silêncio Durante o Rito Sagrado" },
+    { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Retrato do bebê com padrinhos e pais no altar", caption: "Retratos Especiais com Padrinhos e Família" },
+    { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Detalhes do mandrião, vela e água benta no batismo", caption: "Detalhes e Emoção em Cada Instante" }
+  ],
+  "aniversario-infantil-tijucas": [
+    { src: "https://evydencia.com.br/imgs/ANIVERSARIO.png", alt: "Criança assoprando a velinha no aniversário em família", caption: "O Grande Momento dos Parabéns" },
+    { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Crianças brincando e se divertindo na festa infantil", caption: "Espontaneidade e Brincadeiras dos Pequenos" },
+    { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Família reunida na mesa do bolo antes da chegada dos convidados", caption: "Retratos Familiares com a Decoração Completa" }
+  ]
+};
+
+const eventWaMessages: Record<string, string> = {
+  "batizado-tijucas": "Olá! Gostaria de consultar a disponibilidade de data e solicitar um orçamento para a cobertura fotográfica de Batizado com o Estúdio Evydência.",
+  "aniversario-infantil-tijucas": "Olá! Gostaria de verificar a agenda e conhecer os pacotes para cobertura de Aniversário Infantil com o Estúdio Evydência."
+};
+
 const facts = eventFactsMap[service.id] || [];
+const photos = eventPhotosMap[service.id] || [];
+const whatsappMessage = eventWaMessages[service.id];
 ---
 
-<ServiceLayout
+<EventLayout
   title={service.data.title}
   description={service.data.description}
   h1={service.data.h1}
@@ -44,10 +64,12 @@ const facts = eventFactsMap[service.id] || [];
   heroText={service.data.heroText}
   summary={service.data.summary}
   facts={facts}
+  photos={photos}
   faqs={service.data.faqs}
-  portfolioSlug="infantil"
+  whatsappMessage={whatsappMessage}
+  portfolioSlug="eventos"
   storyCategory="familia"
   blogTag="Infantil"
 >
   <Content />
-</ServiceLayout>
+</EventLayout>

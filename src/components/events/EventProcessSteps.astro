@@ -1,0 +1,54 @@
+---
+const steps = [
+  {
+    number: "01",
+    title: "Briefing e Cronograma",
+    description: "Alinhamos os horários da cerimônia ou festa, locais, lista de pessoas-chave para retratos e momentos especiais que não podem faltar."
+  },
+  {
+    number: "02",
+    title: "Chegada Antecipada",
+    description: "Chegamos antes do início para registrar os detalhes da decoração, espaço, igreja ou salão e fazer os primeiros retratos da família tranquila."
+  },
+  {
+    number: "03",
+    title: "Cobertura Documental e Afetiva",
+    description: "Fotografamos com discrição e sensibilidade os momentos solenes, abraços, reações espontâneas dos convidados e a alegria das crianças."
+  },
+  {
+    number: "04",
+    title: "Entrega Digital e Álbuns",
+    description: "Tratamento individual de cor e luz, entrega em galeria online protegida e opções de fotolivros comemorativos de alta durabilidade."
+  }
+];
+---
+
+<section class="space-y-6 pt-4">
+  <div class="space-y-2">
+    <span class="text-xs font-bold text-brand-gold uppercase tracking-wider">
+      Metodologia de Cobertura
+    </span>
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+      Como Funciona a Cobertura do Seu Evento
+    </h2>
+    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+      Nossa presença no seu evento une discrição para não atrapalhar os ritos e sensibilidade para capturar cada momento inesquecível.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+    {steps.map((step) => (
+      <div class="p-6 bg-white rounded-2xl border border-gray-100 shadow-2xs hover:border-brand-gold/30 transition-colors space-y-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-beige flex items-center justify-center text-brand-gold-dark font-bold text-base font-serif-brand">
+          {step.number}
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 font-serif-brand">
+          {step.title}
+        </h3>
+        <p class="text-gray-600 text-sm leading-relaxed">
+          {step.description}
+        </p>
+      </div>
+    ))}
+  </div>
+</section>

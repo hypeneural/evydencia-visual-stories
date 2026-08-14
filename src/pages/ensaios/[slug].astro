@@ -33,10 +33,10 @@ const serviceFactsMap: Record<string, Array<{ label: string; value: string }>> =
     { label: "Atendimento", value: "Agendamento prévio com exclusividade" }
   ],
   "infantil-tijucas": [
-    { label: "Localização", value: "Tijucas - SC" },
+    { label: "Localização", value: "Tijucas - SC (Bairro Universitário)" },
     { label: "Ambiente", value: "Seguro, higienizado e acolhedor" },
     { label: "Metodologia", value: "No ritmo da criança, sem pressa" },
-    { label: "Horário", value: "Preferencialmente após o descanso" },
+    { label: "Horário", value: "Preferencialmente após descanso e alimentação" },
     { label: "Participação", value: "Pais e irmãos inclusos" },
     { label: "Atendimento", value: "Exclusivo com hora marcada" }
   ],
@@ -66,10 +66,10 @@ const serviceFactsMap: Record<string, Array<{ label: string; value: string }>> =
   ],
   "corporativo-tijucas": [
     { label: "Localização", value: "Estúdio em Tijucas - SC" },
-    { label: "Uso das Fotos", value: "LinkedIn, sites, imprensa e perfil" },
-    { label: "Iluminação", value: "Profissional de estúdio" },
-    { label: "Orientação", value: "Direção de poses e postura" },
-    { label: "Entrega", value: "Arquivos digitais em alta resolução" },
+    { label: "Uso das Fotos", value: "LinkedIn, sites, imprensa e perfil profissional" },
+    { label: "Iluminação", value: "Profissional modulada para executivos" },
+    { label: "Orientação", value: "Direção de postura e expressão" },
+    { label: "Entrega", value: "Arquivos digitais em alta com licença de uso" },
     { label: "Agendamento", value: "Individual ou equipes" }
   ]
 };
@@ -107,8 +107,8 @@ const servicePhotosMap: Record<string, Array<{ src: string; alt: string; caption
   ],
   "corporativo-tijucas": [
     { src: "https://evydencia.com.br/imgs/CORPORATIVO.png", alt: "Foto de perfil corporativo", caption: "Posicionamento & Autoridade" },
-    { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Iluminação profissional de estúdio", caption: "Iluminação Direcionada" },
-    { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Retratos profissionais", caption: "Cores e Contrastes Fiéis" }
+    { src: "https://evydencia.com.br/imgs/anderson.jpg", alt: "Iluminação profissional de estúdio", caption: "Iluminação Direcionada" },
+    { src: "https://evydencia.com.br/imgs/elaine.jpg", alt: "Retratos profissionais para área médica e executiva", caption: "Cores e Contrastes Naturais" }
   ]
 };
 
@@ -119,17 +119,17 @@ const waMessagesMap: Record<string, string> = {
   "acompanhamento-bebe-tijucas": "Olá! Gostaria de informações sobre o acompanhamento do primeiro ano do bebê no Estúdio Evydência.",
   "smash-the-cake-tijucas": "Olá! Meu bebê vai completar 1 aninho e gostaria de conhecer as opções e pacotes para o ensaio Smash the Cake.",
   "casal-tijucas": "Olá! Gostaria de informações sobre o ensaio de casal / pré-wedding no Estúdio Evydência.",
-  "corporativo-tijucas": "Olá! Vi a página de retratos corporativos da Evydência e gostaria de informações e orçamento para fotos de perfil profissional."
+  "corporativo-tijucas": "Olá! Vi os retratos corporativos no site do Estúdio Evydência e gostaria de informações e orçamento para fotos de perfil profissional."
 };
 
 const portfolioSlugMap: Record<string, string> = {
   "gestante-tijucas": "gestante",
   "familia-tijucas": "familia",
   "infantil-tijucas": "infantil",
-  "acompanhamento-bebe-tijucas": "infantil",
-  "smash-the-cake-tijucas": "infantil",
+  "acompanhamento-bebe-tijucas": "bebe",
+  "smash-the-cake-tijucas": "smash-the-cake",
   "corporativo-tijucas": "corporativo",
-  "casal-tijucas": "familia"
+  "casal-tijucas": "casal"
 };
 
 const storyCategoryMap: Record<string, string> = {
