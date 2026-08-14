@@ -21,7 +21,8 @@
 | `https://evydencia.com.br/portfolio/corporativo/` | Portfólio de Retratos Corporativos | fotos de perfil profissional tijucas | Inspiracional | `ImageGallery`, `LocalBusiness` |
 | `https://evydencia.com.br/estudio/` | Nosso Estúdio de Fotografia em Tijucas | estúdio fotográfico tijucas estrutura | Factual / Confiança | `AboutPage`, `LocalBusiness` |
 | `https://evydencia.com.br/sobre/` | Quem Somos: Anderson e Elaine | fotógrafos anderson e elaine tijucas | E-E-A-T / Marca | `AboutPage`, `Person`, `LocalBusiness` |
-| `https://evydencia.com.br/imprensa/` | Notícias e Menções na Mídia | estúdio evydencia na midia | E-E-A-T / Autoridade | `CollectionPage`, `LocalBusiness` |
+| `https://evydencia.com.br/imprensa/` | Notícias e Menções na Mídia Regional | estúdio evydencia na midia | E-E-A-T / Autoridade | `CollectionPage`, `LocalBusiness` |
+| `https://evydencia.com.br/regiao-de-atendimento/` | Região de Atendimento do Estúdio Evydência | fotografo itapema tijucas regiao | Local / Cobertura | `WebPage`, `LocalBusiness` |
 | `https://evydencia.com.br/contato/` | Entre em Contato com o Estúdio Evydência | contato estúdio evydencia tijucas | Contato / NAP | `ContactPage`, `LocalBusiness` |
 | `https://evydencia.com.br/blog/` | Blog do Estúdio Evydência | dicas de fotografia tijucas | Informativo | `Blog`, `LocalBusiness` |
 | `https://evydencia.com.br/blog/quando-fazer-ensaio-gestante/` | Quando Fazer o Ensaio de Gestante | melhor epoca ensaio gestante | Informativo | `BlogPosting`, `LocalBusiness` |

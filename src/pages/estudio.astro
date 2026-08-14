@@ -3,14 +3,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import StudioLocation from "@/components/business/StudioLocation.astro";
 import PictureCard from "@/components/gallery/PictureCard.astro";
 import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import { BUSINESS_DATA } from "@/data/business";
 
-const title = "Conheça o Estúdio Evydência em Tijucas | Estrutura e Bastidores";
-const description = "Conheça a estrutura física do Estúdio Evydência em Tijucas - SC: estúdio climatizado, higienizado, iluminação profissional e espaço privativo para sua família.";
+const title = "Conheça o Estúdio Evydência em Tijucas | Estrutura e Atendimento";
+const description = `Conheça a estrutura do Estúdio Evydência na Rua Mauri Afonso da Silva em Tijucas - SC: ambiente climatizado, higienizado, iluminação profissional e atendimento com hora marcada.`;
 
-const studioPhotos = [
-  { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Cenário com iluminação difusa para gestantes e famílias no Estúdio Evydência", caption: "Iluminação Suave & Difusa" },
-  { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Espaço preparado com piso lavável e banheira quentinha para Smash the Cake", caption: "Cenário para Smash the Cake" },
-  { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Ambiente higienizado e climatizado para bebês e recém-nascidos", caption: "Climatização para Bebês" }
+const studioHighlights = [
+  { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Ensaio fotográfico realizado com iluminação suave no Estúdio Evydência", caption: "Iluminação Suave & Direção de Poses" },
+  { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Cenário temático para primeiro aniversário no Estúdio Evydência", caption: "Cenários Temáticos & Higienizados" },
+  { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Sessão de acompanhamento infantil em estúdio climatizado", caption: "Ambiente Climatizado para Bebês" }
 ];
 ---
 
@@ -24,7 +25,7 @@ const studioPhotos = [
         Nosso Estúdio de Fotografia em Tijucas
       </h1>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Um espaço projetado com carinho em cada detalhe para oferecer conforto térmico, segurança e privacidade durante sua sessão fotográfica.
+        Um espaço acolhedor e seguro, planejado para oferecer conforto térmico, tranquilidade e privacidade durante sua sessão fotográfica.
       </p>
     </div>
   </section>
@@ -38,15 +39,15 @@ const studioPhotos = [
           <div class="text-3xl">❄️</div>
           <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Ambiente Climatizado</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Temperatura e umidade controladas para o máximo bem-estar de recém-nascidos, bebês e gestantes em qualquer estação do ano.
+            Temperatura controlada para garantir conforto total para gestantes, bebês e famílias em qualquer época do ano.
           </p>
         </div>
 
         <div class="bg-brand-beige/50 p-8 rounded-2xl border border-brand-gold/15 space-y-3">
           <div class="text-3xl">🧼</div>
-          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Higiene Rigorosa</h3>
+          <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Higienização e Cuidado</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Higienização diária de todos os cenários, tecidos, mantas e acessórios antes e depois de cada sessão fotográfica.
+            Cenários, superfícies e acessórios rigorosamente higienizados antes e depois de cada sessão fotográfica.
           </p>
         </div>
 
@@ -54,18 +55,18 @@ const studioPhotos = [
           <div class="text-3xl">💡</div>
           <h3 class="text-xl font-bold text-gray-900 font-serif-brand">Iluminação Profissional</h3>
           <p class="text-gray-600 text-sm leading-relaxed">
-            Equipamentos de luz difusa e modificadores de luz de última geração que garantem fotos suaves e cores fiéis.
+            Equipamentos e modificadores de luz pensados para criar retratos suaves, artísticos e fiéis às cores naturais.
           </p>
         </div>
       </div>
 
-      <!-- Galeria de Fotos da Estrutura com PictureCard e Lightbox -->
+      <!-- Destaques Visuais com PictureCard e Lightbox -->
       <div class="space-y-6">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand text-center">
-          Bastidores e Ambientes do Estúdio
+          Bastidores e Resultados das Sessões
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4">
-          {studioPhotos.map((photo) => (
+          {studioHighlights.map((photo) => (
             <PictureCard
               src={photo.src}
               alt={photo.alt}
@@ -80,13 +81,13 @@ const studioPhotos = [
       <!-- Texto Institucional -->
       <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-6">
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
-          Pensado para Toda a Família
+          Atendimento Exclusivo com Hora Marcada
         </h2>
         <p>
-          Localizado na <strong>Rua Mauri Afonso da Silva, 892</strong> no bairro Universitário em Tijucas - SC, o Estúdio Evydência foi planejado para que sua visita seja agradável desde a chegada. Contamos com trocador para bebês, poltrona de amamentação e espaço privativo para troca de figurinos.
+          Localizado na <strong>{BUSINESS_DATA.address.street}</strong> no bairro {BUSINESS_DATA.address.neighborhood} em Tijucas - SC (CEP {BUSINESS_DATA.address.postalCode}), o Estúdio Evydência realiza atendimentos individuais por agendamento prévio.
         </p>
         <p>
-          Trabalhamos com agendamentos individuais, garantindo que o estúdio seja exclusivo para você e sua família durante todo o período do ensaio.
+          Isso assegura que o espaço seja 100% exclusivo para você e sua família durante todo o período do ensaio, sem pressa e com total privacidade para trocas de figurinos e momentos de descanso.
         </p>
       </div>
 

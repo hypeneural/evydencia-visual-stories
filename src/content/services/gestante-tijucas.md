@@ -14,24 +14,24 @@ relatedServices:
   - "familia-tijucas"
 faqs:
   - question: "Qual é o período ideal da gestação para realizar as fotos?"
-    answer: "Recomendamos realizar o ensaio entre a 27ª e a 32ª semana de gestação. Nesse período, a barriga já está bem visível e redondinha, e a gestante costuma estar com mais disposição e menos inchaço."
+    answer: "Do ponto de vista de poses e conforto, costumamos recomendar realizar o ensaio entre a 27ª e a 32ª semana de gestação, quando a barriga está bem delineada e a gestante se sente disposta."
   - question: "O papai e outros filhos podem participar do ensaio?"
-    answer: "Com certeza! A presença do parceiro e dos outros filhos enriquece as fotos e torna o ensaio um verdadeiro registro da família."
-  - question: "O estúdio fornece figurino para a gestante?"
-    answer: "Sim, disponibilizamos opções de vestidos, tecidos e acessórios pensados para a gestação, além de orientar combinações com peças pessoais."
-  - question: "O ensaio pode ser feito em estúdio e ao ar livre?"
-    answer: "Sim, oferecemos tanto a experiência em nosso estúdio climatizado quanto ensaios externos em locações selecionadas de Tijucas e região."
+    answer: "Com certeza! A presença do parceiro e dos outros filhos enriquece as fotos e torna o ensaio um verdadeiro registro da história da família."
+  - question: "Como funciona a escolha das roupas para a gestante?"
+    answer: "Fornecemos um guia de orientação de looks, cores harmônicas e tecidos fluidos, além de disponibilizarmos acessórios para complementar a produção."
+  - question: "O ensaio pode ser feito em estúdio ou ao ar livre?"
+    answer: "Sim, realizamos sessões em nosso estúdio climatizado na Rua Mauri Afonso da Silva em Tijucas e também ensaios externos em praias e áreas verdes da região."
 ---
 
 ## Como Funciona o Ensaio de Gestante no Estúdio Evydência
 
-No Estúdio Evydência, entendemos que a gravidez é uma fase de transformações profundas. Por isso, nosso atendimento começa antes mesmo do clique: orientamos a escolha de roupas, paletas de cores e respeitamos o tempo e o bem-estar da mãe durante toda a sessão.
+No Estúdio Evydência, entendemos que a gravidez é uma fase de transformações profundas. Por isso, nosso atendimento começa antes mesmo do clique: orientamos a combinação de roupas, paletas de cores neutras e respeitamos o tempo e o bem-estar da mãe durante toda a sessão.
 
 ### 1. Ambiente Climatizado e Seguro
-Nosso estúdio em Tijucas conta com estrutura completa: espaço privativo para troca de roupas, temperatura controlada e higienização diária para garantir o máximo de tranquilidade para você e seu bebê.
+Nosso estúdio em Tijucas conta com estrutura privativa para troca de roupas, temperatura controlada e ambiente higienizado para garantir o máximo de tranquilidade para você e sua família.
 
 ### 2. Participação da Família
-A gravidez é vivida por toda a família. O parceiro, os irmãos mais velhos e até o pet são muito bem-vindos para participar de momentos especiais da sessão.
+A gravidez é vivida por toda a família. O parceiro, os irmãos mais velhos e animais de estimação da família são bem-vindos (mediante aviso prévio para preparo e conforto).
 
-### 3. Figurinos e Direção Natural
-Não se preocupe se você nunca posou para fotos profissionais. Nós conduzimos cada movimento de forma leve e natural, valorizando seus melhores ângulos com uma iluminação pensada para destacar a conexão maternal.
+### 3. Direção Suave e Acolhedora
+Não se preocupe se você não tem experiência em posar para fotos. Nós conduzimos cada pose de forma leve, espontânea e tranquila, valorizando seus melhores ângulos com uma iluminação artística pensada para destacar a conexão maternal.

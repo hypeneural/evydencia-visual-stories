@@ -1,0 +1,120 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import StudioLocation from "@/components/business/StudioLocation.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import { BUSINESS_DATA } from "@/data/business";
+import { SERVICES_NAVIGATION } from "@/data/navigation";
+
+const title = "Região de Atendimento | Estúdio Evydência - Tijucas e Litoral SC";
+const description = `Conheça a cobertura do Estúdio Evydência: sede em Tijucas - SC com fácil acesso para famílias de Itapema, Porto Belo, Balneário Camboriú, São João Batista e Canelinha.`;
+
+const cities = [
+  {
+    name: "Tijucas (Sede)",
+    distance: "Sede Própria",
+    text: "Atendimento no estúdio climatizado no bairro Universitário e sessões externas em áreas verdes e locais históricos da cidade."
+  },
+  {
+    name: "Itapema & Meia Praia",
+    distance: "~15 minutos via BR-101",
+    text: "Muitas gestantes e famílias de Itapema escolhem nosso estúdio pelo conforto térmico, estacionamento e privacidade durante o ensaio."
+  },
+  {
+    name: "Porto Belo & Bombinhas",
+    distance: "~20 a 30 minutos",
+    text: "Atendimento tanto no estúdio em Tijucas quanto em sessões ao ar livre nas praias e cenários naturais da península."
+  },
+  {
+    name: "São João Batista & Canelinha",
+    distance: "~10 a 15 minutos via SC-410",
+    text: "Fácil acesso direto para famílias do Vale do Rio Tijucas que buscam ensaios de acompanhamento de bebês e Smash the Cake."
+  },
+  {
+    name: "Balneário Camboriú & Camboriú",
+    distance: "~25 a 30 minutos via BR-101",
+    text: "Opção procurada por quem deseja um atendimento exclusivo com horário marcado e direção fotográfica acolhedora."
+  },
+  {
+    name: "Nova Trento & Biguaçu",
+    distance: "~20 a 25 minutos",
+    text: "Atendimento a clientes que valorizam fotografia afetiva, iluminação profissional e álbuns impressos de alto padrão."
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <section class="bg-gradient-to-b from-brand-beige to-white py-14 lg:py-20 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="text-xs font-bold text-brand-gold-dark uppercase tracking-wider bg-brand-gold/10 px-3 py-1 rounded-full">
+        Cobertura Regional
+      </span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-serif-brand leading-tight">
+        Região de Atendimento do Estúdio Evydência
+      </h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Com sede estratégica em Tijucas, recebemos famílias, gestantes e profissionais de todo o Vale do Rio Tijucas e Litoral Centro-Norte de Santa Catarina.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+      
+      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+          Localização Privilegiada no Bairro Universitário em Tijucas
+        </h2>
+        <p>
+          Nosso estúdio está situado na <strong>{BUSINESS_DATA.address.street}</strong> em Tijucas - SC (CEP {BUSINESS_DATA.address.postalCode}), com acesso facilitado pela BR-101 e pela SC-410. Oferecemos estacionamento e atendimento com hora marcada, permitindo que famílias de cidades vizinhas realizem suas sessões com total tranquilidade.
+        </p>
+      </div>
+
+      <!-- Grade de Cidades Atendidas -->
+      <div class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand text-center">
+          Cidades e Regiões Atendidas
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+          {cities.map((city) => (
+            <div class="bg-brand-beige/40 p-6 rounded-2xl border border-brand-gold/15 space-y-2 hover:bg-brand-beige/70 transition-colors flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                  <h3 class="font-bold text-gray-900 font-serif-brand text-lg">{city.name}</h3>
+                </div>
+                <span class="inline-block text-2xs font-semibold text-brand-gold-dark bg-brand-gold/15 px-2.5 py-0.5 rounded-full">
+                  {city.distance}
+                </span>
+                <p class="text-xs sm:text-sm text-gray-600 leading-relaxed pt-1">
+                  {city.text}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Links para Ensaios -->
+      <div class="bg-white p-8 rounded-2xl border border-gray-200 shadow-2xs space-y-6">
+        <h3 class="text-xl font-bold text-gray-900 font-serif-brand">
+          Conheça as Especialidades do Nosso Estúdio
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {SERVICES_NAVIGATION.map((service) => (
+            <a
+              href={service.href}
+              class="p-4 rounded-xl border border-gray-100 bg-brand-beige/30 hover:border-brand-gold/40 hover:bg-brand-beige/60 transition-all block"
+            >
+              <p class="text-xs text-brand-gold uppercase font-bold">{service.category}</p>
+              <p class="font-bold text-gray-900 text-sm pt-0.5">{service.label}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <WhatsAppCTA variant="banner" />
+
+    </div>
+  </section>
+
+  <StudioLocation />
+</BaseLayout>

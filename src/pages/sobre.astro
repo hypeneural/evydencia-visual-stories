@@ -4,14 +4,14 @@ import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
 import PressMentions from "@/components/business/PressMentions.astro";
 import { BUSINESS_DATA } from "@/data/business";
 
-const title = "Sobre Nós - Mais de 12 Anos de História | Estúdio Evydência";
-const description = "Conheça a história dos fundadores Anderson e Elaine e a trajetória de mais de 12 anos do Estúdio Evydência em Tijucas - SC.";
+const title = `Sobre Nós - Desde ${BUSINESS_DATA.foundingYear} em Tijucas | Estúdio Evydência`;
+const description = `Conheça a história dos fundadores Anderson e Elaine e a trajetória de mais de ${BUSINESS_DATA.yearsOfExperience} anos do Estúdio Evydência em Tijucas - SC.`;
 
 const timeline = [
   {
     year: "2011",
-    title: "Fundação do Estúdio",
-    text: "Anderson e Elaine iniciam a jornada da Evydência Fotografia em Tijucas, com foco em casamentos e famílias."
+    title: "Fundação do Estúdio em Tijucas",
+    text: "Anderson e Elaine iniciam a jornada da Evydência Fotografia, dedicando-se a registrar celebrações e histórias de famílias."
   },
   {
     year: "2015",
@@ -20,13 +20,13 @@ const timeline = [
   },
   {
     year: "2020",
-    title: "Expansão de Estrutura no Bairro Universitário",
-    text: "Inauguração do estúdio completo na Rua Mauri Afonso da Silva, com camarim privativo e iluminação de última geração."
+    title: "Consolidação da Estrutura no Bairro Universitário",
+    text: "Estruturação do estúdio na Rua Mauri Afonso da Silva, com ambiente privativo e equipamentos de iluminação de última geração."
   },
   {
     year: "Hoje",
-    title: "Mais de 5.000 Famílias Fotografadas",
-    text: "Reconhecimento contínuo como referência em fotografia afetiva e de alto padrão em Tijucas e litoral catarinense."
+    title: `Mais de ${BUSINESS_DATA.yearsOfExperience} Anos de Dedicação`,
+    text: "Mais de 5.000 famílias e clientes fotografados com reconhecimento contínuo em Tijucas e no litoral catarinense."
   }
 ];
 ---
@@ -41,7 +41,7 @@ const timeline = [
         Quem Somos: Anderson e Elaine
       </h1>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Mais de {BUSINESS_DATA.yearsOfExperience} anos dedicados a registrar momentos únicos e eternizar o amor de famílias em Tijucas e Santa Catarina.
+        Mais de {BUSINESS_DATA.yearsOfExperience} anos (desde {BUSINESS_DATA.foundingYear}) dedicados a registrar momentos únicos e eternizar o amor de famílias em Tijucas e Santa Catarina.
       </p>
     </div>
   </section>
@@ -88,14 +88,14 @@ const timeline = [
           O Nascimento do Estúdio Evydência
         </h2>
         <p>
-          O <strong>Estúdio Evydência</strong> foi fundado em 2011 pelo casal de fotógrafos Anderson e Elaine. O que começou com um amor compartilhado pelas artes visuais transformou-se em uma missão de vida: criar registros fotográficos de alta sensibilidade para marcar os momentos mais valiosos de cada família.
+          O <strong>Estúdio Evydência</strong> foi fundado em 2011 pelo casal de fotógrafos Anderson e Elaine. O que começou com a paixão pelas artes visuais transformou-se em uma missão de vida: criar registros fotográficos de alta sensibilidade para marcar os momentos mais valiosos de cada família.
         </p>
 
         <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
           Nossa Filosofia de Trabalho
         </h2>
         <p>
-          Acreditamos que a melhor fotografia não é fruto de rigidez ou poses engessadas, mas sim do conforto, da espontaneidade e do respeito ao tempo de cada pessoa — especialmente gestantes, recém-nascidos e crianças pequenas.
+          Acreditamos que a melhor fotografia não é fruto de rigidez ou poses forçadas, mas sim do conforto, da espontaneidade e do respeito ao tempo de cada pessoa — especialmente gestantes, recém-nascidos e crianças pequenas.
         </p>
       </div>
 
@@ -121,7 +121,7 @@ const timeline = [
         </div>
       </div>
 
-      <!-- Menções de Imprensa -->
+      <!-- Menções de Imprensa Real -->
       <PressMentions />
 
       <WhatsAppCTA variant="banner" />

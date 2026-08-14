@@ -14,6 +14,27 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props;
 const { Content } = await render(service);
+
+const portfolioMap: Record<string, string> = {
+  "gestante-tijucas": "/portfolio/gestante/",
+  "familia-tijucas": "/portfolio/familia/",
+  "infantil-tijucas": "/portfolio/infantil/",
+  "acompanhamento-bebe-tijucas": "/portfolio/infantil/",
+  "smash-the-cake-tijucas": "/portfolio/infantil/",
+  "corporativo-tijucas": "/portfolio/corporativo/",
+  "casal-tijucas": "/portfolio/familia/"
+};
+
+const blogMap: Record<string, { href: string; label: string }> = {
+  "gestante-tijucas": { href: "/blog/quando-fazer-ensaio-gestante/", label: "Quando Fazer o Ensaio de Gestante (Guia)" },
+  "familia-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Como Preparar Crianças para o Ensaio" },
+  "infantil-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Dicas de Tranquilidade para a Sessão Infantil" },
+  "acompanhamento-bebe-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Dicas de Conforto para o Bebê" },
+  "smash-the-cake-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Como Preparar o Bebê para o Smash the Cake" }
+};
+
+const portfolioHref = portfolioMap[service.id];
+const blogItem = blogMap[service.id];
 ---
 
 <ServiceLayout
@@ -25,7 +46,9 @@ const { Content } = await render(service);
   heroText={service.data.heroText}
   summary={service.data.summary}
   faqs={service.data.faqs}
-  relatedServices={service.data.relatedServices}
+  portfolioHref={portfolioHref}
+  blogHref={blogItem?.href}
+  blogLabel={blogItem?.label}
 >
   <Content />
 </ServiceLayout>

@@ -1,48 +1,44 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
+# ==============================================================================
+# .htaccess - Estúdio Evydência (evydencia.com.br)
+# Otimização de Performance, Redirecionamento Canônico 301 e Segurança
+# ==============================================================================
 
-  # 1. Forçar HTTPS
-  RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteEngine On
 
-  # 2. Forçar domínio sem WWW
-  RewriteCond %{HTTP_HOST} ^www\.evydencia\.com\.br [NC]
-  RewriteRule ^(.*)$ https://evydencia.com.br/$1 [L,R=301]
+# 1. Redirecionar sitemaps legados do WordPress para o sitemap real do Astro
+RewriteRule ^sitemap\.xml$ /sitemap-index.xml [R=301,L]
+RewriteRule ^wp-sitemap.*\.xml$ /sitemap-index.xml [R=301,L]
 
-  # 3. Redirecionamento de sitemaps legados
-  RewriteRule ^wp-sitemap.*\.xml$ https://evydencia.com.br/sitemap-index.xml [L,R=301]
-  RewriteRule ^sitemap\.xml$ https://evydencia.com.br/sitemap-index.xml [L,R=301]
+# 2. Forçar HTTPS e remover WWW (Canonical Host: https://evydencia.com.br/)
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} ^www\.evydencia\.com\.br$ [NC]
+RewriteRule ^(.*)$ https://evydencia.com.br/$1 [R=301,L]
 
-  # 4. Redirecionamento de rotas legadas
-  RewriteRule ^gestantes/?$ https://evydencia.com.br/ensaios/gestante-tijucas/ [L,R=301]
-  RewriteRule ^familia/?$ https://evydencia.com.br/ensaios/familia-tijucas/ [L,R=301]
-  RewriteRule ^infantil/?$ https://evydencia.com.br/ensaios/infantil-tijucas/ [L,R=301]
-  RewriteRule ^corporativo/?$ https://evydencia.com.br/ensaios/corporativo-tijucas/ [L,R=301]
-  RewriteRule ^galeria/?$ https://evydencia.com.br/portfolio/ [L,R=301]
-  RewriteRule ^servicos/?$ https://evydencia.com.br/ensaios/ [L,R=301]
+# 3. Forçar Trailing Slash em diretórios (evita duplicidade de URLs)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !(.[a-zA-Z0-9]{1,5})$
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule ^(.*)$ https://evydencia.com.br/$1/ [R=301,L]
 
-  # 5. Proteger e redirecionar acessos a rotas legadas de WordPress
-  RewriteRule ^wp-(content|admin|includes|login\.php).*$ https://evydencia.com.br/ [L,R=301]
+# 4. Configurações de Página de Erro 404 Personalizada
+ErrorDocument 404 /404.html
+
+# 5. Compressão GZIP / Brotli
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json image/svg+xml
 </IfModule>
 
-# Cache de Assets Estáticos
+# 6. Cache de Cabeçalhos HTTP para Assets Estáticos
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresByType image/avif "access plus 1 year"
-  ExpiresByType image/webp "access plus 1 year"
-  ExpiresByType image/jpeg "access plus 1 year"
-  ExpiresByType image/png "access plus 1 year"
-  ExpiresByType image/svg+xml "access plus 1 year"
-  ExpiresByType font/woff2 "access plus 1 year"
-  ExpiresByType font/woff "access plus 1 year"
+  ExpiresDefault "access plus 1 month"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/xml "access plus 1 hour"
   ExpiresByType text/css "access plus 1 year"
   ExpiresByType application/javascript "access plus 1 year"
-  ExpiresByType text/html "access plus 0 seconds"
-</IfModule>
-
-<IfModule mod_headers.c>
-  # Segurança básica
-  Header set X-Content-Type-Options "nosniff"
-  Header set X-Frame-Options "SAMEORIGIN"
-  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
 </IfModule>

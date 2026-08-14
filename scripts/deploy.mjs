@@ -7,7 +7,7 @@ const CONFIG = {
   host: "186.209.113.134",
   port: 22,
   username: "evydencia.com.br_haiv4a7bvgb",
-  password: "PbDrp5jnRa@_4ex0"
+  password: "Tcy6aPa9hBn@hv~8"
 };
 
 const DIST_DIR = path.resolve("./dist");
@@ -61,10 +61,10 @@ async function deploySFTP() {
   }
 }
 
-async function deployFTP() {
-  console.log(`\n🚀 Tentando conexão alternativa via FTP (porta 21)...`);
+async function deployFTPS() {
+  console.log(`\n🚀 Tentando conexão alternativa via FTPS (porta 21)...`);
   const client = new ftp.Client();
-  client.ftp.verbose = false;
+  client.ftp.verbose = true;
 
   try {
     await client.access({
@@ -72,10 +72,11 @@ async function deployFTP() {
       port: 21,
       user: CONFIG.username,
       password: CONFIG.password,
-      secure: false
+      secure: true,
+      secureOptions: { rejectUnauthorized: false }
     });
 
-    console.log("✅ Conexão FTP estabelecida!");
+    console.log("✅ Conexão FTPS estabelecida!");
     const list = await client.list();
     console.log("📂 Conteúdo FTP remoto:");
     list.forEach(item => console.log(` - ${item.isDirectory ? '[DIR]' : '[FILE]'} ${item.name}`));
@@ -99,7 +100,7 @@ async function deployFTP() {
     client.close();
     return true;
   } catch (err) {
-    console.error(`❌ Falha no deploy FTP: ${err.message}`);
+    console.error(`❌ Falha no deploy FTPS: ${err.message}`);
     client.close();
     return false;
   }
@@ -108,7 +109,7 @@ async function deployFTP() {
 async function run() {
   const sftpOk = await deploySFTP();
   if (!sftpOk) {
-    const ftpOk = await deployFTP();
+    const ftpOk = await deployFTPS();
     if (!ftpOk) {
       console.error("\n❌ Não foi possível realizar o deploy automático para a hospedagem.");
       process.exit(1);

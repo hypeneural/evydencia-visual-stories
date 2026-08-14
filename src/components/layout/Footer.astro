@@ -22,11 +22,34 @@ const currentYear = new Date().getFullYear();
           />
         </a>
         <p class="text-sm text-gray-400 leading-relaxed">
-          {BUSINESS_DATA.slogan}. Mais de {BUSINESS_DATA.yearsOfExperience} anos transformando momentos em memórias eternas.
+          {BUSINESS_DATA.slogan}. Desde {BUSINESS_DATA.foundingYear} ({BUSINESS_DATA.yearsOfExperience} anos de história) transformando momentos em memórias eternas.
         </p>
-        <div class="pt-2">
+        
+        <div class="pt-1">
           <p class="text-xs text-gray-500 uppercase tracking-wider font-semibold">Fotógrafos Responsáveis</p>
           <p class="text-sm text-gray-300">Anderson e Elaine</p>
+        </div>
+
+        <!-- Redes Sociais Oficiais -->
+        <div class="pt-2 flex items-center gap-3">
+          <a
+            href={BUSINESS_DATA.links.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-xs font-semibold rounded-lg text-brand-gold-light hover:text-white transition-colors"
+            aria-label="Instagram Oficial Estúdio Evydência"
+          >
+            <span>Instagram</span>
+          </a>
+          <a
+            href={BUSINESS_DATA.links.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-xs font-semibold rounded-lg text-gray-300 hover:text-white transition-colors"
+            aria-label="Facebook Oficial Estúdio Evydência"
+          >
+            <span>Facebook</span>
+          </a>
         </div>
       </div>
 
@@ -47,7 +70,7 @@ const currentYear = new Date().getFullYear();
         </ul>
       </div>
 
-      <!-- Coluna 3: Eventos & Institucional -->
+      <!-- Coluna 3: Eventos, Institucional & Região -->
       <div>
         <h3 class="text-base font-semibold text-white tracking-wide uppercase mb-4">Institucional</h3>
         <ul class="space-y-2.5">
@@ -71,6 +94,14 @@ const currentYear = new Date().getFullYear();
               </a>
             </li>
           ))}
+          <li>
+            <a 
+              href="/regiao-de-atendimento/" 
+              class="text-sm text-brand-gold hover:text-brand-gold-light transition-colors font-medium"
+            >
+              Região de Atendimento
+            </a>
+          </li>
         </ul>
       </div>
 
@@ -107,12 +138,12 @@ const currentYear = new Date().getFullYear();
         </div>
 
         <div class="pt-2 text-xs text-gray-400 space-y-1">
-          <p class="font-semibold text-gray-300">Horários de Funcionamento:</p>
-          <p>Seg a Sex: 13h às 18h</p>
-          <p>Sáb: 08:30h às 11h</p>
+          <p class="font-semibold text-gray-300">Horários de Atendimento:</p>
+          <p>Seg a Sex: 09h às 12h e 14h às 18h</p>
+          <p>Sábados: Mediante agendamento</p>
         </div>
 
-        <div class="flex gap-3 pt-2">
+        <div class="flex flex-wrap gap-2 pt-2">
           <a 
             href={BUSINESS_DATA.links.googleMaps} 
             target="_blank" 
@@ -122,12 +153,12 @@ const currentYear = new Date().getFullYear();
             Google Maps
           </a>
           <a 
-            href={BUSINESS_DATA.links.waze} 
+            href={BUSINESS_DATA.links.googleReviews} 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-xs font-medium rounded-md text-gray-300 hover:text-white transition-colors"
+            class="px-3 py-1.5 bg-neutral-800 hover:bg-neutral-700 text-xs font-medium rounded-md text-brand-gold-light hover:text-white transition-colors"
           >
-            Waze
+            Avaliações no Google ⭐
           </a>
         </div>
       </div>
@@ -137,7 +168,7 @@ const currentYear = new Date().getFullYear();
     <!-- Linha Inferior de Direitos Autorais -->
     <div class="border-t border-neutral-800 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
       <p>© {currentYear} {BUSINESS_DATA.name}. Todos os direitos reservados.</p>
-      <p>Estúdio Fotográfico Profissional em Tijucas - Santa Catarina</p>
+      <p>Estúdio de Fotografia Profissional em Tijucas - SC (CEP {BUSINESS_DATA.address.postalCode})</p>
     </div>
   </div>
 </footer>

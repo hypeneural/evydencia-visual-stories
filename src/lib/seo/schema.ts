@@ -3,6 +3,7 @@ import type { BreadcrumbItem } from "./breadcrumbs";
 
 /**
  * Gerador de Schema.org JSON-LD tipado para o Estúdio Evydência
+ * Em estrita conformidade com Google Search Central e Schema.org
  */
 
 export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, pageDescription: string) {
@@ -22,7 +23,6 @@ export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, p
         "url": `${BUSINESS_DATA.url}/`,
         "telephone": BUSINESS_DATA.telephoneE164,
         "email": BUSINESS_DATA.email,
-        "priceRange": BUSINESS_DATA.priceRange,
         "image": BUSINESS_DATA.logoUrl,
         "logo": BUSINESS_DATA.logoUrl,
         "address": {
@@ -39,6 +39,10 @@ export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, p
           "longitude": BUSINESS_DATA.geo.longitude
         },
         "hasMap": BUSINESS_DATA.links.googleMaps,
+        "areaServed": BUSINESS_DATA.areaServed.map(city => ({
+          "@type": "City",
+          "name": `${city}, SC`
+        })),
         "openingHoursSpecification": BUSINESS_DATA.openingHours.map(schedule => ({
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": schedule.daysSchema,
@@ -47,8 +51,21 @@ export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, p
         })),
         "sameAs": [
           BUSINESS_DATA.links.instagram,
-          BUSINESS_DATA.links.facebook
+          BUSINESS_DATA.links.facebook,
+          BUSINESS_DATA.links.googleMaps
         ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Serviços de Fotografia Profissional",
+          "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ensaio de Gestante em Tijucas" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ensaio de Família em Tijucas" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Acompanhamento do Bebê e Primeiro Ano" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ensaio Smash the Cake" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Retratos Corporativos e Perfil Profissional" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cobertura de Batizados e Aniversários Infantis" } }
+          ]
+        },
         "founder": BUSINESS_DATA.founders.map(f => ({
           "@type": "Person",
           "name": f.name,
@@ -102,14 +119,10 @@ export function buildServiceSchema(
     },
     "url": serviceUrl,
     "image": imageUrl,
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": "Tijucas e Vale do Itajaí, SC"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Ensaios Fotográficos Profissionais"
-    }
+    "areaServed": BUSINESS_DATA.areaServed.map(city => ({
+      "@type": "City",
+      "name": `${city}, SC`
+    }))
   };
 }
 
