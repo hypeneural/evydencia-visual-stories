@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import FAQAccordion from "@/components/ui/FAQAccordion.astro";
 import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
 import StudioLocation from "@/components/business/StudioLocation.astro";
+import PictureCard from "@/components/gallery/PictureCard.astro";
 import { buildServiceSchema, buildFAQSchema } from "@/lib/seo/schema";
 import { getCanonicalUrl } from "@/lib/seo/canonical";
 import { BUSINESS_DATA } from "@/data/business";
@@ -13,6 +14,17 @@ interface FAQItem {
   answer: string;
 }
 
+interface FactItem {
+  label: string;
+  value: string;
+}
+
+interface GalleryPhoto {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
 interface Props {
   title: string;
   description: string;
@@ -21,7 +33,10 @@ interface Props {
   featuredImage: string;
   heroText: string;
   summary: string;
+  facts?: FactItem[];
+  photos?: GalleryPhoto[];
   faqs?: FAQItem[];
+  whatsappMessage?: string | undefined;
   portfolioHref?: string | undefined;
   blogHref?: string | undefined;
   blogLabel?: string | undefined;
@@ -35,7 +50,10 @@ const {
   featuredImage,
   heroText,
   summary,
+  facts = [],
+  photos = [],
   faqs = [],
+  whatsappMessage,
   portfolioHref,
   blogHref,
   blogLabel
@@ -49,6 +67,10 @@ const combinedSchema = faqSchema ? [serviceSchema, faqSchema] : serviceSchema;
 
 // Filtrar outros serviços para cross-linking
 const otherServices = SERVICES_NAVIGATION.filter(s => s.href !== currentPath).slice(0, 3);
+
+// Mensagem de WhatsApp contextual
+const waText = whatsappMessage || `Olá! Vi o ${serviceName} no site do Estúdio Evydência e gostaria de conhecer as opções, valores e disponibilidade.`;
+const waUrl = `https://wa.me/${BUSINESS_DATA.telephoneE164.replace(/\D/g, "")}?text=${encodeURIComponent(waText)}`;
 ---
 
 <BaseLayout
@@ -57,8 +79,8 @@ const otherServices = SERVICES_NAVIGATION.filter(s => s.href !== currentPath).sl
   image={featuredImage}
   schema={combinedSchema}
 >
-  <!-- Hero da Página de Serviço -->
-  <section class="bg-gradient-to-b from-brand-beige to-white py-12 lg:py-16 border-b border-gray-100">
+  <!-- Hero da Página de Serviço com Answer-First -->
+  <section class="bg-gradient-to-b from-brand-beige via-brand-beige/50 to-white py-12 lg:py-16 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
         
@@ -71,16 +93,30 @@ const otherServices = SERVICES_NAVIGATION.filter(s => s.href !== currentPath).sl
             {h1}
           </h1>
           
-          <p class="text-lg text-gray-600 leading-relaxed">
+          <p class="text-lg sm:text-xl text-gray-700 leading-relaxed">
             {heroText}
           </p>
 
+          <!-- Fatos Rápidos e Verificados (Answer-First DL) -->
+          {facts.length > 0 && (
+            <dl class="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 bg-white/90 rounded-2xl border border-brand-gold/20 shadow-2xs text-xs sm:text-sm">
+              {facts.map((fact) => (
+                <div class="space-y-0.5">
+                  <dt class="font-bold text-brand-gold-dark uppercase tracking-wider text-2xs">{fact.label}</dt>
+                  <dd class="text-gray-800 font-medium">{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
           <div class="pt-2 flex flex-col sm:flex-row gap-4">
             <a
-              href={BUSINESS_DATA.links.whatsapp}
+              href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand-gold hover:bg-brand-gold-dark text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all hover-lift"
+              class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand-gold hover:bg-brand-gold-dark text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all hover-lift whatsapp-track"
+              data-whatsapp-service={serviceName}
+              data-whatsapp-position="hero"
             >
               Agendar {serviceName} no WhatsApp
             </a>
@@ -111,9 +147,9 @@ const otherServices = SERVICES_NAVIGATION.filter(s => s.href !== currentPath).sl
     </div>
   </section>
 
-  <!-- Resumo da Experiência (Quick Answer) -->
+  <!-- Resumo da Experiência e Conteúdo -->
   <section id="conteudo" class="py-12 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
       <div class="bg-brand-beige/50 border-l-4 border-brand-gold p-6 rounded-r-xl">
         <h2 class="text-lg font-bold text-gray-900 mb-2 font-serif-brand">
@@ -124,8 +160,35 @@ const otherServices = SERVICES_NAVIGATION.filter(s => s.href !== currentPath).sl
         </p>
       </div>
 
+      <!-- Grade de Fotos Contextuais do Ensaio -->
+      {photos.length > 0 && (
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-bold text-gray-900 font-serif-brand">
+              Registros e Momentos deste Ensaio
+            </h3>
+            {portfolioHref && (
+              <a href={portfolioHref} class="text-xs font-bold text-brand-gold hover:text-brand-gold-dark hover:underline">
+                Ver galeria completa →
+              </a>
+            )}
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            {photos.map((photo) => (
+              <PictureCard
+                src={photo.src}
+                alt={photo.alt}
+                caption={photo.caption}
+                aspectRatio="square"
+                enableZoom={true}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
       <!-- Conteúdo Editorial Markdown -->
-      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-4">
         <slot />
       </div>
 
@@ -206,8 +269,14 @@ const otherServices = SERVICES_NAVIGATION.filter(s => s.href !== currentPath).sl
         <FAQAccordion faqs={faqs} title={`Dúvidas Frequentes sobre ${serviceName}`} />
       )}
 
-      <!-- Banner de Conversão WhatsApp -->
-      <WhatsAppCTA variant="banner" />
+      <!-- Banner de Conversão WhatsApp Contextual -->
+      <WhatsAppCTA
+        variant="banner"
+        service={serviceName}
+        customTitle={`Pronta para agendar seu ${serviceName}?`}
+        customSubtitle={`Converse com Anderson e Elaine no WhatsApp para planejar sua sessão com carinho, tranquilidade e exclusividade.`}
+        customMessage={waText}
+      />
     </div>
   </section>
 

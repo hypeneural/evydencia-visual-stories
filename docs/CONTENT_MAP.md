@@ -27,4 +27,7 @@
 | `https://evydencia.com.br/blog/` | Blog do Estúdio Evydência | dicas de fotografia tijucas | Informativo | `Blog`, `LocalBusiness` |
 | `https://evydencia.com.br/blog/quando-fazer-ensaio-gestante/` | Quando Fazer o Ensaio de Gestante | melhor epoca ensaio gestante | Informativo | `BlogPosting`, `LocalBusiness` |
 | `https://evydencia.com.br/blog/como-preparar-crianca-primeiro-ensaio/` | Como Preparar Crianças Pequenas para a Sessão | dicas primeiro ensaio infantil | Informativo | `BlogPosting`, `LocalBusiness` |
+| `https://evydencia.com.br/blog/o-que-vestir-ensaio-familia/` | O Que Vestir no Ensaio de Família | roupas para ensaio de familia | Informativo | `BlogPosting`, `LocalBusiness` |
+| `https://evydencia.com.br/blog/smash-the-cake-como-funciona/` | Smash the Cake: Como Funciona e Preparação | como funciona smash the cake | Informativo | `BlogPosting`, `LocalBusiness` |
+| `https://evydencia.com.br/blog/foto-perfil-profissional-linkedin/` | Foto Profissional para LinkedIn e Negócios | foto de perfil corporativo dicas | Informativo | `BlogPosting`, `LocalBusiness` |
 | `https://evydencia.com.br/404.html` | Página Não Encontrada | - | Recuperação de Erro | `WebPage` (`noindex`) |

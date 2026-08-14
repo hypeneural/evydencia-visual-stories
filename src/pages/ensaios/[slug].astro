@@ -15,6 +15,113 @@ export async function getStaticPaths() {
 const { service } = Astro.props;
 const { Content } = await render(service);
 
+const serviceFactsMap: Record<string, Array<{ label: string; value: string }>> = {
+  "gestante-tijucas": [
+    { label: "Localização", value: "Tijucas - SC (Universitário)" },
+    { label: "Modalidade", value: "Estúdio climatizado ou externo" },
+    { label: "Participação", value: "Parceiro, filhos e família" },
+    { label: "Figurinos", value: "Guia de looks e acessórios inclusos" },
+    { label: "Período Sugerido", value: "27ª a 32ª semana" },
+    { label: "Atendimento", value: "Horário exclusivo e individual" }
+  ],
+  "familia-tijucas": [
+    { label: "Localização", value: "Tijucas - SC (Universitário)" },
+    { label: "Modalidade", value: "Estúdio ou sessões ao ar livre" },
+    { label: "Direção", value: "Leve, espontânea e afetiva" },
+    { label: "Gerações", value: "Pais, filhos, avós e pets" },
+    { label: "Duração", value: "Aproximadamente 1h a 1h30" },
+    { label: "Atendimento", value: "Agendamento prévio com exclusividade" }
+  ],
+  "infantil-tijucas": [
+    { label: "Localização", value: "Tijucas - SC" },
+    { label: "Ambiente", value: "Seguro, higienizado e acolhedor" },
+    { label: "Metodologia", value: "No ritmo da criança, sem pressa" },
+    { label: "Horário", value: "Preferencialmente após o descanso" },
+    { label: "Participação", value: "Pais e irmãos inclusos" },
+    { label: "Atendimento", value: "Exclusivo com hora marcada" }
+  ],
+  "acompanhamento-bebe-tijucas": [
+    { label: "Localização", value: "Tijucas - SC (Universitário)" },
+    { label: "Ambiente", value: "Climatizado com temperatura suave" },
+    { label: "Frequência", value: "Mensal, bimestral ou trimestral" },
+    { label: "Higiene", value: "Cenários e mantas higienizados" },
+    { label: "Fase", value: "A partir do 1º mês de vida" },
+    { label: "Produtos", value: "Opções com fotolivro e revelações" }
+  ],
+  "smash-the-cake-tijucas": [
+    { label: "Localização", value: "Estúdio em Tijucas - SC" },
+    { label: "Celebração", value: "Primeiro aninho (11 ou 12 meses)" },
+    { label: "Estrutura", value: "Piso lavável + banho quentinho" },
+    { label: "Cenário", value: "Personalizado e higienizado" },
+    { label: "Fotos em Família", value: "Retratos com pais antes do bolo" },
+    { label: "Atendimento", value: "Horário individual reservado" }
+  ],
+  "casal-tijucas": [
+    { label: "Localização", value: "Tijucas e litoral de SC" },
+    { label: "Modalidade", value: "Estúdio ou praias/campos" },
+    { label: "Estilo", value: "Conexão natural e cumplicidade" },
+    { label: "Ocasião", value: "Pré-wedding, bodas ou namoro" },
+    { label: "Direção", value: "Condução leve e descontraída" },
+    { label: "Atendimento", value: "Agendamento prévio" }
+  ],
+  "corporativo-tijucas": [
+    { label: "Localização", value: "Estúdio em Tijucas - SC" },
+    { label: "Uso das Fotos", value: "LinkedIn, sites, imprensa e perfil" },
+    { label: "Iluminação", value: "Profissional de estúdio" },
+    { label: "Orientação", value: "Direção de poses e postura" },
+    { label: "Entrega", value: "Arquivos digitais em alta resolução" },
+    { label: "Agendamento", value: "Individual ou equipes" }
+  ]
+};
+
+const servicePhotosMap: Record<string, Array<{ src: string; alt: string; caption?: string }>> = {
+  "gestante-tijucas": [
+    { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Ensaio de Gestante em Estúdio Climatizado", caption: "Iluminação Suave em Estúdio" },
+    { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Acolhimento da futura mamãe", caption: "Sensibilidade & Afeto" },
+    { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Detalhes e carinho na gestação", caption: "Momentos Especiais" }
+  ],
+  "familia-tijucas": [
+    { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Retrato de família acolhedor", caption: "Conexão Familiar" },
+    { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Pais e filhos em momentos espontâneos", caption: "Espontaneidade & Amor" },
+    { src: "https://evydencia.com.br/imgs/ANIVERSARIO.png", alt: "Comemoração em família", caption: "Gerações Reunidas" }
+  ],
+  "infantil-tijucas": [
+    { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Ensaio infantil com sorriso espontâneo", caption: "Sorrisos Genuínos" },
+    { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Criança brincando no estúdio", caption: "Brincadeiras & Descobertas" },
+    { src: "https://evydencia.com.br/imgs/ANIVERSARIO.png", alt: "Festa infantil", caption: "Momentos Lúdicos" }
+  ],
+  "acompanhamento-bebe-tijucas": [
+    { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Bebê em ambiente quentinho", caption: "Primeiros Meses de Vida" },
+    { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Desenvolvimento do bebê", caption: "Cada Conquista Registrada" },
+    { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Carinho e cuidado com recém-chegados", caption: "Cuidado e Respeito ao Bebê" }
+  ],
+  "smash-the-cake-tijucas": [
+    { src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png", alt: "Smash the Cake no estúdio", caption: "Diversão com o Bolo" },
+    { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Retrato comemorativo de 1 aninho", caption: "1º Aninho Inesquecível" },
+    { src: "https://evydencia.com.br/imgs/ANIVERSARIO.png", alt: "Celebração infantil", caption: "Banho Quentinho no Final" }
+  ],
+  "casal-tijucas": [
+    { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Ensaio de casal com luz natural", caption: "Cumplicidade & Afeto" },
+    { src: "https://evydencia.com.br/imgs/CORPORATIVO.png", alt: "Retrato de casal no estúdio", caption: "Retratos a Dois" },
+    { src: "https://evydencia.com.br/imgs/BATIZADOS.png", alt: "União e celebração", caption: "Histórias de Amor" }
+  ],
+  "corporativo-tijucas": [
+    { src: "https://evydencia.com.br/imgs/CORPORATIVO.png", alt: "Foto de perfil corporativo", caption: "Posicionamento & Autoridade" },
+    { src: "https://evydencia.com.br/imgs/GESTANTES.png", alt: "Iluminação profissional de estúdio", caption: "Iluminação Direcionada" },
+    { src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png", alt: "Retratos profissionais", caption: "Cores e Contrastes Fiéis" }
+  ]
+};
+
+const waMessagesMap: Record<string, string> = {
+  "gestante-tijucas": "Olá! Vi o ensaio de gestante no site da Evydência e gostaria de conhecer as opções de pacotes, valores e disponibilidade em Tijucas.",
+  "familia-tijucas": "Olá! Vi o ensaio de família no site da Evydência e gostaria de saber as opções de pacotes e datas disponíveis.",
+  "infantil-tijucas": "Olá! Gostaria de informações sobre o ensaio infantil no Estúdio Evydência em Tijucas.",
+  "acompanhamento-bebe-tijucas": "Olá! Gostaria de informações sobre o acompanhamento do primeiro ano do bebê no Estúdio Evydência.",
+  "smash-the-cake-tijucas": "Olá! Meu bebê vai completar 1 aninho e gostaria de conhecer as opções e pacotes para o ensaio Smash the Cake.",
+  "casal-tijucas": "Olá! Gostaria de informações sobre o ensaio de casal / pré-wedding no Estúdio Evydência.",
+  "corporativo-tijucas": "Olá! Vi a página de retratos corporativos da Evydência e gostaria de informações e orçamento para fotos de perfil profissional."
+};
+
 const portfolioMap: Record<string, string> = {
   "gestante-tijucas": "/portfolio/gestante/",
   "familia-tijucas": "/portfolio/familia/",
@@ -27,12 +134,16 @@ const portfolioMap: Record<string, string> = {
 
 const blogMap: Record<string, { href: string; label: string }> = {
   "gestante-tijucas": { href: "/blog/quando-fazer-ensaio-gestante/", label: "Quando Fazer o Ensaio de Gestante (Guia)" },
-  "familia-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Como Preparar Crianças para o Ensaio" },
+  "familia-tijucas": { href: "/blog/o-que-vestir-ensaio-familia/", label: "O Que Vestir no Ensaio de Família (Dicas de Looks)" },
   "infantil-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Dicas de Tranquilidade para a Sessão Infantil" },
   "acompanhamento-bebe-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Dicas de Conforto para o Bebê" },
-  "smash-the-cake-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Como Preparar o Bebê para o Smash the Cake" }
+  "smash-the-cake-tijucas": { href: "/blog/smash-the-cake-como-funciona/", label: "Smash the Cake: Como Funciona e Dicas" },
+  "corporativo-tijucas": { href: "/blog/foto-perfil-profissional-linkedin/", label: "Foto Profissional para LinkedIn e Negócios" }
 };
 
+const facts = serviceFactsMap[service.id] || [];
+const photos = servicePhotosMap[service.id] || [];
+const whatsappMessage = waMessagesMap[service.id];
 const portfolioHref = portfolioMap[service.id];
 const blogItem = blogMap[service.id];
 ---
@@ -45,7 +156,10 @@ const blogItem = blogMap[service.id];
   featuredImage={service.data.featuredImage}
   heroText={service.data.heroText}
   summary={service.data.summary}
+  facts={facts}
+  photos={photos}
   faqs={service.data.faqs}
+  whatsappMessage={whatsappMessage}
   portfolioHref={portfolioHref}
   blogHref={blogItem?.href}
   blogLabel={blogItem?.label}
