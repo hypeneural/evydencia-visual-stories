@@ -72,10 +72,12 @@ const storiesCollection = defineCollection({
     title: z.string(),
     description: z.string(),
     h1: z.string(),
+    category: z.string(),
     clientName: z.string(),
     sessionType: z.string(),
     location: z.string().default("Estúdio Evydência (Tijucas - SC)"),
     pubDate: z.coerce.date(),
+    coverImage: z.string(),
     featuredImage: z.string(),
     gallery: z.array(
       z.object({
@@ -88,8 +90,13 @@ const storiesCollection = defineCollection({
     portfolioSlug: z.string(),
     testimonial: z.object({
       quote: z.string(),
-      author: z.string()
-    }).optional()
+      author: z.string(),
+      role: z.string().default("Cliente do Estúdio Evydência")
+    }),
+    verified: z.boolean().default(true),
+    clientConsent: z.boolean().default(true),
+    photosFromSameSession: z.boolean().default(true),
+    testimonialVerified: z.boolean().default(true)
   })
 });
 

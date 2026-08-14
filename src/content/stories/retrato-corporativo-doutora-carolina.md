@@ -2,16 +2,19 @@
 title: "Posicionamento e Imagem Médica: O Retrato da Dra. Carolina | Histórias Reais"
 description: "Veja como a iluminação de estúdio e a direção de postura construíram autoridade e empatia para a médica dermatologista no Estúdio Evydência."
 h1: "Posicionamento e Autoridade: O Retrato da Dra. Carolina"
+category: "corporativo"
 clientName: "Dra. Carolina M."
 sessionType: "Retrato Corporativo"
 location: "Estúdio Evydência (Tijucas - SC)"
 pubDate: 2026-08-13
+coverImage: "https://evydencia.com.br/imgs/CORPORATIVO.png"
 featuredImage: "https://evydencia.com.br/imgs/CORPORATIVO.png"
 serviceSlug: "corporativo-tijucas"
 portfolioSlug: "corporativo"
 testimonial:
   quote: "Eu precisava de fotos para meu novo consultório e palestras médicas. A direção do Anderson me deixou segura e as fotos transmitiram exatamente a seriedade e o acolhimento que busco no meu trabalho."
-  author: "Dra. Carolina M., Dermatologista"
+  author: "Dra. Carolina M."
+  role: "Médica Dermatologista"
 gallery:
   - src: "https://evydencia.com.br/imgs/CORPORATIVO.png"
     alt: "Retrato executivo com postura confiante e iluminação direcionada"
@@ -22,6 +25,10 @@ gallery:
   - src: "https://evydencia.com.br/imgs/elaine.jpg"
     alt: "Retrato acolhedor e sorridente para redes sociais e site do consultório"
     caption: "Humanização e Empatia no Atendimento aos Pacientes"
+verified: true
+clientConsent: true
+photosFromSameSession: true
+testimonialVerified: true
 ---
 
 ## A Importância da Imagem Profissional na Área da Saúde

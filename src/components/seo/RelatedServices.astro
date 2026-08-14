@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+  serviceSlugs: string[];
+  title?: string | undefined;
+}
+
+const {
+  serviceSlugs = [],
+  title = "Outros Ensaios Relacionados"
+} = Astro.props;
+
+const allServices = await getCollection("services");
+const relatedServices = allServices.filter(s => serviceSlugs.includes(s.id));
+---
+
+{relatedServices.length > 0 && (
+  <section class="my-12 space-y-6">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand text-center">
+      {title}
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+      {relatedServices.map((service) => (
+        <a
+          href={`/ensaios/${service.id}/`}
+          class="group block bg-brand-beige/30 p-6 rounded-2xl border border-brand-gold/15 hover:border-brand-gold hover:bg-brand-beige/60 transition-all"
+        >
+          <span class="text-2xs font-bold uppercase tracking-wider text-brand-gold">
+            {service.data.serviceType}
+          </span>
+          <h3 class="text-lg font-bold text-gray-900 font-serif-brand group-hover:text-brand-gold-dark transition-colors mt-1">
+            {service.data.serviceName}
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 mt-2 leading-relaxed line-clamp-2">
+            {service.data.heroText}
+          </p>
+          <span class="inline-flex items-center text-xs font-bold text-brand-gold mt-4 gap-1">
+            Conhecer detalhes →
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+)}

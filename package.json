@@ -11,7 +11,7 @@
     "check": "astro check --minimumFailingSeverity warning",
     "build:astro": "astro build",
     "seo:images": "node scripts/generate-image-sitemap.mjs",
-    "seo:validate": "node scripts/validate-seo.mjs && node scripts/validate-links.mjs && node scripts/validate-images.mjs",
+    "seo:validate": "node scripts/validate-business-data.mjs && node scripts/validate-seo.mjs && node scripts/validate-links.mjs && node scripts/validate-images.mjs",
     "build": "npm run check && npm run build:astro && npm run seo:images && npm run seo:validate",
     "preview": "astro preview",
     "test": "playwright test",

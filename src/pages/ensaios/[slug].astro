@@ -17,7 +17,7 @@ const { Content } = await render(service);
 
 const serviceFactsMap: Record<string, Array<{ label: string; value: string }>> = {
   "gestante-tijucas": [
-    { label: "Localização", value: "Tijucas - SC (Universitário)" },
+    { label: "Localização", value: "Tijucas - SC (Bairro Universitário)" },
     { label: "Modalidade", value: "Estúdio climatizado ou externo" },
     { label: "Participação", value: "Parceiro, filhos e família" },
     { label: "Figurinos", value: "Guia de looks e acessórios inclusos" },
@@ -25,7 +25,7 @@ const serviceFactsMap: Record<string, Array<{ label: string; value: string }>> =
     { label: "Atendimento", value: "Horário exclusivo e individual" }
   ],
   "familia-tijucas": [
-    { label: "Localização", value: "Tijucas - SC (Universitário)" },
+    { label: "Localização", value: "Tijucas - SC (Bairro Universitário)" },
     { label: "Modalidade", value: "Estúdio ou sessões ao ar livre" },
     { label: "Direção", value: "Leve, espontânea e afetiva" },
     { label: "Gerações", value: "Pais, filhos, avós e pets" },
@@ -41,7 +41,7 @@ const serviceFactsMap: Record<string, Array<{ label: string; value: string }>> =
     { label: "Atendimento", value: "Exclusivo com hora marcada" }
   ],
   "acompanhamento-bebe-tijucas": [
-    { label: "Localização", value: "Tijucas - SC (Universitário)" },
+    { label: "Localização", value: "Tijucas - SC (Bairro Universitário)" },
     { label: "Ambiente", value: "Climatizado com temperatura suave" },
     { label: "Frequência", value: "Mensal, bimestral ou trimestral" },
     { label: "Higiene", value: "Cenários e mantas higienizados" },
@@ -122,30 +122,42 @@ const waMessagesMap: Record<string, string> = {
   "corporativo-tijucas": "Olá! Vi a página de retratos corporativos da Evydência e gostaria de informações e orçamento para fotos de perfil profissional."
 };
 
-const portfolioMap: Record<string, string> = {
-  "gestante-tijucas": "/portfolio/gestante/",
-  "familia-tijucas": "/portfolio/familia/",
-  "infantil-tijucas": "/portfolio/infantil/",
-  "acompanhamento-bebe-tijucas": "/portfolio/infantil/",
-  "smash-the-cake-tijucas": "/portfolio/infantil/",
-  "corporativo-tijucas": "/portfolio/corporativo/",
-  "casal-tijucas": "/portfolio/familia/"
+const portfolioSlugMap: Record<string, string> = {
+  "gestante-tijucas": "gestante",
+  "familia-tijucas": "familia",
+  "infantil-tijucas": "infantil",
+  "acompanhamento-bebe-tijucas": "infantil",
+  "smash-the-cake-tijucas": "infantil",
+  "corporativo-tijucas": "corporativo",
+  "casal-tijucas": "familia"
 };
 
-const blogMap: Record<string, { href: string; label: string }> = {
-  "gestante-tijucas": { href: "/blog/quando-fazer-ensaio-gestante/", label: "Quando Fazer o Ensaio de Gestante (Guia)" },
-  "familia-tijucas": { href: "/blog/o-que-vestir-ensaio-familia/", label: "O Que Vestir no Ensaio de Família (Dicas de Looks)" },
-  "infantil-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Dicas de Tranquilidade para a Sessão Infantil" },
-  "acompanhamento-bebe-tijucas": { href: "/blog/como-preparar-crianca-primeiro-ensaio/", label: "Dicas de Conforto para o Bebê" },
-  "smash-the-cake-tijucas": { href: "/blog/smash-the-cake-como-funciona/", label: "Smash the Cake: Como Funciona e Dicas" },
-  "corporativo-tijucas": { href: "/blog/foto-perfil-profissional-linkedin/", label: "Foto Profissional para LinkedIn e Negócios" }
+const storyCategoryMap: Record<string, string> = {
+  "gestante-tijucas": "gestante",
+  "familia-tijucas": "familia",
+  "infantil-tijucas": "infantil",
+  "acompanhamento-bebe-tijucas": "infantil",
+  "smash-the-cake-tijucas": "infantil",
+  "corporativo-tijucas": "corporativo",
+  "casal-tijucas": "casal"
+};
+
+const blogTagMap: Record<string, string> = {
+  "gestante-tijucas": "Gestante",
+  "familia-tijucas": "Família",
+  "infantil-tijucas": "Infantil",
+  "acompanhamento-bebe-tijucas": "Infantil",
+  "smash-the-cake-tijucas": "Smash the Cake",
+  "corporativo-tijucas": "Corporativo",
+  "casal-tijucas": "Família"
 };
 
 const facts = serviceFactsMap[service.id] || [];
 const photos = servicePhotosMap[service.id] || [];
 const whatsappMessage = waMessagesMap[service.id];
-const portfolioHref = portfolioMap[service.id];
-const blogItem = blogMap[service.id];
+const portfolioSlug = portfolioSlugMap[service.id];
+const storyCategory = storyCategoryMap[service.id];
+const blogTag = blogTagMap[service.id];
 ---
 
 <ServiceLayout
@@ -160,9 +172,9 @@ const blogItem = blogMap[service.id];
   photos={photos}
   faqs={service.data.faqs}
   whatsappMessage={whatsappMessage}
-  portfolioHref={portfolioHref}
-  blogHref={blogItem?.href}
-  blogLabel={blogItem?.label}
+  portfolioSlug={portfolioSlug}
+  storyCategory={storyCategory}
+  blogTag={blogTag}
 >
   <Content />
 </ServiceLayout>

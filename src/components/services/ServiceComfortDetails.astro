@@ -1,0 +1,57 @@
+---
+interface Props {
+  title?: string | undefined;
+  subtitle?: string | undefined;
+}
+
+const {
+  title = "Conforto e Estrutura Durante a Sua Sessão",
+  subtitle = "Nosso estúdio no bairro Universitário em Tijucas foi planejado para oferecer acolhimento e privacidade"
+} = Astro.props;
+
+const features = [
+  {
+    icon: "❄️",
+    title: "Ambiente Climatizado",
+    description: "Temperatura estável e confortável em qualquer época do ano, essencial para gestantes e bebês."
+  },
+  {
+    icon: "🚪",
+    title: "Camarim & Área Privativa",
+    description: "Espaço reservado com espelho e cabides para trocas de looks e maquiagem com total tranquilidade."
+  },
+  {
+    icon: "🧼",
+    title: "Higienização Prévia",
+    description: "Cenários, pisos e acessórios passam por higienização rigorosa antes de cada atendimento com horário marcado."
+  },
+  {
+    icon: "🚗",
+    title: "Fácil Estacionamento",
+    description: "Rua tranquila com facilidade para estacionar em frente, permitindo desembarque rápido e seguro."
+  }
+];
+---
+
+<section class="my-12 p-6 sm:p-8 bg-white rounded-2xl border border-gray-100 shadow-2xs space-y-6">
+  <div class="text-center max-w-2xl mx-auto space-y-1">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+      {title}
+    </h2>
+    <p class="text-sm text-gray-600">
+      {subtitle}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+    {features.map((item) => (
+      <div class="p-4 bg-brand-beige/30 rounded-xl border border-brand-gold/10 flex items-start gap-3">
+        <span class="text-2xl shrink-0">{item.icon}</span>
+        <div class="space-y-0.5">
+          <h3 class="font-bold text-gray-900 text-sm font-serif-brand">{item.title}</h3>
+          <p class="text-xs text-gray-600 leading-relaxed">{item.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

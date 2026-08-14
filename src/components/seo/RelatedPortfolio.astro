@@ -1,0 +1,34 @@
+---
+interface Props {
+  portfolioSlug: string;
+  categoryName: string;
+  title?: string | undefined;
+}
+
+const {
+  portfolioSlug,
+  categoryName,
+  title = `Ver Portfólio de ${categoryName}`
+} = Astro.props;
+---
+
+<div class="my-8 p-6 sm:p-8 bg-white rounded-2xl border border-brand-gold/20 shadow-2xs flex flex-col sm:flex-row items-center justify-between gap-6">
+  <div class="space-y-1 text-center sm:text-left">
+    <span class="text-xs font-bold text-brand-gold uppercase tracking-wider">
+      Galeria de Fotos Autorais
+    </span>
+    <h3 class="text-xl font-bold text-gray-900 font-serif-brand">
+      {title}
+    </h3>
+    <p class="text-xs sm:text-sm text-gray-600 max-w-lg">
+      Confira dezenas de retratos realizados em nosso estúdio e em locações externas de Tijucas e litoral catarinense.
+    </p>
+  </div>
+
+  <a
+    href={`/portfolio/${portfolioSlug}/`}
+    class="shrink-0 px-6 py-3 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-sm rounded-full shadow-xs transition-colors"
+  >
+    Acessar Galeria Completa →
+  </a>
+</div>

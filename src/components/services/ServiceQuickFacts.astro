@@ -1,0 +1,44 @@
+---
+interface FactItem {
+  term: string;
+  value: string;
+}
+
+interface Props {
+  facts?: FactItem[] | undefined;
+  title?: string | undefined;
+}
+
+const {
+  title = "Fatos Rápidos da Sessão",
+  facts = [
+    { term: "Localização", value: "Tijucas, Santa Catarina (Bairro Universitário)" },
+    { term: "Ambiente", value: "Estúdio climatizado privativo ou locações externas na região" },
+    { term: "Participação da Família", value: "Sim (parceiro, filhos e avós são muito bem-vindos)" },
+    { term: "Iluminação", value: "Flashes e modificadores para controle refinado de suavidade" },
+    { term: "Formato de Atendimento", value: "Horário reservado com ambiente e itens higienizados" }
+  ]
+} = Astro.props;
+---
+
+<div class="bg-brand-beige/50 border border-brand-gold/20 rounded-2xl p-6 sm:p-8 my-8 space-y-4">
+  <div class="flex items-center gap-2">
+    <span class="text-brand-gold text-lg">📋</span>
+    <h3 class="text-lg sm:text-xl font-bold text-gray-900 font-serif-brand">
+      {title}
+    </h3>
+  </div>
+
+  <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+    {facts.map((fact) => (
+      <div class="bg-white/80 p-3.5 rounded-xl border border-brand-gold/10">
+        <dt class="text-xs font-bold text-brand-gold uppercase tracking-wider">
+          {fact.term}
+        </dt>
+        <dd class="text-sm font-medium text-gray-800 mt-0.5">
+          {fact.value}
+        </dd>
+      </div>
+    ))}
+  </dl>
+</div>

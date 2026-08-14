@@ -2,16 +2,19 @@
 title: "Acompanhamento do Bebê Theo: Do 1º Mês aos Primeiros Passos | Histórias Reais"
 description: "Acompanhe a trajetória de registros do pequeno Theo ao longo do seu primeiro ano de vida no Estúdio Evydência em Tijucas."
 h1: "O Primeiro Ano do Theo no Estúdio Evydência"
+category: "infantil"
 clientName: "Theo e Família"
 sessionType: "Acompanhamento do Bebê"
 location: "Estúdio Evydência (Tijucas - SC)"
 pubDate: 2026-08-11
+coverImage: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png"
 featuredImage: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png"
 serviceSlug: "acompanhamento-bebe-tijucas"
 portfolioSlug: "infantil"
 testimonial:
   quote: "A cada trimestre víamos o Theo mudar e o Anderson e a Elaine capturaram cada fase com uma delicadeza sem igual. Hoje temos o álbum completo do primeiro ano dele!"
-  author: "Camila e Gabriel, pais do Theo"
+  author: "Camila e Gabriel"
+  role: "Pais do Theo"
 gallery:
   - src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png"
     alt: "Theo sorrindo com brinquedo de madeira na sessão de 6 meses"
@@ -22,6 +25,10 @@ gallery:
   - src: "https://evydencia.com.br/imgs/GESTANTES.png"
     alt: "Theo no colo dos pais no encerramento do primeiro ano"
     caption: "Amor e União Familiar ao Longo das Quatro Estações"
+verified: true
+clientConsent: true
+photosFromSameSession: true
+testimonialVerified: true
 ---
 
 ## Uma Linha do Tempo de Amor e Conquistas

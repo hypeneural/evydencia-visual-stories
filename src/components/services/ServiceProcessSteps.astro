@@ -1,0 +1,69 @@
+---
+interface StepItem {
+  number: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title?: string | undefined;
+  subtitle?: string | undefined;
+  steps?: StepItem[] | undefined;
+}
+
+const {
+  title = "Como Funciona a Sua Experiência Fotográfica",
+  subtitle = "Um processo planejado com calma e atenção em cada etapa para garantir memórias inesquecíveis",
+  steps = [
+    {
+      number: "01",
+      title: "Planejamento & Alinhamento",
+      description: "Conversamos para entender o seu estilo, sugestões de looks, paleta de cores e preferências para a sessão."
+    },
+    {
+      number: "02",
+      title: "Sessão Acolhedora & Direção",
+      description: "Anderson e Elaine conduzem o ensaio com calma, sem poses forçadas, respeitando pausas e o ritmo da família."
+    },
+    {
+      number: "03",
+      title: "Seleção Confortável",
+      description: "Você recebe a galeria de fotos para escolher com tranquilidade as suas imagens favoritas no seu tempo."
+    },
+    {
+      number: "04",
+      title: "Tratamento & Entrega Final",
+      description: "Edição minuciosa com fidelidade de cores, entrega dos arquivos digitais e confecção de fotolivros de alta durabilidade."
+    }
+  ]
+} = Astro.props;
+---
+
+<section class="my-12 space-y-6">
+  <div class="text-center max-w-2xl mx-auto space-y-2">
+    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+      {title}
+    </h2>
+    <p class="text-sm sm:text-base text-gray-600">
+      {subtitle}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+    {steps.map((step) => (
+      <div class="bg-brand-beige/40 p-6 rounded-2xl border border-brand-gold/15 space-y-3 relative hover:bg-brand-beige/70 transition-colors flex flex-col justify-between">
+        <div class="space-y-2">
+          <span class="text-3xl font-bold text-brand-gold font-serif-brand">
+            {step.number}
+          </span>
+          <h3 class="font-bold text-gray-900 text-base font-serif-brand">
+            {step.title}
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            {step.description}
+          </p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
