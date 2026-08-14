@@ -1,27 +1,27 @@
 ---
-title: "Portfólio de Retratos Corporativos | Estúdio Evydência"
+title: "Portfólio de Retratos Corporativos & LinkedIn | Estúdio Evydência"
 category: "corporativo"
-description: "Galeria de retratos corporativos e fotos de perfil profissional para médicos, advogados e executivos em Tijucas."
+description: "Retratos profissionais para LinkedIn, sites corporativos, imprensa e posicionamento executivo no Estúdio Evydência em Tijucas."
 coverImage: "https://evydencia.com.br/imgs/CORPORATIVO.png"
 gallery:
   - src: "https://evydencia.com.br/imgs/CORPORATIVO.png"
-    alt: "Retrato corporativo elegante com iluminação de estúdio profissional"
-    caption: "Iluminação Direcionada & Posicionamento de Marca"
+    alt: "Retrato corporativo executivo com postura confiante e iluminação direcional"
+    caption: "Posicionamento & Autoridade Profissional"
   - src: "https://evydencia.com.br/imgs/anderson.jpg"
-    alt: "Retrato com postura executiva e fundo neutro"
-    caption: "Retrato Profissional Masculino"
+    alt: "Retrato em fundo neutro cinza para perfis profissionais e diretoria"
+    caption: "Iluminação Modulada para Perfis Executivos"
   - src: "https://evydencia.com.br/imgs/elaine.jpg"
-    alt: "Foto de perfil profissional feminino no Estúdio Evydência"
-    caption: "Retrato Profissional Feminino & Empatia"
-  - src: "https://evydencia.com.br/imgs/GESTANTES.png"
-    alt: "Composição de estúdio com controle de sombra e contraste"
-    caption: "Cores e Texturas Fiéis à Imagem Profissional"
+    alt: "Retrato acolhedor para profissionais da saúde e consultoria"
+    caption: "Humanização e Empatia no Posicionamento"
+  - src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png"
+    alt: "Fotos de equipe e ambientes de trabalho em Tijucas"
+    caption: "Imagens para Sites, Redes e Imprensa"
 ---
 
-## Posicionamento e Imagem de Impacto
+## Posicionamento Visual de Alto Nível para Sua Carreira
 
-Retratos que comunicam segurança, empatia e solidez profissional para posicionamento digital e corporativo.
+Uma imagem profissional impactante constrói confiança imediata com clientes e parceiros. Trabalhamos com direção de postura e esquemas de luz desenhados para a sua área de atuação.
 
-* Conheça nossos pacotes de [Fotografia Corporativa em Tijucas](/ensaios/corporativo-tijucas/).
-* Leia nosso guia: [Foto Profissional para LinkedIn e Negócios](/blog/foto-perfil-profissional-linkedin/).
-* Solicite um orçamento corporativo pelo [WhatsApp](/contato/).
+* Conheça o serviço: [Retrato Corporativo em Tijucas](/ensaios/corporativo-tijucas/).
+* Leia nosso artigo: [Foto Profissional para LinkedIn](/blog/foto-perfil-profissional-linkedin/).
+* Veja um estudo de caso: [O Retrato da Dra. Carolina](/historias/retrato-corporativo-doutora-carolina/).

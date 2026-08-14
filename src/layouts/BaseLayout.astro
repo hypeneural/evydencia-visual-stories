@@ -4,6 +4,7 @@ import JsonLd from "@/components/seo/JsonLd.astro";
 import Breadcrumbs from "@/components/seo/Breadcrumbs.astro";
 import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
+import AnnouncementBar from "@/components/ui/AnnouncementBar.astro";
 import LightboxDialog from "@/components/gallery/LightboxDialog.astro";
 import { getCanonicalUrl } from "@/lib/seo/canonical";
 import { buildLocalBusinessGraph } from "@/lib/seo/schema";
@@ -51,6 +52,9 @@ const finalSchema = schema || defaultGraph;
     <a href="#conteudo-principal" class="skip-link">
       Pular para o conteúdo principal
     </a>
+
+    <!-- Barra de Anúncios Sazonal (Campanha de Natal 2026) -->
+    <AnnouncementBar />
 
     <!-- Grafo de Entidade Canônico Schema.org -->
     <JsonLd schema={finalSchema} />

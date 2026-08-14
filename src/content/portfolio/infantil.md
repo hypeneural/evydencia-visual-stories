@@ -1,28 +1,27 @@
 ---
-title: "Portfólio Infantil e Bebês | Estúdio Evydência"
+title: "Portfólio de Fotografia Infantil em Tijucas | Estúdio Evydência"
 category: "infantil"
-description: "Galeria de ensaios infantis, acompanhamento de bebês e smash the cake no Estúdio Evydência em Tijucas."
+description: "Galeria de ensaios infantis cheios de espontaneidade, brincadeiras e alegria no Estúdio Evydência em Tijucas - SC."
 coverImage: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png"
 gallery:
   - src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png"
-    alt: "Bebê sorridente em ensaio de acompanhamento mensal no Estúdio Evydência"
-    caption: "Acompanhamento do Primeiro Ano do Bebê"
+    alt: "Criança sorrindo com brinquedo de madeira em estúdio acolhedor"
+    caption: "Sorrisos Genuínos & Brincadeiras no Estúdio"
   - src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png"
-    alt: "Criança se divertindo no ensaio Smash the Cake de 1 aninho"
-    caption: "Smash the Cake de 1º Aninho"
+    alt: "Expressão curiosa de bebê descobrindo texturas e cores"
+    caption: "Curiosidade e Descobertas Infantis"
   - src: "https://evydencia.com.br/imgs/ANIVERSARIO.png"
-    alt: "Criança brincando e celebrando seu aniversário com alegria"
-    caption: "Espontaneidade e Brincadeiras no Estúdio"
+    alt: "Criança brincando no piso aquecido e higienizado"
+    caption: "Segurança e Conforto no Bairro Universitário"
   - src: "https://evydencia.com.br/imgs/GESTANTES.png"
-    alt: "Retrato delicado do bebê em ambiente climatizado e seguro"
-    caption: "Cuidado e Respeito ao Ritmo da Criança"
+    alt: "Retrato afetivo de criança no colo dos pais com iluminação suave"
+    caption: "Interação e Carinho com os Pais"
 ---
 
-## A Pureza de Cada Fase
+## A Pureza da Infância Registrada no Ritmo da Criança
 
-Registros cheios de encanto, espontaneidade e cores vivas dos pequenos clientes do Estúdio Evydência.
+Nossas sessões infantis são conduzidas com paciência e ludicidade, sem poses forçadas, para que as crianças se sintam livres e confortáveis.
 
-* Conheça o [Ensaio Infantil em Tijucas](/ensaios/infantil-tijucas/).
-* Conheça o [Acompanhamento do Bebê](/ensaios/acompanhamento-bebe-tijucas/).
-* Conheça o [Smash the Cake](/ensaios/smash-the-cake-tijucas/).
-* Leia nosso guia: [Smash the Cake: Como Funciona](/blog/smash-the-cake-como-funciona/).
+* Conheça os detalhes: [Ensaio Infantil em Tijucas](/ensaios/infantil-tijucas/).
+* Guia para os pais: [Como Preparar a Criança para o Ensaio](/blog/como-preparar-crianca-primeiro-ensaio/).
+* Veja também: [Smash the Cake de 1 Aninho](/ensaios/smash-the-cake-tijucas/).

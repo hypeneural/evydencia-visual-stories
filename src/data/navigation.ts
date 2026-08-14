@@ -2,16 +2,17 @@ export interface NavLink {
   label: string;
   href: string;
   isCTA?: boolean;
+  highlight?: boolean;
 }
 
 export const MAIN_NAVIGATION: NavLink[] = [
   { label: "Início", href: "/" },
   { label: "Ensaios", href: "/ensaios/" },
-  { label: "Histórias", href: "/historias/" },
   { label: "Portfólio", href: "/portfolio/" },
+  { label: "Histórias", href: "/historias/" },
+  { label: "🎄 Natal 2026", href: "/natal/", highlight: true },
   { label: "O Estúdio", href: "/estudio/" },
   { label: "Sobre", href: "/sobre/" },
-  { label: "Imprensa", href: "/imprensa/" },
   { label: "Contato", href: "/contato/" }
 ];
 
@@ -38,7 +39,7 @@ export const FOOTER_NAVIGATION = {
     { label: "Nossa Estrutura", href: "/estudio/" },
     { label: "Histórias Reais", href: "/historias/" },
     { label: "Guia de Locações", href: "/locacoes-para-ensaios/" },
-    { label: "Especial de Natal", href: "/natal/" },
+    { label: "Especial de Natal 2026", href: "/natal/" },
     { label: "Especial Dia das Mães", href: "/dia-das-maes/" },
     { label: "Imprensa e Mídia", href: "/imprensa/" },
     { label: "Dicas no Blog", href: "/blog/" },

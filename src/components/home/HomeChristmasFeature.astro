@@ -1,0 +1,71 @@
+---
+import PictureCard from "@/components/gallery/PictureCard.astro";
+
+const christmasPhotos = [
+  {
+    src: "https://evydencia.com.br/imgs/GESTANTES.png",
+    alt: "Família reunida no cenário de Natal do Estúdio Evydência",
+    caption: "Cenários Exclusivos e Acolhedores"
+  },
+  {
+    src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png",
+    alt: "Bebê interagindo com luzes de Natal em estúdio",
+    caption: "Magia & Encanto para os Pequenos"
+  },
+  {
+    src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png",
+    alt: "Retrato afetivo de Natal em Tijucas",
+    caption: "Memórias Eternas para o Fim de Ano"
+  }
+];
+---
+
+<section class="py-16 bg-gradient-to-b from-amber-50/70 via-brand-beige/60 to-white border-b border-brand-gold/15 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="max-w-3xl mx-auto text-center space-y-4 mb-10">
+      <span class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-900 bg-amber-100/90 border border-amber-300/60 px-4 py-1.5 rounded-full uppercase tracking-wider shadow-2xs">
+        🎄 Destaque da Temporada • Natal Evydência 2026
+      </span>
+      
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 font-serif-brand leading-tight">
+        O Maior Cenário de Natal de Tijucas e Região
+      </h2>
+      
+      <p class="text-base sm:text-lg text-gray-700 leading-relaxed max-w-2xl mx-auto">
+        Uma experiência mágica para crianças, bebês e famílias. Cenários autorais com riqueza de detalhes, iluminação suave e atendimento acolhedor com horário exclusivo.
+      </p>
+
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/natal/"
+          class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-sm sm:text-base rounded-full shadow-md hover:shadow-lg transition-all hover-lift"
+        >
+          Conhecer a Tradição & Cenários →
+        </a>
+        <a
+          href="https://fotosdenatal.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full sm:w-auto inline-flex items-center justify-center px-7 py-3.5 bg-white hover:bg-gray-50 text-gray-900 border border-brand-gold/40 font-bold text-sm sm:text-base rounded-full shadow-2xs transition-colors"
+        >
+          🎅 Ver Pacotes & Reservar Vaga →
+        </a>
+      </div>
+    </div>
+
+    <!-- Mini Galeria Natalina -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 max-w-5xl mx-auto">
+      {christmasPhotos.map((photo) => (
+        <PictureCard
+          src={photo.src}
+          alt={photo.alt}
+          caption={photo.caption}
+          aspectRatio="square"
+          enableZoom={true}
+        />
+      ))}
+    </div>
+
+  </div>
+</section>

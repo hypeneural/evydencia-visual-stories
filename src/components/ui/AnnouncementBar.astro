@@ -1,0 +1,25 @@
+---
+interface Props {
+  text?: string | undefined;
+  ctaText?: string | undefined;
+  ctaHref?: string | undefined;
+}
+
+const {
+  text = "🎄 Agenda de Natal 2026 aberta — garanta sua sessão no maior cenário natalino da região!",
+  ctaText = "Conhecer o Natal 2026 →",
+  ctaHref = "/natal/"
+} = Astro.props;
+---
+
+<aside class="bg-gradient-to-r from-brand-gold-dark via-brand-gold to-brand-gold-dark text-white text-xs sm:text-sm py-2 px-4 text-center font-medium shadow-2xs relative z-50">
+  <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2">
+    <span>{text}</span>
+    <a
+      href={ctaHref}
+      class="font-bold underline hover:text-brand-beige transition-colors ml-1 inline-flex items-center gap-1"
+    >
+      {ctaText}
+    </a>
+  </div>
+</aside>

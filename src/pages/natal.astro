@@ -21,15 +21,15 @@ const { Content } = await render(seasonal);
 >
   <article>
     <!-- Header Sazonal Perene -->
-    <header class="bg-gradient-to-b from-brand-beige via-brand-beige/50 to-white py-14 lg:py-20 border-b border-gray-100">
+    <header class="bg-gradient-to-b from-amber-50/80 via-brand-beige/50 to-white py-14 lg:py-20 border-b border-gray-100">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-        <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-dark bg-brand-gold/10 px-3 py-1 rounded-full">
-          Tradição Desde 2011 em Tijucas
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-900 bg-amber-100/90 border border-amber-300/50 px-3.5 py-1 rounded-full">
+          🎄 Temporada 2026 Ativa • Desde 2011 em Tijucas
         </span>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight font-serif-brand">
           {seasonal.data.h1}
         </h1>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-lg text-gray-700 max-w-2xl mx-auto leading-relaxed">
           {seasonal.data.historySummary}
         </p>
 
@@ -41,7 +41,7 @@ const { Content } = await render(seasonal);
             rel="noopener noreferrer"
             class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-base rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover-lift"
           >
-            🎅 Conhecer o Natal Evydência ({seasonal.data.currentYear})
+            🎅 Conhecer o Natal Evydência ({seasonal.data.currentYear}) →
           </a>
           <a
             href="#galeria"
@@ -79,7 +79,7 @@ const { Content } = await render(seasonal);
           </div>
         </div>
 
-        <!-- Cobertura Temática na Imprensa Regional -->
+        <!-- Cobertura Temática na Imprensa Regional (Filtro Estrito: Apenas Natal) -->
         <div class="pt-6">
           <PressMentions 
             limit={2} 
@@ -95,20 +95,20 @@ const { Content } = await render(seasonal);
         )}
 
         <!-- Banner de Conversão -->
-        <div class="bg-brand-beige border border-brand-gold/20 rounded-2xl p-8 text-center my-8">
-          <h3 class="text-2xl font-bold text-gray-900 mb-2 font-serif-brand">
-            Garanta a Sua Vaga na Próxima Temporada
+        <div class="bg-gradient-to-r from-amber-50/90 via-brand-beige/80 to-amber-50/90 border border-brand-gold/30 rounded-2xl p-8 text-center my-8 shadow-xs">
+          <h3 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 font-serif-brand">
+            Agenda de Natal 2026 Aberta
           </h3>
-          <p class="text-gray-600 max-w-xl mx-auto mb-6 text-sm sm:text-base">
-            Os horários para o Natal costumam esgotar rapidamente. Acesse nossa página oficial de Natal para conferir a disponibilidade.
+          <p class="text-gray-700 max-w-xl mx-auto mb-6 text-sm sm:text-base leading-relaxed">
+            A campanha de Natal 2026 do Estúdio Evydência já está com reservas abertas. Veja cenários, pacotes, bônus da pré-venda e disponibilidade de horários em nossa plataforma exclusiva.
           </p>
           <a
             href={seasonal.data.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-gold-dark text-white font-semibold text-base px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all"
+            class="inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-base px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all hover-lift"
           >
-            Acessar FotosdeNatal.com →
+            Ver Natal 2026 e Reservar no FotosdeNatal.com →
           </a>
         </div>
 

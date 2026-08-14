@@ -1,27 +1,27 @@
 ---
-title: "Portfólio de Ensaios de Gestante | Estúdio Evydência"
+title: "Portfólio de Ensaios de Gestante em Tijucas | Estúdio Evydência"
 category: "gestante"
-description: "Confira nossa galeria com ensaios de gestante realizados em estúdio e ao ar livre em Tijucas e litoral catarinense."
+description: "Galeria de fotografias de gestante realizadas em estúdio climatizado e em locações de Tijucas e litoral catarinense pelo Estúdio Evydência."
 coverImage: "https://evydencia.com.br/imgs/GESTANTES.png"
 gallery:
   - src: "https://evydencia.com.br/imgs/GESTANTES.png"
-    alt: "Gestante fotografada com vestido claro em iluminação artística no Estúdio Evydência"
-    caption: "Iluminação Suave & Tons Neutros em Estúdio"
+    alt: "Gestante com vestido claro e iluminação artística de estúdio em Tijucas"
+    caption: "Iluminação Suave & Contornos em Estúdio Climatizado"
   - src: "https://evydencia.com.br/imgs/REVELACAO.png"
-    alt: "Casal comemorando chá revelação do bebê com carinho e emoção"
-    caption: "Chá Revelação & Emoção Familiar"
+    alt: "Casal comemorando a espera do bebê com carinho e cumplicidade"
+    caption: "Participação do Casal & Emoção Familiar"
   - src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png"
-    alt: "Acolhimento da futura mãe com foco no contorno e amor pela espera"
+    alt: "Acolhimento da futura mãe com foco na delicadeza da gestação"
     caption: "Sensibilidade & Afeto na Maternidade"
   - src: "https://evydencia.com.br/imgs/SMASH_THE_CAKE.png"
-    alt: "Retrato delicado da gestação com detalhes e texturas"
-    caption: "Cuidado e Conforto no Bairro Universitário"
+    alt: "Retrato intimista de gestante em fundo claro com textura suave"
+    caption: "Elegância e Conforto no Bairro Universitário"
 ---
 
-## A Arte de Celebrar a Maternidade
+## A Celebração da Vida e da Maternidade
 
-Cada mãe carrega uma beleza e uma história singular. Em nossas galerias de gestante, apresentamos a harmonia entre luz, sombra e emoção capturadas no Estúdio Evydência em Tijucas.
+Cada gestação é única. Em nosso estúdio no bairro Universitário em Tijucas, planejamos cada detalhe para que a futura mamãe viva uma tarde relaxante e inesquecível.
 
-* Conheça os detalhes do nosso [Ensaio de Gestante em Tijucas](/ensaios/gestante-tijucas/).
-* Leia nosso guia: [Quando Fazer o Ensaio de Gestante](/blog/quando-fazer-ensaio-gestante/).
-* Agende sua sessão com Anderson e Elaine pelo [WhatsApp](/contato/).
+* Conheça nossa proposta completa: [Ensaio de Gestante em Tijucas](/ensaios/gestante-tijucas/).
+* Leia nosso guia editorial: [Quando Fazer o Ensaio de Gestante](/blog/quando-fazer-ensaio-gestante/).
+* Veja uma experiência real: [O Ensaio da Helena](/historias/ensaio-gestante-helena/).
