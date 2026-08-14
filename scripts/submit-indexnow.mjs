@@ -2,7 +2,7 @@
  * Script de submissão IndexNow para notificar imediatamente buscadores (Bing, etc.)
  */
 const HOST = "evydencia.com.br";
-const KEY = "evydencia-indexnow-key-2026";
+const KEY = "a7d9f3b14e2c88201568e9f2d1a3b5c7";
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
 
 const URL_LIST = [
@@ -18,12 +18,33 @@ const URL_LIST = [
   `https://${HOST}/eventos/`,
   `https://${HOST}/eventos/batizado-tijucas/`,
   `https://${HOST}/eventos/aniversario-infantil-tijucas/`,
+  `https://${HOST}/historias/`,
+  `https://${HOST}/historias/ensaio-gestante-helena/`,
+  `https://${HOST}/historias/acompanhamento-bebe-theo/`,
+  `https://${HOST}/historias/ensaio-familia-silva/`,
+  `https://${HOST}/historias/retrato-corporativo-doutora-carolina/`,
+  `https://${HOST}/locacoes-para-ensaios/`,
+  `https://${HOST}/locacoes-para-ensaios/itapema/`,
+  `https://${HOST}/locacoes-para-ensaios/porto-belo/`,
+  `https://${HOST}/locacoes-para-ensaios/vale-do-rio-tijucas/`,
   `https://${HOST}/portfolio/`,
+  `https://${HOST}/portfolio/gestante/`,
+  `https://${HOST}/portfolio/familia/`,
+  `https://${HOST}/portfolio/infantil/`,
+  `https://${HOST}/portfolio/corporativo/`,
   `https://${HOST}/estudio/`,
   `https://${HOST}/sobre/`,
   `https://${HOST}/imprensa/`,
+  `https://${HOST}/natal/`,
+  `https://${HOST}/dia-das-maes/`,
+  `https://${HOST}/regiao-de-atendimento/`,
   `https://${HOST}/contato/`,
-  `https://${HOST}/blog/`
+  `https://${HOST}/blog/`,
+  `https://${HOST}/blog/quando-fazer-ensaio-gestante/`,
+  `https://${HOST}/blog/como-preparar-crianca-primeiro-ensaio/`,
+  `https://${HOST}/blog/o-que-vestir-ensaio-familia/`,
+  `https://${HOST}/blog/smash-the-cake-como-funciona/`,
+  `https://${HOST}/blog/foto-perfil-profissional-linkedin/`
 ];
 
 async function submitIndexNow() {

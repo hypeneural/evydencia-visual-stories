@@ -4,10 +4,10 @@ import FAQAccordion from "@/components/ui/FAQAccordion.astro";
 import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
 import StudioLocation from "@/components/business/StudioLocation.astro";
 import PictureCard from "@/components/gallery/PictureCard.astro";
-import { buildServiceSchema, buildFAQSchema } from "@/lib/seo/schema";
 import { getCanonicalUrl } from "@/lib/seo/canonical";
 import { BUSINESS_DATA } from "@/data/business";
 import { SERVICES_NAVIGATION } from "@/data/navigation";
+import { CANONICAL_IDS } from "@/lib/seo/schema";
 
 interface FAQItem {
   question: string;
@@ -32,7 +32,7 @@ interface Props {
   serviceName: string;
   featuredImage: string;
   heroText: string;
-  summary: string;
+  summary?: string | undefined;
   facts?: FactItem[];
   photos?: GalleryPhoto[];
   faqs?: FAQItem[];
@@ -49,7 +49,6 @@ const {
   serviceName,
   featuredImage,
   heroText,
-  summary,
   facts = [],
   photos = [],
   faqs = [],
@@ -61,9 +60,78 @@ const {
 
 const currentPath = Astro.url.pathname;
 const canonicalUrl = getCanonicalUrl(currentPath);
-const serviceSchema = buildServiceSchema(serviceName, description, canonicalUrl, featuredImage);
-const faqSchema = faqs.length > 0 ? buildFAQSchema(faqs) : null;
-const combinedSchema = faqSchema ? [serviceSchema, faqSchema] : serviceSchema;
+
+// Grafo Semântico de Serviço com IDs canônicos
+const serviceGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "description": description,
+      "isPartOf": {
+        "@id": CANONICAL_IDS.website
+      },
+      "about": {
+        "@id": `${canonicalUrl}#service`
+      },
+      "inLanguage": "pt-BR"
+    },
+    {
+      "@type": "Service",
+      "@id": `${canonicalUrl}#service`,
+      "name": serviceName,
+      "description": description,
+      "provider": {
+        "@id": CANONICAL_IDS.business
+      },
+      "url": canonicalUrl,
+      "image": featuredImage,
+      "areaServed": BUSINESS_DATA.areaServed.map(city => ({
+        "@type": "City",
+        "name": `${city}, SC`
+      }))
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonicalUrl}#breadcrumb`,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Início",
+          "item": "https://evydencia.com.br/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ensaios",
+          "item": "https://evydencia.com.br/ensaios/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": serviceName,
+          "item": canonicalUrl
+        }
+      ]
+    },
+    ...(faqs.length > 0 ? [{
+      "@type": "FAQPage",
+      "@id": `${canonicalUrl}#faq`,
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }] : [])
+  ]
+};
 
 // Filtrar outros serviços para cross-linking
 const otherServices = SERVICES_NAVIGATION.filter(s => s.href !== currentPath).slice(0, 3);
@@ -77,7 +145,7 @@ const waUrl = `https://wa.me/${BUSINESS_DATA.telephoneE164.replace(/\D/g, "")}?t
   title={title}
   description={description}
   image={featuredImage}
-  schema={combinedSchema}
+  schema={serviceGraph}
 >
   <!-- Hero da Página de Serviço com Answer-First -->
   <section class="bg-gradient-to-b from-brand-beige via-brand-beige/50 to-white py-12 lg:py-16 border-b border-gray-100">
@@ -99,44 +167,49 @@ const waUrl = `https://wa.me/${BUSINESS_DATA.telephoneE164.replace(/\D/g, "")}?t
 
           <!-- Fatos Rápidos e Verificados (Answer-First DL) -->
           {facts.length > 0 && (
-            <dl class="grid grid-cols-2 sm:grid-cols-3 gap-3 p-4 bg-white/90 rounded-2xl border border-brand-gold/20 shadow-2xs text-xs sm:text-sm">
-              {facts.map((fact) => (
-                <div class="space-y-0.5">
-                  <dt class="font-bold text-brand-gold-dark uppercase tracking-wider text-2xs">{fact.label}</dt>
-                  <dd class="text-gray-800 font-medium">{fact.value}</dd>
-                </div>
-              ))}
-            </dl>
+            <div class="bg-white/80 backdrop-blur-xs p-6 rounded-2xl border border-brand-gold/20 shadow-2xs">
+              <h2 class="text-xs font-bold uppercase tracking-wider text-brand-gold-dark mb-4">
+                Informações Essenciais do Ensaio
+              </h2>
+              <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                {facts.map((fact) => (
+                  <div class="space-y-0.5">
+                    <dt class="text-gray-500 font-semibold text-xs">{fact.label}</dt>
+                    <dd class="text-gray-900 font-medium">{fact.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           )}
 
-          <div class="pt-2 flex flex-col sm:flex-row gap-4">
+          <div class="pt-2 flex flex-col sm:flex-row items-center gap-4">
             <a
               href={waUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand-gold hover:bg-brand-gold-dark text-white font-semibold rounded-full shadow-md hover:shadow-lg transition-all hover-lift whatsapp-track"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-base rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover-lift whatsapp-track"
               data-whatsapp-service={serviceName}
               data-whatsapp-position="hero"
             >
-              Agendar {serviceName} no WhatsApp
+              Conversar no WhatsApp
             </a>
             <a
-              href="#conteudo"
-              class="inline-flex items-center justify-center px-6 py-3.5 bg-white hover:bg-gray-50 text-gray-700 font-semibold border border-gray-200 rounded-full transition-colors"
+              href="#sobre-ensaio"
+              class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-base border border-gray-200 rounded-full shadow-2xs transition-colors"
             >
-              Ver Detalhes do Ensaio
+              Ver Detalhes e Fotos
             </a>
           </div>
         </div>
 
         <div class="lg:col-span-5">
-          <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 aspect-[4/3] bg-gray-100 relative group">
+          <div class="rounded-2xl overflow-hidden shadow-xl border border-gray-100 aspect-[4/5] bg-gray-100 relative">
             <img
               src={featuredImage}
-              alt={`${serviceName} no Estúdio Evydência em Tijucas`}
+              alt={h1}
               width="600"
-              height="450"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-103"
+              height="750"
+              class="w-full h-full object-cover"
               loading="eager"
               fetchpriority="high"
             />
@@ -147,136 +220,134 @@ const waUrl = `https://wa.me/${BUSINESS_DATA.telephoneE164.replace(/\D/g, "")}?t
     </div>
   </section>
 
-  <!-- Resumo da Experiência e Conteúdo -->
-  <section id="conteudo" class="py-12 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-      
-      <div class="bg-brand-beige/50 border-l-4 border-brand-gold p-6 rounded-r-xl">
-        <h2 class="text-lg font-bold text-gray-900 mb-2 font-serif-brand">
-          A Experiência no Estúdio Evydência
-        </h2>
-        <p class="text-gray-700 leading-relaxed text-sm sm:text-base">
-          {summary}
-        </p>
-      </div>
-
-      <!-- Grade de Fotos Contextuais do Ensaio -->
-      {photos.length > 0 && (
-        <div class="space-y-4">
-          <div class="flex items-center justify-between">
-            <h3 class="text-xl font-bold text-gray-900 font-serif-brand">
-              Registros e Momentos deste Ensaio
-            </h3>
-            {portfolioHref && (
-              <a href={portfolioHref} class="text-xs font-bold text-brand-gold hover:text-brand-gold-dark hover:underline">
-                Ver galeria completa →
-              </a>
-            )}
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-            {photos.map((photo) => (
-              <PictureCard
-                src={photo.src}
-                alt={photo.alt}
-                caption={photo.caption}
-                aspectRatio="square"
-                enableZoom={true}
-              />
-            ))}
-          </div>
+  <!-- Seção de Fotos Contextuais do Ensaio -->
+  {photos.length > 0 && (
+    <section class="py-12 bg-white border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="space-y-2 mb-8 text-center sm:text-left">
+          <span class="text-xs font-bold text-brand-gold uppercase tracking-wider">
+            Galeria da Sessão
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 font-serif-brand">
+            Registros Selecionados de {serviceName}
+          </h2>
         </div>
-      )}
 
-      <!-- Conteúdo Editorial Markdown -->
-      <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed space-y-4">
-        <slot />
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {photos.map((photo) => (
+            <PictureCard
+              src={photo.src}
+              alt={photo.alt}
+              caption={photo.caption}
+              aspectRatio="square"
+              enableZoom={true}
+            />
+          ))}
+        </div>
       </div>
+    </section>
+  )}
 
-      <!-- Bloco de Links Relacionados e Portfólio (Internal Linking Estruturado) -->
-      <div class="bg-brand-beige/30 rounded-2xl p-6 sm:p-8 border border-brand-gold/15 space-y-6">
-        <h3 class="text-xl font-bold text-gray-900 font-serif-brand">
-          Explore Mais e Prepare-se para seu Ensaio
-        </h3>
+  <!-- Conteúdo Principal e Informações do Ensaio -->
+  <section id="sobre-ensaio" class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {portfolioHref && (
-            <a
-              href={portfolioHref}
-              class="p-4 bg-white rounded-xl border border-gray-100 shadow-2xs hover:border-brand-gold/40 hover:shadow-xs transition-all flex flex-col justify-between"
-            >
-              <div>
-                <p class="text-xs font-bold text-brand-gold uppercase tracking-wider">Portfólio Visual</p>
-                <p class="font-bold text-gray-900 text-sm sm:text-base pt-1 font-serif-brand">Ver Fotos Destaque deste Ensaio</p>
-              </div>
-              <span class="text-xs font-semibold text-brand-gold pt-3">Acessar galeria completa →</span>
-            </a>
-          )}
-
-          {blogHref && (
-            <a
-              href={blogHref}
-              class="p-4 bg-white rounded-xl border border-gray-100 shadow-2xs hover:border-brand-gold/40 hover:shadow-xs transition-all flex flex-col justify-between"
-            >
-              <div>
-                <p class="text-xs font-bold text-brand-gold uppercase tracking-wider">Guia & Dicas</p>
-                <p class="font-bold text-gray-900 text-sm sm:text-base pt-1 font-serif-brand">{blogLabel || "Ler Dicas para seu Ensaio"}</p>
-              </div>
-              <span class="text-xs font-semibold text-brand-gold pt-3">Ler artigo no blog →</span>
-            </a>
-          )}
-
-          <a
-            href="/estudio/"
-            class="p-4 bg-white rounded-xl border border-gray-100 shadow-2xs hover:border-brand-gold/40 hover:shadow-xs transition-all flex flex-col justify-between"
-          >
-            <div>
-              <p class="text-xs font-bold text-brand-gold uppercase tracking-wider">Espaço Físico</p>
-              <p class="font-bold text-gray-900 text-sm sm:text-base pt-1 font-serif-brand">Conhecer a Estrutura em Tijucas</p>
-            </div>
-            <span class="text-xs font-semibold text-brand-gold pt-3">Ver bastidores e conforto →</span>
-          </a>
-
-          <a
-            href="/regiao-de-atendimento/"
-            class="p-4 bg-white rounded-xl border border-gray-100 shadow-2xs hover:border-brand-gold/40 hover:shadow-xs transition-all flex flex-col justify-between"
-          >
-            <div>
-              <p class="text-xs font-bold text-brand-gold uppercase tracking-wider">Cobertura Regional</p>
-              <p class="font-bold text-gray-900 text-sm sm:text-base pt-1 font-serif-brand">Atendimento a Cidades Vizinhas</p>
-            </div>
-            <span class="text-xs font-semibold text-brand-gold pt-3">Ver cidades atendidas →</span>
-          </a>
-        </div>
-
-        <!-- Cross-linking de Serviços Complementares -->
-        <div class="pt-4 border-t border-brand-gold/10">
-          <p class="text-xs text-gray-500 font-semibold uppercase tracking-wider mb-3">Outros Ensaios em Tijucas:</p>
-          <div class="flex flex-wrap gap-2">
-            {otherServices.map((service) => (
-              <a
-                href={service.href}
-                class="px-3 py-1.5 bg-white hover:bg-brand-gold hover:text-white border border-gray-200 text-xs font-medium rounded-lg transition-colors text-gray-700"
-              >
-                {service.label}
-              </a>
-            ))}
+        <!-- Artigo Principal do Serviço -->
+        <div class="lg:col-span-8 space-y-12">
+          
+          <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+            <slot />
           </div>
+
+          <!-- Bloco Contextual: Continue Registrando Essa História -->
+          <div class="bg-brand-beige/40 p-8 rounded-2xl border border-brand-gold/20 space-y-4">
+            <h2 class="text-2xl font-bold text-gray-900 font-serif-brand">
+              Continue Registrando Esta História
+            </h2>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Cada fase da vida familiar se conecta à próxima. Conheça outros ensaios e artigos relacionados:
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              {portfolioHref && (
+                <a
+                  href={portfolioHref}
+                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-white text-gray-800 text-sm font-semibold rounded-lg border border-gray-200 hover:border-brand-gold hover:text-brand-gold transition-colors"
+                >
+                  📷 Ver Portfólio Completo →
+                </a>
+              )}
+              {blogHref && (
+                <a
+                  href={blogHref}
+                  class="inline-flex items-center gap-1.5 px-4 py-2 bg-white text-gray-800 text-sm font-semibold rounded-lg border border-gray-200 hover:border-brand-gold hover:text-brand-gold transition-colors"
+                >
+                  📖 {blogLabel || "Dicas no Blog"} →
+                </a>
+              )}
+              <a
+                href="/historias/"
+                class="inline-flex items-center gap-1.5 px-4 py-2 bg-white text-gray-800 text-sm font-semibold rounded-lg border border-gray-200 hover:border-brand-gold hover:text-brand-gold transition-colors"
+              >
+                ⭐ Histórias Reais no Estúdio →
+              </a>
+            </div>
+          </div>
+
+          <!-- FAQ Accordion com Schema FAQPage -->
+          {faqs.length > 0 && (
+            <FAQAccordion faqs={faqs} title={`Dúvidas Frequentes sobre ${serviceName}`} />
+          )}
+
+          <!-- Banner WhatsApp Personalizado -->
+          <WhatsAppCTA
+            variant="banner"
+            service={serviceName}
+            customTitle={`Pronta para planejar seu ${serviceName}?`}
+            customSubtitle="Fale diretamente com Anderson e Elaine pelo WhatsApp. Ajudamos você com dicas de figurino, melhores datas e opções de fotolivros."
+            customMessage={whatsappMessage}
+          />
+
         </div>
+
+        <!-- Sidebar com Outros Ensaios e NAP Rápido -->
+        <div class="lg:col-span-4 space-y-8">
+          
+          <div class="bg-gray-50 p-6 rounded-2xl border border-gray-100 space-y-4">
+            <h3 class="text-lg font-bold text-gray-900 font-serif-brand">
+              Outros Ensaios no Estúdio
+            </h3>
+            <div class="space-y-3">
+              {otherServices.map((other) => (
+                <a
+                  href={other.href}
+                  class="block p-3 bg-white rounded-xl border border-gray-100 hover:border-brand-gold/40 transition-colors"
+                >
+                  <p class="text-xs text-brand-gold font-bold uppercase">{other.category}</p>
+                  <p class="font-bold text-gray-900 text-sm">{other.label}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div class="bg-brand-beige/50 p-6 rounded-2xl border border-brand-gold/20 space-y-3 text-sm">
+            <h3 class="font-bold text-gray-900 font-serif-brand text-base">
+              Atendimento e Estrutura
+            </h3>
+            <p class="text-gray-600">
+              📍 <strong>Endereço:</strong> {BUSINESS_DATA.address.street}, {BUSINESS_DATA.address.neighborhood} - Tijucas SC
+            </p>
+            <p class="text-gray-600">
+              🕒 <strong>Horário:</strong> {BUSINESS_DATA.openingHours[0].hours}
+            </p>
+            <p class="text-gray-600">
+              📞 <strong>Telefone:</strong> {BUSINESS_DATA.telephone}
+            </p>
+          </div>
+
+        </div>
+
       </div>
-
-      <!-- FAQs -->
-      {faqs.length > 0 && (
-        <FAQAccordion faqs={faqs} title={`Dúvidas Frequentes sobre ${serviceName}`} />
-      )}
-
-      <!-- Banner de Conversão WhatsApp Contextual -->
-      <WhatsAppCTA
-        variant="banner"
-        service={serviceName}
-        customTitle={`Pronta para agendar seu ${serviceName}?`}
-        customSubtitle={`Converse com Anderson e Elaine no WhatsApp para planejar sua sessão com carinho, tranquilidade e exclusividade.`}
-        customMessage={waText}
-      />
     </div>
   </section>
 

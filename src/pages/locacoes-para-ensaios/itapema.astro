@@ -1,0 +1,105 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PictureCard from "@/components/gallery/PictureCard.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import StudioLocation from "@/components/business/StudioLocation.astro";
+
+const title = "Locais para Ensaio Fotográfico em Itapema SC | Estúdio Evydência";
+const description = "Guia do fotógrafo para ensaios na Meia Praia e Canto da Praia em Itapema: luz de fim de tarde, vento, roupas e planejamento com o Estúdio Evydência.";
+
+const gallery = [
+  {
+    src: "https://evydencia.com.br/imgs/GESTANTES.png",
+    alt: "Ensaio de gestante na beira da praia em Itapema com luz dourada",
+    caption: "Luz Dourada de Fim de Tarde em Itapema"
+  },
+  {
+    src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png",
+    alt: "Família caminhando na areia da praia em momento espontâneo",
+    caption: "Conexão e Espontaneidade no Canto da Praia"
+  },
+  {
+    src: "https://evydencia.com.br/imgs/REVELACAO.png",
+    alt: "Casal abraçado junto aos barcos tradicionais de pesca",
+    caption: "Texturas Rústicas e Cenário Praiano"
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <header class="bg-gradient-to-b from-brand-beige via-brand-beige/50 to-white py-14 lg:py-20 border-b border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-dark bg-brand-gold/10 px-3 py-1 rounded-full">
+          Guia Prático de Locação
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight font-serif-brand">
+          Locais para Ensaio Fotográfico em Itapema: Experiência da Evydência
+        </h1>
+        <p class="text-lg text-gray-600 leading-relaxed pt-2">
+          Itapema oferece um dos cenários costeiros mais fotogênicos de Santa Catarina. Conheça as nuances de luz, vento e os pontos ideais para ensaios de gestante, casal e família.
+        </p>
+      </div>
+    </header>
+
+    <section class="py-14 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+          <h2>1. Canto da Praia: Charme Rústico e Águas Tranquilas</h2>
+          <p>
+            O <strong>Canto da Praia</strong> é o nosso local favorito em Itapema para famílias e gestantes. Por estar situado em uma enseada protegida, as águas costumam ser calmas e o vento é significativamente mais brando do que na praia central.
+          </p>
+          <ul>
+            <li><strong>Destaques Visuais:</strong> Barquinhos de pescadores coloridos, vegetação de restinga e píer de madeira.</li>
+            <li><strong>Melhor Luz:</strong> Final da tarde, quando o sol se põe atrás dos morros e cria um contraluz dourado sem ofuscar os olhos.</li>
+            <li><strong>Acesso:</strong> Fácil estacionamento e caminhada curta até a faixa de areia, ideal para crianças e gestantes.</li>
+          </ul>
+
+          <h2>2. Meia Praia: Amplitude e Linha do Horizonte</h2>
+          <p>
+            A <strong>Meia Praia</strong> se destaca pela extensa faixa de areia e pelo visual aberto do mar. Funciona muito bem para ensaios dinâmicos com casais e famílias que gostam de caminhar à beira da água.
+          </p>
+          <ul>
+            <li><strong>Atenção ao Vento:</strong> No meio da tarde o vento costuma ser mais forte; recomendamos vestidos fluidos e penteados que suportem a brisa marinha com naturalidade.</li>
+            <li><strong>Horários:</strong> Dias de semana ou primeiras horas da manhã e fim de tarde para evitar praias cheias na alta temporada.</li>
+          </ul>
+
+          <h2>3. O Que Vestir em um Ensaio na Praia</h2>
+          <p>
+            Sugerimos tons neutros como branco, off-white, bege, tons terra e tons pastéis (azul claro e verde sálvia). Tecidos naturais como linho e algodão conferem elegância e movimento às fotografias.
+          </p>
+        </div>
+
+        <!-- Galeria de Fotos em Itapema -->
+        <div class="space-y-6 pt-4">
+          <h2 class="text-2xl font-bold text-gray-900 font-serif-brand">
+            Registros Realizados em Itapema
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {gallery.map((photo) => (
+              <PictureCard
+                src={photo.src}
+                alt={photo.alt}
+                caption={photo.caption}
+                aspectRatio="square"
+                enableZoom={true}
+              />
+            ))}
+          </div>
+        </div>
+
+        <WhatsAppCTA
+          variant="banner"
+          service="ensaio_itapema"
+          customTitle="Gostaria de fazer seu ensaio em Itapema?"
+          customSubtitle="Fale conosco no WhatsApp para planejar data, horário da melhor luz e o roteiro do seu ensaio externo."
+          customMessage="Olá! Vi o guia de locais em Itapema no site da Evydência e gostaria de planejar um ensaio externo."
+        />
+
+      </div>
+    </section>
+  </article>
+
+  <StudioLocation />
+</BaseLayout>

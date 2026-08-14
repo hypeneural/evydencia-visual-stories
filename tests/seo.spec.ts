@@ -26,8 +26,10 @@ test.describe("Auditoria SEO On-Page e Metadados", () => {
     const jsonLd = page.locator('script[type="application/ld+json"]');
     await expect(jsonLd.first()).toBeAttached();
     const content = await jsonLd.first().textContent();
-    expect(content).toContain("PhotographyBusiness");
+    expect(content).toContain("LocalBusiness");
     expect(content).toContain("Tijucas");
+    expect(content).toContain("Anderson");
+    expect(content).toContain("Elaine");
   });
 
   test("Página de Ensaio Gestante possui H1 e FAQ", async ({ page }) => {

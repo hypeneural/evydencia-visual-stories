@@ -4,7 +4,6 @@ import JsonLd from "@/components/seo/JsonLd.astro";
 import Breadcrumbs from "@/components/seo/Breadcrumbs.astro";
 import Header from "@/components/layout/Header.astro";
 import Footer from "@/components/layout/Footer.astro";
-import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
 import LightboxDialog from "@/components/gallery/LightboxDialog.astro";
 import { getCanonicalUrl } from "@/lib/seo/canonical";
 import { buildLocalBusinessGraph } from "@/lib/seo/schema";
@@ -33,6 +32,7 @@ const {
 const pathname = Astro.url.pathname;
 const canonicalUrl = getCanonicalUrl(pathname);
 const defaultGraph = buildLocalBusinessGraph(canonicalUrl, title, description);
+const finalSchema = schema || defaultGraph;
 ---
 
 <!DOCTYPE html>
@@ -52,26 +52,26 @@ const defaultGraph = buildLocalBusinessGraph(canonicalUrl, title, description);
       Pular para o conteúdo principal
     </a>
 
-    <!-- Grafo de Entidade LocalBusiness -->
-    <JsonLd schema={defaultGraph} />
-    {schema && <JsonLd schema={schema} />}
+    <!-- Grafo de Entidade Canônico Schema.org -->
+    <JsonLd schema={finalSchema} />
 
     <Header currentPath={pathname} />
 
     {showBreadcrumbs && pathname !== "/" && (
-      <Breadcrumbs pathname={pathname} />
+      <div class="bg-gray-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <Breadcrumbs pathname={pathname} />
+        </div>
+      </div>
     )}
 
-    <main id="conteudo-principal" class="grow">
+    <main id="conteudo-principal" class="flex-1">
       <slot />
     </main>
 
     <Footer />
     
-    <!-- CTA WhatsApp Flutuante -->
-    <WhatsAppCTA variant="floating" />
-
-    <!-- Visualizador de Imagens Lightbox Global -->
+    <!-- Lightbox Modal Global para Galerias -->
     <LightboxDialog />
   </body>
 </html>

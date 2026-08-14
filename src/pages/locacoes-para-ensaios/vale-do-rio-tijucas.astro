@@ -1,0 +1,94 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PictureCard from "@/components/gallery/PictureCard.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import StudioLocation from "@/components/business/StudioLocation.astro";
+
+const title = "Cenários Campestres no Vale do Rio Tijucas | Estúdio Evydência";
+const description = "Conheça os melhores recantos campestres e áreas verdes para ensaio fotográfico no Vale do Rio Tijucas com o Estúdio Evydência.";
+
+const gallery = [
+  {
+    src: "https://evydencia.com.br/imgs/ANIVERSARIO.png",
+    alt: "Crianças brincando ao ar livre em campo aberto no Vale do Rio Tijucas",
+    caption: "Liberdade e Espaço Aberto para as Crianças"
+  },
+  {
+    src: "https://evydencia.com.br/imgs/GESTANTES.png",
+    alt: "Ensaio de família com luz filtrada pelas árvores",
+    caption: "Luz Filtrada e Clima Bucólico"
+  },
+  {
+    src: "https://evydencia.com.br/imgs/ACOMPANHAMENO_MENSAL.png",
+    alt: "Retrato afetivo em área rural de Tijucas",
+    caption: "Conexão Genuína com a Natureza"
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <header class="bg-gradient-to-b from-brand-beige via-brand-beige/50 to-white py-14 lg:py-20 border-b border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-dark bg-brand-gold/10 px-3 py-1 rounded-full">
+          Guia Prático de Locação
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight font-serif-brand">
+          Cenários Campestres e Áreas Verdes no Vale do Rio Tijucas
+        </h1>
+        <p class="text-lg text-gray-600 leading-relaxed pt-2">
+          Para quem prefere a serenidade do campo, árvores centenárias e estradas bucólicas, o Vale do Rio Tijucas oferece recantos encantadores a poucos minutos do nosso estúdio.
+        </p>
+      </div>
+    </header>
+
+    <section class="py-14 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+          <h2>1. Vantagens do Ensaio no Campo</h2>
+          <p>
+            O ambiente rural proporciona um ritmo ainda mais tranquilo para famílias com crianças pequenas e animais de estimação, que têm espaço amplo para correr e brincar com segurança.
+          </p>
+          <ul>
+            <li><strong>Luz Suave:</strong> As copas das árvores filtram a luz solar, permitindo fotos harmônicas mesmo antes do pôr do sol.</li>
+            <li><strong>Privacidade Absoluta:</strong> Locações calmas com pouca circulação de pedestres.</li>
+          </ul>
+
+          <h2>2. O Que Levar para a Sessão Campestre</h2>
+          <p>
+            Recomendamos repelente para bebês e crianças, uma garrafinha de água fresca e uma toalha ou manta para momentos de piquenique no gramado.
+          </p>
+        </div>
+
+        <div class="space-y-6 pt-4">
+          <h2 class="text-2xl font-bold text-gray-900 font-serif-brand">
+            Registros no Vale do Rio Tijucas
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {gallery.map((photo) => (
+              <PictureCard
+                src={photo.src}
+                alt={photo.alt}
+                caption={photo.caption}
+                aspectRatio="square"
+                enableZoom={true}
+              />
+            ))}
+          </div>
+        </div>
+
+        <WhatsAppCTA
+          variant="banner"
+          service="ensaio_campo_tijucas"
+          customTitle="Deseja um ensaio no campo em Tijucas?"
+          customSubtitle="Fale conosco no WhatsApp para escolher o melhor recanto verde para a sua família."
+          customMessage="Olá! Gostaria de informações sobre ensaios campestres no Vale do Rio Tijucas com o Estúdio Evydência."
+        />
+
+      </div>
+    </section>
+  </article>
+
+  <StudioLocation />
+</BaseLayout>

@@ -6,25 +6,34 @@ import type { BreadcrumbItem } from "./breadcrumbs";
  * Em estrita conformidade com Google Search Central e Schema.org
  */
 
-export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, pageDescription: string) {
-  const businessId = `${BUSINESS_DATA.url}/#business`;
-  const websiteId = `${BUSINESS_DATA.url}/#website`;
+export const CANONICAL_IDS = {
+  business: `${BUSINESS_DATA.url}/#business`,
+  website: `${BUSINESS_DATA.url}/#website`,
+  anderson: `${BUSINESS_DATA.url}/#anderson`,
+  elaine: `${BUSINESS_DATA.url}/#elaine`
+} as const;
 
+export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, pageDescription: string) {
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": ["PhotographyBusiness", "LocalBusiness"],
-        "@id": businessId,
+        "@type": "LocalBusiness",
+        "@id": CANONICAL_IDS.business,
         "name": BUSINESS_DATA.name,
         "legalName": BUSINESS_DATA.legalName,
         "alternateName": BUSINESS_DATA.alternateName,
         "description": BUSINESS_DATA.description,
         "url": `${BUSINESS_DATA.url}/`,
+        "foundingDate": "2011",
         "telephone": BUSINESS_DATA.telephoneE164,
         "email": BUSINESS_DATA.email,
-        "image": BUSINESS_DATA.logoUrl,
-        "logo": BUSINESS_DATA.logoUrl,
+        "image": "https://evydencia.com.br/imgs/GESTANTES.png",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": `${BUSINESS_DATA.url}/#logo`,
+          "url": BUSINESS_DATA.logoUrl
+        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": BUSINESS_DATA.address.street,
@@ -54,32 +63,38 @@ export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, p
           BUSINESS_DATA.links.facebook,
           BUSINESS_DATA.links.googleMaps
         ],
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Serviços de Fotografia Profissional",
-          "itemListElement": [
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ensaio de Gestante em Tijucas" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ensaio de Família em Tijucas" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Acompanhamento do Bebê e Primeiro Ano" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ensaio Smash the Cake" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Retratos Corporativos e Perfil Profissional" } },
-            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cobertura de Batizados e Aniversários Infantis" } }
-          ]
-        },
-        "founder": BUSINESS_DATA.founders.map(f => ({
-          "@type": "Person",
-          "name": f.name,
-          "jobTitle": f.role,
-          "image": f.image
-        }))
+        "founder": [
+          { "@id": CANONICAL_IDS.anderson },
+          { "@id": CANONICAL_IDS.elaine }
+        ]
+      },
+      {
+        "@type": "Person",
+        "@id": CANONICAL_IDS.anderson,
+        "name": "Anderson",
+        "jobTitle": "Fotógrafo e Fundador",
+        "image": "https://evydencia.com.br/imgs/anderson.jpg",
+        "worksFor": {
+          "@id": CANONICAL_IDS.business
+        }
+      },
+      {
+        "@type": "Person",
+        "@id": CANONICAL_IDS.elaine,
+        "name": "Elaine",
+        "jobTitle": "Fotógrafa e Fundadora",
+        "image": "https://evydencia.com.br/imgs/elaine.jpg",
+        "worksFor": {
+          "@id": CANONICAL_IDS.business
+        }
       },
       {
         "@type": "WebSite",
-        "@id": websiteId,
+        "@id": CANONICAL_IDS.website,
         "url": `${BUSINESS_DATA.url}/`,
         "name": BUSINESS_DATA.name,
         "publisher": {
-          "@id": businessId
+          "@id": CANONICAL_IDS.business
         },
         "inLanguage": "pt-BR"
       },
@@ -90,10 +105,10 @@ export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, p
         "name": pageTitle,
         "description": pageDescription,
         "isPartOf": {
-          "@id": websiteId
+          "@id": CANONICAL_IDS.website
         },
         "about": {
-          "@id": businessId
+          "@id": CANONICAL_IDS.business
         },
         "inLanguage": "pt-BR"
       }
@@ -101,28 +116,55 @@ export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, p
   };
 }
 
-export function buildServiceSchema(
+export function buildServiceGraph(
   serviceName: string,
   serviceDescription: string,
   serviceUrl: string,
-  imageUrl: string
+  imageUrl: string,
+  breadcrumbItems: BreadcrumbItem[]
 ) {
-  const businessId = `${BUSINESS_DATA.url}/#business`;
-
   return {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "name": serviceName,
-    "description": serviceDescription,
-    "provider": {
-      "@id": businessId
-    },
-    "url": serviceUrl,
-    "image": imageUrl,
-    "areaServed": BUSINESS_DATA.areaServed.map(city => ({
-      "@type": "City",
-      "name": `${city}, SC`
-    }))
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": `${serviceUrl}#webpage`,
+        "url": serviceUrl,
+        "name": serviceName,
+        "description": serviceDescription,
+        "isPartOf": {
+          "@id": CANONICAL_IDS.website
+        },
+        "about": {
+          "@id": `${serviceUrl}#service`
+        }
+      },
+      {
+        "@type": "Service",
+        "@id": `${serviceUrl}#service`,
+        "name": serviceName,
+        "description": serviceDescription,
+        "provider": {
+          "@id": CANONICAL_IDS.business
+        },
+        "url": serviceUrl,
+        "image": imageUrl,
+        "areaServed": BUSINESS_DATA.areaServed.map(city => ({
+          "@type": "City",
+          "name": `${city}, SC`
+        }))
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${serviceUrl}#breadcrumb`,
+        "itemListElement": breadcrumbItems.map((item, index) => ({
+          "@type": "ListItem",
+          "position": index + 1,
+          "name": item.name,
+          "item": item.url
+        }))
+      }
+    ]
   };
 }
 

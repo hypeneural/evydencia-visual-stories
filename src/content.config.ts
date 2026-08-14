@@ -34,7 +34,8 @@ const portfolioCollection = defineCollection({
     gallery: z.array(
       z.object({
         src: z.string(),
-        alt: z.string()
+        alt: z.string(),
+        caption: z.string().optional()
       })
     )
   })
@@ -65,9 +66,68 @@ const pressCollection = defineCollection({
   })
 });
 
+const storiesCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/stories" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    h1: z.string(),
+    clientName: z.string(),
+    sessionType: z.string(),
+    location: z.string().default("Estúdio Evydência (Tijucas - SC)"),
+    pubDate: z.coerce.date(),
+    featuredImage: z.string(),
+    gallery: z.array(
+      z.object({
+        src: z.string(),
+        alt: z.string(),
+        caption: z.string().optional()
+      })
+    ),
+    serviceSlug: z.string(),
+    portfolioSlug: z.string(),
+    testimonial: z.object({
+      quote: z.string(),
+      author: z.string()
+    }).optional()
+  })
+});
+
+const seasonalsCollection = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/seasonals" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    h1: z.string(),
+    campaign: z.string(),
+    slug: z.string(),
+    active: z.boolean().default(false),
+    currentYear: z.number(),
+    bookingOpen: z.boolean().default(false),
+    bookingUrl: z.string(),
+    heroImage: z.string(),
+    historySummary: z.string(),
+    gallery: z.array(
+      z.object({
+        src: z.string(),
+        alt: z.string(),
+        caption: z.string().optional()
+      })
+    ),
+    faqs: z.array(
+      z.object({
+        question: z.string(),
+        answer: z.string()
+      })
+    ).default([])
+  })
+});
+
 export const collections = {
   services: servicesCollection,
   portfolio: portfolioCollection,
   blog: blogCollection,
-  press: pressCollection
+  press: pressCollection,
+  stories: storiesCollection,
+  seasonals: seasonalsCollection
 };

@@ -1,0 +1,94 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PictureCard from "@/components/gallery/PictureCard.astro";
+import WhatsAppCTA from "@/components/ui/WhatsAppCTA.astro";
+import StudioLocation from "@/components/business/StudioLocation.astro";
+
+const title = "Locais para Ensaio Fotográfico em Porto Belo SC | Estúdio Evydência";
+const description = "Descubra as melhores enseadas e costões para ensaio de fotos em Porto Belo SC com o olhar e dicas práticas do Estúdio Evydência.";
+
+const gallery = [
+  {
+    src: "https://evydencia.com.br/imgs/REVELACAO.png",
+    alt: "Ensaio de casal com vista para as águas calmas de Porto Belo",
+    caption: "Águas Esmeralda e Costões em Porto Belo"
+  },
+  {
+    src: "https://evydencia.com.br/imgs/GESTANTES.png",
+    alt: "Gestante em cenário natural cercado por vegetação nativa",
+    caption: "Natureza Preservada e Intimidade"
+  },
+  {
+    src: "https://evydencia.com.br/imgs/CORPORATIVO.png",
+    alt: "Retrato ao ar livre aproveitando o contraste entre mar e pedras",
+    caption: "Composições Artísticas em Recantos Costeiros"
+  }
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <article>
+    <header class="bg-gradient-to-b from-brand-beige via-brand-beige/50 to-white py-14 lg:py-20 border-b border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-dark bg-brand-gold/10 px-3 py-1 rounded-full">
+          Guia Prático de Locação
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight font-serif-brand">
+          Locais para Ensaio Fotográfico em Porto Belo: Experiência da Evydência
+        </h1>
+        <p class="text-lg text-gray-600 leading-relaxed pt-2">
+          Com suas enseadas protegidas de mar verde-esmeralda e rica vegetação de Mata Atlântica, Porto Belo é ideal para ensaios intimistas e pré-wedding.
+        </p>
+      </div>
+    </header>
+
+    <section class="py-14 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+          <h2>1. Enseadas e Praias Protegidas</h2>
+          <p>
+            Porto Belo tem a particularidade de contar com baías muito calmas, sem ondas fortes. Isso facilita fotos próximas à linha d'água sem molhar os figurinos antes da hora.
+          </p>
+          <ul>
+            <li><strong>Caixa d'Aço e Enseada:</strong> Paisagens deslumbrantes com trapiches de madeira e embarcações.</li>
+            <li><strong>Costões de Pedra:</strong> Oferecem texturas ricas para composições elegantes de casais e gestantes.</li>
+          </ul>
+
+          <h2>2. Cuidados com Calçados e Deslocamento</h2>
+          <p>
+            Recomendamos levar chinelos ou rasteirinhas confortáveis para as caminhadas entre os pontos de foto e colocar o calçado principal do look no momento dos cliques.
+          </p>
+        </div>
+
+        <div class="space-y-6 pt-4">
+          <h2 class="text-2xl font-bold text-gray-900 font-serif-brand">
+            Registros Realizados em Porto Belo
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {gallery.map((photo) => (
+              <PictureCard
+                src={photo.src}
+                alt={photo.alt}
+                caption={photo.caption}
+                aspectRatio="square"
+                enableZoom={true}
+              />
+            ))}
+          </div>
+        </div>
+
+        <WhatsAppCTA
+          variant="banner"
+          service="ensaio_porto_belo"
+          customTitle="Quer fotografar em Porto Belo com a Evydência?"
+          customSubtitle="Fale conosco no WhatsApp para planejar sua sessão ao ar livre na Costa Esmeralda."
+          customMessage="Olá! Gostaria de planejar um ensaio externo em Porto Belo com o Estúdio Evydência."
+        />
+
+      </div>
+    </section>
+  </article>
+
+  <StudioLocation />
+</BaseLayout>

@@ -1,0 +1,118 @@
+---
+import { getEntry, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PictureCard from "@/components/gallery/PictureCard.astro";
+import FAQAccordion from "@/components/ui/FAQAccordion.astro";
+import StudioLocation from "@/components/business/StudioLocation.astro";
+import PressMentions from "@/components/business/PressMentions.astro";
+
+const seasonal = await getEntry("seasonals", "natal");
+if (!seasonal) {
+  throw new Error("Página de Natal não encontrada na coleção seasonals");
+}
+
+const { Content } = await render(seasonal);
+---
+
+<BaseLayout
+  title={seasonal.data.title}
+  description={seasonal.data.description}
+  image={seasonal.data.heroImage}
+>
+  <article>
+    <!-- Header Sazonal Perene -->
+    <header class="bg-gradient-to-b from-brand-beige via-brand-beige/50 to-white py-14 lg:py-20 border-b border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-gold-dark bg-brand-gold/10 px-3 py-1 rounded-full">
+          Tradição Desde 2011 em Tijucas
+        </span>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight font-serif-brand">
+          {seasonal.data.h1}
+        </h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          {seasonal.data.historySummary}
+        </p>
+
+        <!-- CTA de Agendamento da Temporada -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={seasonal.data.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-gold hover:bg-brand-gold-dark text-white font-bold text-base rounded-full shadow-md hover:shadow-lg transition-all duration-200 hover-lift"
+          >
+            🎅 Conhecer o Natal Evydência ({seasonal.data.currentYear})
+          </a>
+          <a
+            href="#galeria"
+            class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-800 font-semibold text-base border border-gray-200 rounded-full shadow-2xs transition-colors"
+          >
+            Ver Fotos e Bastidores
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section id="galeria" class="py-14 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        
+        <!-- Conteúdo Editorial -->
+        <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+          <Content />
+        </div>
+
+        <!-- Galeria Histórica -->
+        <div class="space-y-6 pt-4">
+          <h2 class="text-2xl font-bold text-gray-900 font-serif-brand">
+            Momentos Mágicos de Nossas Edições de Natal
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {seasonal.data.gallery.map((photo) => (
+              <PictureCard
+                src={photo.src}
+                alt={photo.alt}
+                caption={photo.caption}
+                aspectRatio="square"
+                enableZoom={true}
+              />
+            ))}
+          </div>
+        </div>
+
+        <!-- Cobertura na Imprensa Regional -->
+        <div class="pt-6">
+          <h3 class="text-xl font-bold text-gray-900 font-serif-brand mb-4">
+            O Natal Evydência na Mídia
+          </h3>
+          <PressMentions limit={2} />
+        </div>
+
+        <!-- FAQs -->
+        {seasonal.data.faqs.length > 0 && (
+          <FAQAccordion faqs={seasonal.data.faqs} title="Dúvidas sobre os Ensaios de Natal" />
+        )}
+
+        <!-- Banner de Conversão -->
+        <div class="bg-brand-beige border border-brand-gold/20 rounded-2xl p-8 text-center my-8">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2 font-serif-brand">
+            Garanta a Sua Vaga na Próxima Temporada
+          </h3>
+          <p class="text-gray-600 max-w-xl mx-auto mb-6 text-sm sm:text-base">
+            Os horários para o Natal costumam esgotar rapidamente. Acesse nossa página oficial de Natal para conferir a disponibilidade.
+          </p>
+          <a
+            href={seasonal.data.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 bg-brand-gold hover:bg-brand-gold-dark text-white font-semibold text-base px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all"
+          >
+            Acessar FotosdeNatal.com →
+          </a>
+        </div>
+
+      </div>
+    </section>
+  </article>
+
+  <StudioLocation />
+</BaseLayout>

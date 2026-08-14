@@ -7,7 +7,7 @@ export interface NavLink {
 export const MAIN_NAVIGATION: NavLink[] = [
   { label: "Início", href: "/" },
   { label: "Ensaios", href: "/ensaios/" },
-  { label: "Eventos", href: "/eventos/" },
+  { label: "Histórias", href: "/historias/" },
   { label: "Portfólio", href: "/portfolio/" },
   { label: "O Estúdio", href: "/estudio/" },
   { label: "Sobre", href: "/sobre/" },
@@ -36,8 +36,13 @@ export const FOOTER_NAVIGATION = {
   institucional: [
     { label: "Quem Somos", href: "/sobre/" },
     { label: "Nossa Estrutura", href: "/estudio/" },
+    { label: "Histórias Reais", href: "/historias/" },
+    { label: "Guia de Locações", href: "/locacoes-para-ensaios/" },
+    { label: "Especial de Natal", href: "/natal/" },
+    { label: "Especial Dia das Mães", href: "/dia-das-maes/" },
     { label: "Imprensa e Mídia", href: "/imprensa/" },
     { label: "Dicas no Blog", href: "/blog/" },
+    { label: "Região de Atendimento", href: "/regiao-de-atendimento/" },
     { label: "Fale Conosco", href: "/contato/" }
   ]
 };
