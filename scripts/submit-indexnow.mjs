@@ -31,7 +31,12 @@ const URL_LIST = [
   `https://${HOST}/portfolio/gestante/`,
   `https://${HOST}/portfolio/familia/`,
   `https://${HOST}/portfolio/infantil/`,
+  `https://${HOST}/portfolio/bebe/`,
+  `https://${HOST}/portfolio/smash-the-cake/`,
+  `https://${HOST}/portfolio/casal/`,
   `https://${HOST}/portfolio/corporativo/`,
+  `https://${HOST}/portfolio/eventos/`,
+  `https://${HOST}/portfolio/natal/`,
   `https://${HOST}/estudio/`,
   `https://${HOST}/sobre/`,
   `https://${HOST}/imprensa/`,
@@ -68,11 +73,14 @@ async function submitIndexNow() {
 
     if (response.ok || response.status === 200 || response.status === 202) {
       console.log(`✅ IndexNow disparado com sucesso! (Status: ${response.status})`);
+      console.log(`📡 ${URL_LIST.length} URLs notificadas para Bing, Yandex, Seznam e Naver.\n`);
     } else {
-      console.warn(`⚠️ Resposta do IndexNow: status ${response.status} (${response.statusText})`);
+      console.warn(`⚠️ Resposta IndexNow: ${response.status} ${response.statusText}`);
+      const text = await response.text();
+      console.warn(`Detalhes: ${text}`);
     }
   } catch (error) {
-    console.warn(`⚠️ Não foi possível conectar ao endpoint IndexNow no momento: ${error.message}`);
+    console.error(`❌ Erro ao enviar para IndexNow: ${error.message}`);
   }
 }
 
