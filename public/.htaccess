@@ -10,11 +10,34 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\.evydencia\.com\.br$ [NC]
 RewriteRule ^(.*)$ https://evydencia.com.br/$1 [L,R=301]
 
-# 2. Redirecionamentos de Sitemaps Legados para o Sitemap Index
+# 2. Redirecionamentos 301 de Sitemaps Legados para o Sitemap Index
 RewriteRule ^sitemap\.xml$ /sitemap-index.xml [L,R=301]
 RewriteRule ^wp-sitemap.*\.xml$ /sitemap-index.xml [L,R=301]
 
-# 3. Compressão Brotli com Fallback Gzip (mod_deflate)
+# 3. Redirecionamentos 301 de URLs Legadas para as Rotas Semânticas Oficiais
+RewriteRule ^ensaio-gestante/?$ /ensaios/gestante-tijucas/ [L,R=301]
+RewriteRule ^gestantes?/?$ /ensaios/gestante-tijucas/ [L,R=301]
+RewriteRule ^ensaio-familia/?$ /ensaios/familia-tijucas/ [L,R=301]
+RewriteRule ^familias?/?$ /ensaios/familia-tijucas/ [L,R=301]
+RewriteRule ^ensaio-infantil/?$ /ensaios/infantil-tijucas/ [L,R=301]
+RewriteRule ^infantil/?$ /ensaios/infantil-tijucas/ [L,R=301]
+RewriteRule ^acompanhamento/?$ /ensaios/acompanhamento-bebe-tijucas/ [L,R=301]
+RewriteRule ^acompanhamento-mensal/?$ /ensaios/acompanhamento-bebe-tijucas/ [L,R=301]
+RewriteRule ^smash-the-cake/?$ /ensaios/smash-the-cake-tijucas/ [L,R=301]
+RewriteRule ^smash/?$ /ensaios/smash-the-cake-tijucas/ [L,R=301]
+RewriteRule ^ensaio-casal/?$ /ensaios/casal-tijucas/ [L,R=301]
+RewriteRule ^casal/?$ /ensaios/casal-tijucas/ [L,R=301]
+RewriteRule ^corporativo/?$ /ensaios/corporativo-tijucas/ [L,R=301]
+RewriteRule ^retratos-profissionais/?$ /ensaios/corporativo-tijucas/ [L,R=301]
+RewriteRule ^batizados?/?$ /eventos/batizado-tijucas/ [L,R=301]
+RewriteRule ^aniversarios?/?$ /eventos/aniversario-infantil-tijucas/ [L,R=301]
+RewriteRule ^fotos-de-natal/?$ /natal/ [L,R=301]
+RewriteRule ^ensaio-natal/?$ /natal/ [L,R=301]
+RewriteRule ^quem-somos/?$ /sobre/ [L,R=301]
+RewriteRule ^o-estudio/?$ /estudio/ [L,R=301]
+RewriteRule ^fale-conosco/?$ /contato/ [L,R=301]
+
+# 4. Compressão Brotli com Fallback Gzip (mod_deflate)
 <IfModule mod_brotli.c>
   AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css text/javascript application/javascript application/x-javascript application/json application/xml application/rss+xml image/svg+xml
 </IfModule>
@@ -25,7 +48,7 @@ RewriteRule ^wp-sitemap.*\.xml$ /sitemap-index.xml [L,R=301]
   </IfModule>
 </IfModule>
 
-# 4. Políticas de Cache Específicas por Tipo de Recurso
+# 5. Políticas de Cache Específicas por Tipo de Recurso
 <IfModule mod_headers.c>
   # HTML: Revalidação Imediata (Frescor garantido)
   <FilesMatch "\.(html|htm)$">
@@ -47,7 +70,7 @@ RewriteRule ^wp-sitemap.*\.xml$ /sitemap-index.xml [L,R=301]
     Header set Cache-Control "public, max-age=2592000, stale-while-revalidate=86400"
   </FilesMatch>
 
-  # 5. Cabeçalhos de Segurança
+  # 6. Cabeçalhos de Segurança
   Header always set X-Content-Type-Options "nosniff"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set X-Frame-Options "SAMEORIGIN"
@@ -57,5 +80,5 @@ RewriteRule ^wp-sitemap.*\.xml$ /sitemap-index.xml [L,R=301]
   Header always set Content-Security-Policy-Report-Only "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com https://api.indexnow.org https://wa.me; frame-src 'self' https://www.google.com;"
 </IfModule>
 
-# 6. Página de Erro 404 Personalizada
+# 7. Página de Erro 404 Personalizada
 ErrorDocument 404 /404.html

@@ -93,6 +93,7 @@ export function buildLocalBusinessGraph(currentUrl: string, pageTitle: string, p
         "@id": CANONICAL_IDS.website,
         "url": `${BUSINESS_DATA.url}/`,
         "name": BUSINESS_DATA.name,
+        "alternateName": BUSINESS_DATA.alternateName,
         "publisher": {
           "@id": CANONICAL_IDS.business
         },
